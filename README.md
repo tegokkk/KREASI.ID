@@ -211,6 +211,19 @@ npm run create-superadmin --workspace=backend
 
 Jika `SUPERADMIN_PASSWORD` kosong, script menghasilkan kata sandi acak dan menampilkannya sekali di terminal. Simpan secara pribadi, lalu login melalui `/login` dan buka `/superadmin`. Akun siswa yang mendaftar melalui `/daftar` perlu ditinjau dari dashboard tersebut. Script bootstrap membuat akun baru dan akan menolak email yang sudah terdaftar.
 
+### 5. Buat akun Guru BK
+
+Setelah migrasi database dijalankan, buat akun Guru BK dengan email yang belum terdaftar. Gunakan nama sekolah yang sama dengan yang digunakan siswa saat mendaftar.
+
+```powershell
+$env:BK_NAME = 'Nama Guru'
+$env:BK_EMAIL = 'guru.bk@example.test'
+$env:BK_SCHOOL = 'Nama Sekolah'
+npm run create-bk --workspace=backend
+```
+
+Perintah menampilkan kata sandi yang dibuat untuk akun tersebut. Akun Guru BK masuk dengan email melalui `/login` dan langsung membuka **Riwayat Siswa** untuk sekolahnya. Superadmin membuka **Riwayat Siswa** dari dashboard untuk melihat siswa tuntas dari semua sekolah.
+
 ## Konfigurasi Environment
 
 Gunakan [backend/.env.example](backend/.env.example) sebagai referensi. File privat lokal berada di `backend/.env.local` dan dikecualikan dari Git.

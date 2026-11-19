@@ -5,6 +5,7 @@ import { Button } from '../../components/ui/Button';
 import styles from './Auth.module.css';
 
 const AuthContext = createContext(null);
+export const STAFF_ROLES = ['superadmin', 'bk'];
 
 export function AuthProvider({ children }) {
   const [state, setState] = useState({ user: null, loading: true, error: '' });
@@ -48,7 +49,8 @@ export function useAuth() {
 
 export function accountDestination(user) {
   if (user.status !== 'approved') return '/verifikasi';
-  return user.role === 'superadmin' ? '/superadmin' : '/';
+  if (user.role === 'superadmin') return '/superadmin';
+  return user.role === 'bk' ? '/riwayat-siswa' : '/';
 }
 
 export function AuthLoading() {
@@ -61,13 +63,14 @@ export function AuthLoading() {
   );
 }
 
-export function RequireAccount({ superadmin = false }) {
+export function RequireAccount({ roles }) {
   const { user, loading, error, refresh } = useAuth();
   const location = useLocation();
   if (loading || (error && !user)) return <AuthLoading />;
   if (!user) return <Navigate to="/login" replace state={{ from: location.pathname }} />;
   if (user.status !== 'approved') return <Navigate to="/verifikasi" replace />;
-  if (superadmin && user.role !== 'superadmin') return <Navigate to="/" replace />;
+  if (roles && !roles.includes(user.role)) return <Navigate to={accountDestination(user)} replace />;
+  const outletKey = roles ? `${user.id}:${user.role}:${user.school ?? ''}` : user.id;
   return (
     <>
       {error && (
@@ -76,7 +79,7 @@ export function RequireAccount({ superadmin = false }) {
           <Button size="sm" variant="secondary" onClick={refresh}>Coba Lagi</Button>
         </div>
       )}
-      <Outlet key={user.id} />
+      <Outlet key={outletKey} />
     </>
   );
 }

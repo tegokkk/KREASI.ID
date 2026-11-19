@@ -7,6 +7,7 @@ import { createAccessControl } from './routes/access.routes.js';
 import { createHealthRouter } from './routes/health.routes.js';
 import { createJourneyRouter } from './routes/journey.routes.js';
 import { createPublicConfigRouter } from './routes/public-config.routes.js';
+import { createStudentAuthRouter } from './routes/student-auth.routes.js';
 import { clientIp } from './client-ip.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -41,11 +42,15 @@ export function createApp({ getPublicConfig, authService, distDir = defaultDistD
       res.status(503).json({ status: 'unavailable' });
     }
   });
-  if (authService) app.all('/api/auth/*splat', toNodeHandler(authService.auth));
+  if (authService) {
+    app.use('/api/auth', createStudentAuthRouter(authService.auth));
+    app.all('/api/auth/*splat', toNodeHandler(authService.auth));
+  }
   app.use(express.json({ limit: '16kb' }));
   const access = createAccessControl(authService);
   app.use('/api/access', access.accessRouter);
   app.use('/api/admin', access.adminRouter);
+  app.use('/api/staff', access.staffRouter);
   app.use('/api/journey', access.requireApproved, createJourneyRouter(authService));
   app.get('/api/support', (_req, res) => {
     res.json({ support: getPublicConfig().support });

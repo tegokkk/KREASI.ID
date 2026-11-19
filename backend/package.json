@@ -10,6 +10,7 @@
     "db:migrate": "node src/migrate-db.js",
     "db:import-sqlite": "node src/import-sqlite-cli.js",
     "create-superadmin": "node src/create-superadmin.js",
+    "create-bk": "node src/create-bk.js",
     "dev": "node --watch src/server.js",
     "start": "node src/server.js"
   },

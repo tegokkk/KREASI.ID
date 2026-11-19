@@ -1,6 +1,8 @@
 .authShell {
+  --panel-gap: var(--space-lg);
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 100vh;
   min-height: 100svh;
   width: 100%;
   max-width: 640px;
@@ -10,7 +12,7 @@
     max(var(--space-md), env(safe-area-inset-right))
     calc(var(--space-md) + env(safe-area-inset-bottom))
     max(var(--space-md), env(safe-area-inset-left));
-  gap: var(--space-lg);
+  gap: var(--panel-gap);
 }
 
 .introduction {
@@ -25,10 +27,11 @@
   color: var(--color-on-primary);
 }
 
-.introduction h1 {
+.tagline {
+  font-family: var(--font-display);
   font-size: var(--text-page);
+  font-weight: 700;
   line-height: var(--line-heading);
-  color: inherit;
 }
 
 .logo {
@@ -57,15 +60,19 @@
   flex-shrink: 0;
 }
 
-.formPanel {
+.formSlot {
   align-self: center;
+  min-width: 0;
+}
+
+.formPanel {
   width: 100%;
   max-width: 480px;
   margin-inline: auto;
   padding: var(--space-xl) var(--space-lg);
 }
 
-.formPanel h2 {
+.formPanel h1 {
   margin: var(--space-md) 0 var(--space-sm);
   font-size: var(--text-section);
 }
@@ -183,7 +190,7 @@
 
 @media (min-width: 1024px) {
   .authShell {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: var(--container-max);
     padding:
       calc(var(--space-xl) + env(safe-area-inset-top))
@@ -193,24 +200,137 @@
   }
 }
 
-@media (max-width: 767px) {
-  .introduction {
-    gap: 12px;
+@media (min-width: 1024px), (min-width: 768px) and (min-height: 600px) {
+  .loginShell {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: var(--container-max);
   }
 
-  .logo {
+  .loginShell .tagline {
+    font-size: clamp(1.875rem, 4vw, var(--text-page));
+  }
+
+  .loginShell .introduction,
+  .loginShell .formSlot {
+    transition: transform var(--transition-spatial);
+  }
+
+  .loginShell .introduction {
+    z-index: 1;
+  }
+
+  .loginShell[data-student='true'] .introduction {
+    transform: translateX(calc(100% + var(--panel-gap)));
+  }
+
+  .loginShell[data-student='true'] .formSlot {
+    transform: translateX(calc(-100% - var(--panel-gap)));
+  }
+}
+
+@media (max-width: 767px), (max-width: 1023px) and (max-height: 599px) {
+  .loginShell {
+    grid-template-rows: auto 1fr;
+  }
+
+  .loginShell .introduction {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .loginShell .logo {
+    width: 48px;
+    flex-shrink: 0;
+  }
+
+  .loginShell .modeSwitch {
+    gap: 6px;
+    min-height: var(--touch-min);
+    padding: var(--space-sm);
+    font-size: var(--text-small);
+    text-align: center;
+  }
+
+  .modeSwitch svg {
+    flex-shrink: 0;
+  }
+
+  .loginShell .brand,
+  .loginShell .tagline,
+  .loginShell .introDescription,
+  .loginShell .introNote {
+    display: none;
+  }
+
+  .loginShell .formSlot {
+    align-self: start;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .loginShell[data-animate='true'] .formPanel {
+      animation: loginFromLeft 220ms var(--ease-out) both;
+    }
+
+    .loginShell[data-animate='true'][data-student='true'] .formPanel {
+      animation-name: loginFromRight;
+    }
+  }
+}
+
+@keyframes loginFromLeft {
+  from { opacity: 0.55; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes loginFromRight {
+  from { opacity: 0.55; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 1023px) {
+  .registerShell {
+    grid-template-rows: auto 1fr;
+  }
+
+  .registerShell .introduction {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .registerShell .logo {
     width: 48px;
   }
 
-  .introNote {
-    padding: 12px;
-    font-size: var(--text-small);
+  .registerShell .tagline,
+  .registerShell .introDescription,
+  .registerShell .introNote {
+    display: none;
   }
 
-  .formPanel {
-    padding: var(--space-lg) var(--space-md);
+  .registerShell .formSlot {
+    align-self: start;
   }
 }
+
+@media (max-width: 767px) {
+  .formPanel {
+    padding: var(--space-sm) var(--space-md) var(--space-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loginShell .introduction,
+  .loginShell .formSlot {
+    transition: none;
+  }
+}
+
 .connectionWarning {
   position: relative;
   z-index: 1;

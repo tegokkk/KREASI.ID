@@ -10,10 +10,11 @@ import { RecognizePotentialPage } from './pages/RecognizePotentialPage';
 import { ReflectionPage } from './pages/ReflectionPage';
 import { SelfCheckPage } from './pages/SelfCheckPage';
 import { TipsPage } from './pages/TipsPage';
-import { AuthProvider, RequireAccount } from './features/auth/AuthProvider';
+import { AuthProvider, RequireAccount, STAFF_ROLES } from './features/auth/AuthProvider';
 import { AuthPage } from './features/auth/AuthPage';
 import { VerificationPage } from './features/auth/VerificationPage';
 import { SuperadminPage } from './features/auth/SuperadminPage';
+import { StudentHistoryPage } from './features/auth/StudentHistoryPage';
 import { JourneyProvider } from './features/journey/JourneyProvider';
 import { RequireStepAccess } from './features/journey/RequireStepAccess';
 
@@ -29,8 +30,11 @@ export function App() {
           <Route path="/login" element={<AuthPage />} />
           <Route path="/daftar" element={<AuthPage register />} />
           <Route path="/verifikasi" element={<VerificationPage />} />
-          <Route element={<RequireAccount superadmin />}>
+          <Route element={<RequireAccount roles={['superadmin']} />}>
             <Route path="/superadmin" element={<SuperadminPage />} />
+          </Route>
+          <Route element={<RequireAccount roles={STAFF_ROLES} />}>
+            <Route path="/riwayat-siswa" element={<StudentHistoryPage />} />
           </Route>
           <Route element={<RequireAccount />}>
             <Route

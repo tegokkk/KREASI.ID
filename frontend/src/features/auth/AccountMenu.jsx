@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { useAuth } from './AuthProvider';
+import { STAFF_ROLES, useAuth } from './AuthProvider';
 import { Button } from '../../components/ui/Button';
 import styles from './AccountMenu.module.css';
 
@@ -22,6 +22,7 @@ export function AccountMenu() {
         <p className={styles.name}>{user.name}</p>
         {user.status !== 'approved' && <Link to="/verifikasi">Status Verifikasi</Link>}
         {user.role === 'superadmin' && <Link to="/superadmin">Verifikasi Akun</Link>}
+        {user.status === 'approved' && STAFF_ROLES.includes(user.role) && <Link to="/riwayat-siswa">Riwayat Siswa</Link>}
         <button type="button" disabled={busy} onClick={signOut}>{busy ? 'Memproses…' : 'Keluar'}</button>
         {error && <p role="alert">{error}</p>}
       </div>

@@ -15,7 +15,9 @@ const service = await createAuthService({
   baseURL: origin,
   origins: [origin],
   secret: 'browser-tests-only-secret-more-than-thirty-two-characters',
+  bkAccount: { email: 'bk@example.test', school: 'smp uji alur' },
 });
+await service.auth.api.signUpEmail({ body: { name: 'Guru BK Uji', email: 'bk@example.test', password: 'Browser-Test-Only-123!' } });
 for (const [name, email, role] of [
   ['Admin Test', 'admin@example.test', 'superadmin'],
   ['Siswa A', 'student-a@example.test', 'user'],

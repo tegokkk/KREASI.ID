@@ -12,6 +12,7 @@ import { readAuthConfig } from './auth-config.js';
 import { readDatabaseConfig } from './database-config.js';
 import { createRepository } from './repository.js';
 import { migratePostgres, migrateSqlite } from './migrations.js';
+import { studentAccountFields } from './domain/student-credentials.js';
 
 const backendDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -58,17 +59,25 @@ export async function createAuthService(options = {}) {
         role: { type: 'string', defaultValue: 'user', input: false },
         status: { type: 'string', defaultValue: 'pending', input: false },
         reviewNote: { type: 'string', defaultValue: '', input: false },
+        nisn: { type: 'string', required: false, input: false, returned: false },
+        school: { type: 'string', required: false, input: false, returned: false },
       },
     },
     databaseHooks: {
       user: {
         create: {
-          before: async (user) => {
+          before: async (user, ctx) => {
             const name = user.name.trim();
             if (name.length < 2 || name.length > 100) {
               throw new APIError('BAD_REQUEST', { message: 'Nama harus berisi 2 sampai 100 karakter.' });
             }
-            return { data: { ...user, name, role: 'user', status: 'pending', reviewNote: '' } };
+            const profile = studentAccountFields(user.email, ctx?.body);
+            // Only the local Guru BK provisioning command supplies this server-side option.
+            const bk = options.bkAccount?.email === user.email ? options.bkAccount : null;
+            return { data: {
+              ...user, ...profile, name, reviewNote: '',
+              ...(bk ? { school: bk.school, role: 'bk', status: 'approved' } : { role: 'user', status: 'pending' }),
+            } };
           },
         },
       },

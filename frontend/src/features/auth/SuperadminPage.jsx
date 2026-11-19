@@ -14,6 +14,7 @@ import { Button } from '../../components/ui/Button';
 import { FormField } from '../../components/ui/FormField';
 import { InfoPanel } from '../../components/ui/InfoPanel';
 import { accountRequest } from '../../services/auth';
+import { StaffDashboardNav } from './StaffDashboardNav';
 import styles from './Superadmin.module.css';
 
 const STATUS_META = [
@@ -70,6 +71,10 @@ function formatRegistrationDate(createdAt) {
   return new Date(createdAt).toLocaleDateString('id-ID', { dateStyle: 'medium' });
 }
 
+function accountIdentifier(user) {
+  return user.nisn ? `NISN ${user.nisn}` : user.email;
+}
+
 function StatusBadge({ status }) {
   const meta = STATUS_BY_KEY[status] || STATUS_BY_KEY.pending;
   const Icon = meta.Icon;
@@ -117,7 +122,8 @@ function ReviewPanel({
           </h2>
           <p className={styles.reviewIdentity}>
             <strong>{review.user.name}</strong> ·{' '}
-            <span className={styles.email}>{review.user.email}</span>
+            <span className={styles.email}>{accountIdentifier(review.user)}</span>
+            {review.user.school && <> · {review.user.school}</>}
           </p>
         </div>
       </div>
@@ -278,7 +284,7 @@ export function SuperadminPage() {
         setData((prev) => ({ ...prev, counts: result.counts }));
       }
       setMessage(
-        `Akun ${targetUser.name} (${targetUser.email}) ${
+        `Akun ${targetUser.name} (${accountIdentifier(targetUser)}) ${
           decision === 'approved' ? 'telah disetujui' : 'telah ditolak'
         }.`
       );
@@ -313,6 +319,8 @@ export function SuperadminPage() {
             </p>
           </div>
         </header>
+
+        <StaffDashboardNav current="accounts" />
 
         <section className={styles.summaryGrid} aria-label="Ringkasan jumlah akun">
           {STATUS_META.map((item) => {
@@ -420,7 +428,7 @@ export function SuperadminPage() {
                 <thead>
                   <tr>
                     <th scope="col">Nama</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Identitas akun</th>
                     <th scope="col">Tanggal Daftar</th>
                     <th scope="col">Status</th>
                     <th scope="col">Tindakan</th>
@@ -460,7 +468,8 @@ export function SuperadminPage() {
                     <div className={styles.cardHeader}>
                       <div className={styles.cardIdentity}>
                         <h2 className={styles.cardName}>{user.name}</h2>
-                        <p className={styles.email}>{user.email}</p>
+                        <p className={styles.email}>{accountIdentifier(user)}</p>
+                        {user.school && <p className={styles.email}>{user.school}</p>}
                       </div>
                       <StatusBadge status={user.status} />
                     </div>
@@ -587,7 +596,10 @@ function DesktopAccountRows({
             <p className={styles.tableNote}>Catatan: {user.reviewNote}</p>
           )}
         </td>
-        <td className={styles.cellEmail}>{user.email}</td>
+        <td className={styles.cellEmail}>
+          {accountIdentifier(user)}
+          {user.school && <p className={styles.email}>{user.school}</p>}
+        </td>
         <td className={styles.cellDate}>{formatRegistrationDate(user.createdAt)}</td>
         <td>
           <StatusBadge status={user.status} />

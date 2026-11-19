@@ -45,5 +45,17 @@ export function createAccessControl(service) {
       res.json({ user: result.user, counts: result.counts });
     } catch (error) { next(error); }
   });
-  return { accessRouter, adminRouter, requireApproved };
+
+  const staffRouter = Router();
+  staffRouter.get('/student-history', requireApproved, async (req, res, next) => {
+    const { role, school } = req.account;
+    if (role !== 'superadmin' && (role !== 'bk' || !school?.trim())) {
+      return res.status(403).json({ error: 'Riwayat hanya tersedia untuk Superadmin dan Guru BK.' });
+    }
+    const page = Number(req.query.page ?? 1);
+    if (!Number.isInteger(page) || page < 1 || page > 1000000) return res.status(400).json({ error: 'Halaman tidak valid.' });
+    try { res.json(await service.repo.listCompletedStudents({ page, school: role === 'bk' ? school : null })); }
+    catch (error) { next(error); }
+  });
+  return { accessRouter, adminRouter, staffRouter, requireApproved };
 }

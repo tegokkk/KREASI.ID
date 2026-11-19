@@ -276,6 +276,27 @@
   color: var(--color-muted);
 }
 
+.historyDetails {
+  border-top: 1px solid var(--color-divider);
+}
+
+.historyDetails summary {
+  min-height: var(--touch-min);
+  padding-block: var(--space-sm);
+  color: var(--color-primary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.historySteps li {
+  padding-block: var(--space-sm);
+  border-top: 1px solid var(--color-divider);
+}
+
+.historySteps strong {
+  display: block;
+}
+
 .note {
   padding: 10px 12px;
   border-radius: var(--radius-input);

@@ -1,6 +1,7 @@
 import { buildJourneyState, JOURNEY_STEPS } from './domain/journey.js';
+import { SCHEMA_VERSION } from './migrations.js';
 
-export const ACCOUNT_FIELDS = 'id, name, email, role, status, "reviewNote", "createdAt"';
+export const ACCOUNT_FIELDS = 'id, name, CASE WHEN nisn IS NULL THEN email END AS email, nisn, school, role, status, "reviewNote", "createdAt"';
 const PAGE_SIZE = 20;
 
 function countsFromRows(rows) {
@@ -78,6 +79,46 @@ export function createRepository(database, { dialect, schema }) {
       if (dialect === 'sqlite') run(sql, [id]); else await database.query(sql, [id]);
     },
     getProgress: (id) => all(progressSql, [id]),
+    async listCompletedStudents({ page, school }) {
+      const stepIds = JOURNEY_STEPS.map((step) => step.id);
+      const stepParams = stepIds.map((_, index) => `$${index + 1}`).join(', ');
+      const count = `$${stepIds.length + 1}`;
+      const scope = `$${stepIds.length + 2}`;
+      const limit = `$${stepIds.length + 3}`;
+      const offset = `$${stepIds.length + 4}`;
+      const rows = await all(`WITH finished AS (
+        SELECT p.user_id, MAX(p.completed_at) AS finished_at
+        FROM ${table('user_journey_progress')} p
+        JOIN ${table('user')} u ON u.id = p.user_id
+        WHERE u.role = 'user' AND u.status = 'approved' AND p.status = 'completed'
+          AND p.step_id IN (${stepParams})
+          AND (CAST(${scope} AS TEXT) IS NULL OR LOWER(TRIM(u.school)) = LOWER(TRIM(${scope})))
+        GROUP BY p.user_id
+        HAVING COUNT(*) = ${count}
+        ORDER BY finished_at DESC NULLS LAST, p.user_id DESC
+        LIMIT ${limit} OFFSET ${offset}
+      )
+      SELECT u.id, u.name, u.nisn, u.school, f.finished_at, p.step_id, p.completed_at
+      FROM finished f
+      JOIN ${table('user')} u ON u.id = f.user_id
+      JOIN ${table('user_journey_progress')} p ON p.user_id = f.user_id AND p.step_id IN (${stepParams})
+      ORDER BY f.finished_at DESC NULLS LAST, u.id DESC`,
+      [...stepIds, stepIds.length, school, PAGE_SIZE + 1, (page - 1) * PAGE_SIZE]);
+
+      const students = new Map();
+      for (const { id, name, nisn, school, finished_at, step_id, completed_at } of rows) {
+        if (!students.has(id)) students.set(id, { id, name, nisn, school, finishedAt: finished_at, dates: new Map() });
+        students.get(id).dates.set(step_id, completed_at);
+      }
+      return {
+        page,
+        hasMore: students.size > PAGE_SIZE,
+        students: [...students.values()].slice(0, PAGE_SIZE).map(({ dates, ...student }) => ({
+          ...student,
+          steps: JOURNEY_STEPS.map(({ id, title }) => ({ id, title, completedAt: dates.get(id) ?? null })),
+        })),
+      };
+    },
     async listAccounts(status, requestedPage) {
       const counts = countsFromRows(await all(countsSql));
       const total = counts[status];
@@ -92,7 +133,7 @@ export function createRepository(database, { dialect, schema }) {
       await one(`SELECT id FROM ${table('user')} LIMIT 1`);
       await one(`SELECT step_id, status FROM ${table('user_journey_progress')} LIMIT 1`);
       if (dialect === 'postgres') {
-        const version = await one(`SELECT version FROM ${table('schema_migrations')} WHERE version = 1`);
+        const version = await one(`SELECT version FROM ${table('schema_migrations')} WHERE version = $1`, [SCHEMA_VERSION]);
         if (!version) throw new Error('Migrasi database belum dijalankan.');
       }
     },
