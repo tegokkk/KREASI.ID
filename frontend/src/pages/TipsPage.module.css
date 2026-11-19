@@ -1,0 +1,358 @@
+.tipsWrap {
+  max-width: 960px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heroCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.heroTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-activity-blue);
+  color: var(--color-primary);
+  font-size: var(--text-caption);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.pageHeading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.introText {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-muted);
+  max-width: 68ch;
+}
+
+.metaStrip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.metaItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-input);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-divider);
+}
+
+.metaIcon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-divider);
+}
+
+.metaText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.metaLabel {
+  font-size: var(--text-caption);
+  line-height: 1.3;
+  color: var(--color-muted);
+}
+
+.metaValue {
+  font-size: var(--text-small);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+.tipsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tipCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tipYellow {
+  border-left: 5px solid #e7b844;
+}
+
+.tipGreen {
+  border-left: 5px solid #5ea86b;
+}
+
+.tipPink {
+  border-left: 5px solid var(--color-secondary);
+}
+
+.tipHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tipIcon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+}
+
+.iconYellow {
+  background-color: var(--color-activity-yellow);
+}
+
+.iconGreen {
+  background-color: var(--color-activity-green);
+}
+
+.iconPink {
+  background-color: var(--color-activity-pink);
+}
+
+.tipTitleGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.tipPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-caption);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.pillYellow {
+  background-color: var(--color-activity-yellow);
+}
+
+.pillGreen {
+  background-color: var(--color-activity-green);
+}
+
+.pillPink {
+  background-color: var(--color-activity-pink);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.tipSummary {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 68ch;
+}
+
+.exampleGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.exampleCard {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-input);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.exampleHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exampleIcon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.exampleTitle {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+
+.exampleBody {
+  font-size: var(--text-small);
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.ctaCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ctaTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ctaHeading {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+
+.ctaDesc {
+  font-size: var(--text-small);
+  line-height: 1.55;
+  color: var(--color-muted);
+  max-width: 64ch;
+}
+
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.helpLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--touch-min);
+  padding: 6px 4px;
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .helpLink:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (min-width: 768px) {
+  .tipsWrap {
+    gap: 24px;
+  }
+
+  .heroCard {
+    padding: 28px 32px;
+  }
+
+  .metaStrip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .tipsList {
+    gap: 20px;
+  }
+
+  .tipCard {
+    padding: 24px;
+  }
+
+  .tipTitleGroup {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+
+  .exampleGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .ctaCard {
+    padding: 22px 24px;
+  }
+
+  .ctaHeading {
+    font-size: 1.125rem;
+  }
+}

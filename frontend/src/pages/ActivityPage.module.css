@@ -1,0 +1,146 @@
+.pageStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: 18px;
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+}
+
+@media (min-width: 640px) {
+  .sectionCard {
+    padding: var(--space-lg);
+  }
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.subCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: var(--space-md);
+  border-radius: var(--radius-input);
+  border: 1px solid var(--color-divider);
+  background-color: var(--color-canvas);
+}
+
+.subCardBlue {
+  background-color: var(--color-activity-blue);
+}
+
+.subCardYellow {
+  background-color: var(--color-activity-yellow);
+}
+
+.subCardGreen {
+  background-color: var(--color-activity-green);
+}
+
+.subCardLilac {
+  background-color: var(--color-activity-lilac);
+}
+
+.subCardPink {
+  background-color: var(--color-activity-pink);
+}
+
+.subCardMint {
+  background-color: var(--color-tertiary);
+}
+
+.subTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-subtitle);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.exampleBox {
+  padding: 10px 12px;
+  border-radius: var(--radius-input);
+  background-color: var(--color-surface);
+  font-size: var(--text-body);
+  color: var(--color-ink);
+}
+
+.highlightPanel {
+  padding: var(--space-lg);
+  border-radius: var(--radius-card);
+  background-color: var(--color-activity-yellow);
+  border: 1px solid rgba(36, 24, 49, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 1.25rem;
+}
+
+.fallbackDetails {
+  padding: var(--space-md);
+  border-radius: var(--radius-input);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+}
+
+.fallbackSummary {
+  font-weight: 700;
+  color: var(--color-ink);
+  cursor: pointer;
+  min-height: var(--touch-min);
+  display: flex;
+  align-items: center;
+}
+
+.fallbackList {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 1.25rem;
+}
+
+.inlineActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.inlineLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+}
+
+@media (min-width: 768px) {
+  .pageStack {
+    gap: var(--space-xl);
+  }
+
+  .cardGridTwo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

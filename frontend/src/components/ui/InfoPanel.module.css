@@ -1,0 +1,75 @@
+.panel {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: var(--space-md);
+  border-radius: var(--radius-input);
+  color: var(--color-ink);
+  border: 1px solid transparent;
+}
+
+.mint {
+  background-color: var(--color-tertiary);
+}
+
+.blue {
+  background-color: var(--color-activity-blue);
+}
+
+.yellow {
+  background-color: var(--color-activity-yellow);
+}
+
+.pink {
+  background-color: var(--color-activity-pink);
+}
+
+.success {
+  background-color: var(--color-success-surface);
+  border-color: var(--color-success-border);
+  color: var(--color-success);
+}
+
+.error {
+  background-color: var(--color-error-surface);
+  border-color: var(--color-error-border);
+  color: var(--color-error);
+}
+
+.surface {
+  background-color: var(--color-surface);
+  border-color: var(--color-divider);
+}
+
+.iconWrap {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 700;
+  line-height: 1.35;
+  color: inherit;
+}
+
+.body {
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: inherit;
+}
+
+.body p + p {
+  margin-top: 6px;
+}

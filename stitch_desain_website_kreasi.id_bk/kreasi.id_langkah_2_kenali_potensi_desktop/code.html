@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&amp;family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"feedback-success":"#176050","on-secondary-container":"#751037","outline-variant":"#c5c5d8","on-surface-variant":"#444655","on-surface":"#22162f","primary-hover":"#2337B7","muted":"#594D63","divider":"#E4DAE1","inverse-on-surface":"#f9ecff","tertiary-fixed":"#a4f1e5","primary":"#032ccd","on-secondary":"#ffffff","surface-dim":"#e6d3f5","activity-kenali-potensi":"#FFF1C5","border-field":"#81778E","surface-container":"#f7e9ff","surface":"#FFFFFF","surface-container-lowest":"#ffffff","surface-variant":"#efdbfe","outline":"#757687","secondary":"#a43759","surface-tint":"#304be4","on-tertiary-fixed":"#00201c","on-primary-container":"#d2d6ff","on-background":"#22162f","inverse-surface":"#382b45","activity-mengembangkan":"#E5F4D8","error-container":"#ffdad6","on-primary-fixed":"#000e5e","secondary-container":"#fd7d9f","secondary-fixed":"#ffd9e0","activity-action-plan":"#A2EFE3","canvas":"#FFFAEE","on-primary":"#ffffff","on-error-container":"#93000a","activity-self-check":"#E8EDFF","surface-container-highest":"#efdbfe","primary-fixed":"#dee0ff","tertiary":"#005049","activity-kuis":"#F0E8FF","primary-fixed-dim":"#bbc3ff","error":"#ba1a1a","surface-container-low":"#fbf0ff","background":"#fff7ff","on-secondary-fixed":"#3f0018","secondary-fixed-dim":"#ffb1c2","surface-bright":"#fff7ff","tertiary-fixed-dim":"#88d4c9","feedback-error-surface":"#FFF0F4","on-error":"#ffffff","tertiary-container":"#126a61","feedback-error":"#A22A46","on-primary-fixed-variant":"#032ccd","on-tertiary-fixed-variant":"#005049","activity-refleksi":"#FFE6EE","on-secondary-fixed-variant":"#841e42","on-tertiary":"#ffffff","inverse-primary":"#bbc3ff","on-tertiary-container":"#9ae7db","primary-container":"#304be4","surface-container-high":"#f3e2ff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-3xl":"4rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-md":"1rem","space-sm":"0.5rem","margin":"2rem","space-xl":"2rem","space-lg":"1.5rem","space-2xl":"2.5rem","space-xs":"0.25rem","gutter":"1.25rem"},fontFamily:{"headline-lg-mobile":["Bricolage Grotesque"],"body-lg":["DM Sans"],"label-sm":["DM Sans"],"headline-md-mobile":["Bricolage Grotesque"],"body-md":["DM Sans"],"headline-display-mobile":["Bricolage Grotesque"],"label-md":["DM Sans"],"headline-lg":["Bricolage Grotesque"],"title-md":["Bricolage Grotesque"],"body-sm":["DM Sans"],"headline-display":["Bricolage Grotesque"],"headline-md":["Bricolage Grotesque"]},fontSize:{"headline-lg-mobile":["2rem",{"lineHeight":"1.15","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["1.125rem",{"lineHeight":"1.6","fontWeight":"400"}],"label-sm":["0.875rem",{"lineHeight":"1.3","fontWeight":"700"}],"headline-md-mobile":["1.5rem",{"lineHeight":"1.25","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.55","fontWeight":"400"}],"headline-display-mobile":["2.5rem",{"lineHeight":"1.1","letterSpacing":"-0.03em","fontWeight":"800"}],"label-md":["1rem",{"lineHeight":"1.25","fontWeight":"700"}],"headline-lg":["2.75rem",{"lineHeight":"1.12","letterSpacing":"-0.025em","fontWeight":"700"}],"title-md":["1.375rem",{"lineHeight":"1.3","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.45","fontWeight":"400"}],"headline-display":["4rem",{"lineHeight":"1.05","letterSpacing":"-0.035em","fontWeight":"800"}],"headline-md":["1.75rem",{"lineHeight":"1.2","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas font-body-md text-body-md text-on-surface min-h-screen"><header class="fixed top-0 left-0 right-0 z-50 bg-canvas/95 backdrop-blur-md shadow-[0_1px_8px_rgba(34,22,47,0.04)]"><div class="h-20 max-w-[1200px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><img alt="Logo KREASI.ID" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCrNoN8Z6tIQ2oXkXpANGjjsK0ZPKC7Oyo_TvbGLi38XcqjeFdA8_zGD2F-doUQev8a-ttEyYFtnFNU4ZD2q9e0VesBtf5qTOHRvF34YVTtcxfqjeiMqQGCv6Ftjesgp_7QjDoAshMnakhJVVqO90VNBOJoOo21LXKDMunraq7c7D8tjCQrjLdFavikdadSw6abIlq8MjHqR6Jo2ATGqyMyP8RIB0oYWocHbxu1HYE"/><a class="font-title-md text-title-md text-primary tracking-tight" data-path="beranda" href="#">KREASI.ID</a></div><nav class="hidden lg:flex items-center gap-space-xs xl:gap-space-sm" data-active-classes="bg-primary text-on-primary font-bold rounded-full px-4 py-2"><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="beranda" href="#">Beranda</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tips" href="#">Tips</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover transition-colors shadow-sm" data-path="mulai-self-check" href="#">Mulai Self-check</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-canvas"><div class="flex flex-col w-full">
+<!-- Top Tracker & Step Meta Header -->
+<section class="w-full pt-8 pb-12">
+<div class="max-w-[860px] mx-auto px-margin">
+<!-- Breadcrumb Navigation & Pill -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-6">
+<div class="inline-flex items-center gap-space-xs bg-activity-kenali-potensi text-on-surface px-4 py-1.5 rounded-full shadow-sm w-fit">
+<span class="material-symbols-outlined text-[18px] text-tertiary">psychology</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Langkah 2 dari 6</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-muted">Perjalanan Belajar:</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Kenali Potensi</span>
+</div>
+</div>
+<!-- Segmented Step Bar -->
+<div class="grid grid-cols-6 gap-2 w-full mb-8">
+<div class="h-2 rounded-full bg-primary" title="Langkah 1: Selesai"></div>
+<div class="h-2 rounded-full bg-primary animate-pulse" title="Langkah 2: Sedang Aktif"></div>
+<div class="h-2 rounded-full bg-divider" title="Langkah 3: Mengembangkan"></div>
+<div class="h-2 rounded-full bg-divider" title="Langkah 4: Refleksi Diri"></div>
+<div class="h-2 rounded-full bg-divider" title="Langkah 5: Kuis &amp; Cek"></div>
+<div class="h-2 rounded-full bg-divider" title="Langkah 6: Rencana Aksi"></div>
+</div>
+<!-- Hero Titles -->
+<div class="space-y-3">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Kenali Potensi Diri</h1>
+<p class="font-body-lg text-body-lg text-muted max-w-2xl leading-relaxed">
+          Pahami cara mengenali potensi unikmu lewat panduan santai, perbedaan istilah penting, dan contoh nyata dalam keseharian sekolah.
+        </p>
+</div>
+</div>
+</section>
+<!-- Editorial Main Body Container -->
+<main class="w-full max-w-[860px] mx-auto px-margin space-y-16 pb-20">
+<!-- Section 1: Pengantar Ramah SMP -->
+<section class="bg-surface rounded-[24px] p-8 md:p-10 shadow-sm relative overflow-hidden">
+<div class="flex flex-col md:flex-row gap-8 items-start relative z-10">
+<div class="w-14 h-14 rounded-2xl bg-activity-kenali-potensi flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[32px]">emoji_objects</span>
+</div>
+<div class="space-y-4">
+<div class="inline-block px-3 py-1 rounded-full bg-activity-self-check text-primary font-label-sm text-label-sm">
+            Eksplorasi Santai
+          </div>
+<h2 class="font-title-md text-title-md text-on-surface">Apa Itu Sebenarnya Potensi Diri?</h2>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Pernahkah kamu merasa minder melihat teman yang jago main basket atau langsung hafal rumus sains sekali dengar? Tenang, kamu tidak ketinggalan apa pun!
+          </p>
+<div class="bg-canvas p-6 rounded-2xl">
+<p class="font-body-md text-body-md text-on-surface font-medium italic">
+              "Potensi diri bukan cuma bakat lahir yang luar biasa, melainkan kemampuan dasar atau energi positif yang belum sepenuhnya kamu latih, tapi siap berkembang pesat saat kamu beri waktu, perhatian, dan latihan yang menyenangkan."
+            </p>
+</div>
+<p class="font-body-sm text-body-sm text-muted">
+            Setiap orang lahir dengan susunan benih potensi yang berbeda. Tugasmu di SMP bukan untuk langsung jadi nomor satu, tapi menemukan benih mana yang paling ingin kamu siram!
+          </p>
+</div>
+</div>
+<!-- Subtle Decorative Stamp -->
+<div class="absolute right-4 bottom-4 opacity-5 pointer-events-none select-none">
+<span class="material-symbols-outlined text-[140px]">school</span>
+</div>
+</section>
+<!-- Visual Editorial Anchor -->
+<div class="w-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+<div class="md:col-span-8 bg-surface rounded-[24px] overflow-hidden shadow-sm h-72 relative">
+<img class="w-full h-full object-cover" data-alt="An Indonesian junior high school student in SMP uniform smiling gently while organizing science club notebooks in a sunlit classroom library, warm sunlight, clean lines, cheerful documentary editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJR1frg8yTeNL5LUbxFrAYnMvTj0daMP2r0GA0nk9_s3Us80lRbQsARpr6i0PaR6GsuSU-JQIwmnkO4Dd4GenzDrROZyCb78QsvwUn_WLDyX24zvdCq-1AdgqrNEL_jbA0Y5NpUglYWTzIbSASvZqLiLzmtNxYkCpAIgR8DaU7zt68zv9xIql6hue6_2jLJ_TXA1unuddrJoNNRR0jjFToR2dd66f_vcyJx9WZZQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent flex items-end p-6">
+<p class="text-canvas font-label-md text-label-md">
+            Masa SMP: Fase emas mengenali bakat terpendam sebelum menentukan jurusan SMA/SMK.
+          </p>
+</div>
+</div>
+<div class="md:col-span-4 bg-tertiary-fixed rounded-[24px] p-6 h-72 flex flex-col justify-between shadow-sm">
+<div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-on-tertiary-fixed block leading-none mb-1">100%</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed uppercase font-bold tracking-wide">Unik Tanpa Duplikat</span>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed mt-2">
+            Tidak ada dua orang yang punya perpaduan minat dan karakter yang persis sama di duniamu.
+          </p>
+</div>
+</div>
+</div>
+<!-- Section 2: Pembeda 4 Istilah Kunci (Grid 2x2 Pastel) -->
+<section class="space-y-6">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Kamus Pintar Remaja</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Pembeda 4 Istilah Kunci</h2>
+<p class="font-body-md text-body-md text-muted">
+          Sering bingung bedanya bakat dan minat? Jangan sampai tertukar, yuk pahami perbedaannya!
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Minat (Lilac) -->
+<div class="bg-activity-kuis rounded-[20px] p-6 flex flex-col justify-between shadow-sm transition-transform hover:-translate-y-1 duration-200">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-title-md text-title-md text-on-surface">1. Minat</span>
+<span class="material-symbols-outlined text-secondary text-[24px]">favorite</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-4 leading-snug">
+              Hal yang bikin kamu senang, penasaran, dan antusias melakukannya tanpa disuruh orang tua atau guru.
+            </p>
+</div>
+<div class="bg-surface/80 rounded-xl p-4">
+<span class="font-label-sm text-label-sm text-muted uppercase font-bold block mb-1">Contoh Nyata:</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Suka membaca komik ensiklopedia sains berjam-jam atau gemar mendengarkan podcast sejarah misteri.
+            </p>
+</div>
+</div>
+<!-- Bakat (Yellow) -->
+<div class="bg-activity-kenali-potensi rounded-[20px] p-6 flex flex-col justify-between shadow-sm transition-transform hover:-translate-y-1 duration-200">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-title-md text-title-md text-on-surface">2. Bakat</span>
+<span class="material-symbols-outlined text-tertiary text-[24px]">auto_awesome</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-4 leading-snug">
+              Potensi bawaan alami yang membuatmu lebih cepat memahami, menirukan, atau melatih sesuatu dibanding rata-rata.
+            </p>
+</div>
+<div class="bg-surface/80 rounded-xl p-4">
+<span class="font-label-sm text-label-sm text-muted uppercase font-bold block mb-1">Contoh Nyata:</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Punya kepekaan nada saat bernyanyi (tidak fals) atau kelenturan gerak tubuh saat senam ritmik.
+            </p>
+</div>
+</div>
+<!-- Kemampuan (Green) -->
+<div class="bg-activity-mengembangkan rounded-[20px] p-6 flex flex-col justify-between shadow-sm transition-transform hover:-translate-y-1 duration-200">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-title-md text-title-md text-on-surface">3. Kemampuan</span>
+<span class="material-symbols-outlined text-feedback-success text-[24px]">verified</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-4 leading-snug">
+              Keterampilan nyata yang sudah kamu kuasai lewat latihan berulang, proses belajar, atau kebiasaan konsisten.
+            </p>
+</div>
+<div class="bg-surface/80 rounded-xl p-4">
+<span class="font-label-sm text-label-sm text-muted uppercase font-bold block mb-1">Contoh Nyata:</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Bisa mengetik 10 jari tanpa melihat keyboard, atau mampu menggambar anatomi tubuh sederhana dengan presisi.
+            </p>
+</div>
+</div>
+<!-- Potensi (Blue) -->
+<div class="bg-activity-self-check rounded-[20px] p-6 flex flex-col justify-between shadow-sm transition-transform hover:-translate-y-1 duration-200">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-title-md text-title-md text-on-surface">4. Potensi</span>
+<span class="material-symbols-outlined text-primary text-[24px]">rocket_launch</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-4 leading-snug">
+              Gabungan minat, bakat, dan kemampuan terpendam yang siap kamu asah menjadi karya nyata atau prestasi berharga.
+            </p>
+</div>
+<div class="bg-surface/80 rounded-xl p-4">
+<span class="font-label-sm text-label-sm text-muted uppercase font-bold block mb-1">Formula Sederhana:</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<span class="font-bold text-primary">Minat</span> + <span class="font-bold text-tertiary">Bakat</span> + <span class="font-bold text-feedback-success">Latihan Rutin</span> = Karya Nyata &amp; Prestasi!
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Ragam Potensi Akademik & Non-akademik (Interactive Accordion / Tab) -->
+<section class="space-y-6">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Kategori Eksplorasi</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Ragam Potensi: Mana Ranahmu?</h2>
+<p class="font-body-md text-body-md text-muted">
+          Pilihlah salah satu tab di bawah untuk melihat tanda-tanda potensi tersebut dalam dirimu:
+        </p>
+</div>
+<!-- Tab Navigation Buttons -->
+<div class="flex flex-wrap gap-2" id="potensiTabs">
+<button class="tab-btn px-4 py-2 rounded-full font-label-sm text-label-sm transition-all bg-primary text-on-primary shadow-sm" data-index="0" onclick="switchTab(0)">
+          Logika &amp; Analitis
+        </button>
+<button class="tab-btn px-4 py-2 rounded-full font-label-sm text-label-sm transition-all bg-surface text-on-surface hover:bg-activity-self-check" data-index="1" onclick="switchTab(1)">
+          Bahasa &amp; Komunikasi
+        </button>
+<button class="tab-btn px-4 py-2 rounded-full font-label-sm text-label-sm transition-all bg-surface text-on-surface hover:bg-activity-self-check" data-index="2" onclick="switchTab(2)">
+          Seni &amp; Kreativitas
+        </button>
+<button class="tab-btn px-4 py-2 rounded-full font-label-sm text-label-sm transition-all bg-surface text-on-surface hover:bg-activity-self-check" data-index="3" onclick="switchTab(3)">
+          Interpersonal &amp; Empati
+        </button>
+<button class="tab-btn px-4 py-2 rounded-full font-label-sm text-label-sm transition-all bg-surface text-on-surface hover:bg-activity-self-check" data-index="4" onclick="switchTab(4)">
+          Motorik &amp; Olahraga
+        </button>
+</div>
+<!-- Tab Display Panels -->
+<div class="bg-surface rounded-[24px] p-8 shadow-sm">
+<!-- Panel 0: Logika -->
+<div class="tab-content flex flex-col md:flex-row gap-6 items-center" id="tab-panel-0">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[32px]">calculate</span>
+</div>
+<div class="space-y-2 flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Potensi Logika &amp; Analitis</h3>
+<p class="font-body-md text-body-md text-muted leading-relaxed">
+              Kamu gemar memecahkan teka-teki silang, rasa ingin tahu tinggi terhadap sebab-akibat suatu fenomena, suka matematika praktis, coding, atau menyusun strategi dalam permainan papan (*board game*).
+            </p>
+<div class="pt-2 flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Penyuka Pola</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Kritis Bertanya</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Eksperimen Sains</span>
+</div>
+</div>
+</div>
+<!-- Panel 1: Bahasa -->
+<div class="tab-content hidden flex flex-col md:flex-row gap-6 items-center" id="tab-panel-1">
+<div class="w-16 h-16 rounded-full bg-activity-kuis flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[32px]">record_voice_over</span>
+</div>
+<div class="space-y-2 flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Potensi Bahasa &amp; Komunikasi</h3>
+<p class="font-body-md text-body-md text-muted leading-relaxed">
+              Mudah mengekspresikan pikiran melalui tulisan cerpen atau puisi, lancar bercerita di depan teman tanpa grogi berlebihan, senang belajar kosakata bahasa asing, atau piawai bernegosiasi.
+            </p>
+<div class="pt-2 flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Menulis Kreatif</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Public Speaking</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Debat / Diskusi</span>
+</div>
+</div>
+</div>
+<!-- Panel 2: Seni -->
+<div class="tab-content hidden flex flex-col md:flex-row gap-6 items-center" id="tab-panel-2">
+<div class="w-16 h-16 rounded-full bg-activity-refleksi flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-feedback-error text-[32px]">palette</span>
+</div>
+<div class="space-y-2 flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Potensi Seni &amp; Kreativitas</h3>
+<p class="font-body-md text-body-md text-muted leading-relaxed">
+              Punya imajinasi visual tajam, peka terhadap komposisi warna dan tata letak, gemar membuat ilustrasi digital, bermain alat musik, atau berakting di panggung drama sekolah.
+            </p>
+<div class="pt-2 flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Desain Visual</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Aransemen Musik</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Fotografi / Video</span>
+</div>
+</div>
+</div>
+<!-- Panel 3: Interpersonal -->
+<div class="tab-content hidden flex flex-col md:flex-row gap-6 items-center" id="tab-panel-3">
+<div class="w-16 h-16 rounded-full bg-activity-action-plan flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[32px]">diversity_3</span>
+</div>
+<div class="space-y-2 flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Potensi Interpersonal &amp; Empati</h3>
+<p class="font-body-md text-body-md text-muted leading-relaxed">
+              Bisa merasakan apa yang dirasakan kawan sekelas, pintar mendamaikan pertengkaran, senang mengorganisasi kegiatan kelas, dan teman-teman sering merasa nyaman saat bercerita padamu.
+            </p>
+<div class="pt-2 flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Pendengar Baik</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Kepemimpinan Positif</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Kolaborasi Tim</span>
+</div>
+</div>
+</div>
+<!-- Panel 4: Motorik -->
+<div class="tab-content hidden flex flex-col md:flex-row gap-6 items-center" id="tab-panel-4">
+<div class="w-16 h-16 rounded-full bg-activity-mengembangkan flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-feedback-success text-[32px]">fitness_center</span>
+</div>
+<div class="space-y-2 flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Potensi Motorik &amp; Olahraga</h3>
+<p class="font-body-md text-body-md text-muted leading-relaxed">
+              Memiliki stamina prima, koordinasi tangan-mata yang cepat, tangkas dalam gerakan fisik, atau terampil dalam kerajinan tangan detail yang membutuhkan ketelitian motorik halus.
+            </p>
+<div class="pt-2 flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Ketangkasan Atletik</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Keahlian Kriya</span>
+<span class="px-3 py-1 rounded-full bg-canvas text-on-surface font-label-sm text-label-sm">Refleks Cepat</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Contoh Kontekstual Remaja SMP (Highlighted Feature Card in Pastel Yellow) -->
+<section class="bg-activity-kenali-potensi rounded-[24px] p-8 md:p-10 shadow-sm relative overflow-hidden">
+<div class="flex flex-col gap-6 relative z-10">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[22px]">lightbulb</span>
+</span>
+<span class="font-headline-md text-headline-md text-on-surface">Contoh Nyata di Keseharian Sekolah</span>
+</div>
+<!-- Case Story Box -->
+<div class="bg-surface rounded-2xl p-6 md:p-8 space-y-4 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm bg-activity-self-check text-primary px-3 py-1 rounded-full">Kisah Rani • Siswi Kelas 8</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            "Rani sering merasa tidak punya bakat menonjol karena nilai matematikanya biasa saja dan ia tidak pandai bermain bulu tangkis. Tetapi Rani suka mendengarkan cerita curhat teman sekelasnya dan pandai meredakan suasana saat kerja kelompok mulai tegang. Teman-teman merasa aman dan didengar saat bersamanya."
+          </p>
+<div class="pt-2 border-t-0 bg-canvas rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+<span class="material-symbols-outlined text-feedback-success text-[28px] shrink-0">check_circle</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+<strong class="text-primary font-bold">Identifikasi Guru BK:</strong> Itu adalah <span class="bg-activity-action-plan px-1.5 py-0.5 rounded font-bold">Potensi Interpersonal &amp; Komunikasi Empatik</span>! Rani bisa melatihnya dengan menjadi pengurus mading, peer counselor BK sekolah, atau juru bicara dan moderator presentasi kelompok.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Mengapa Mulai Sekarang di Bangku SMP? -->
+<section class="space-y-6">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Manfaat Jangka Panjang</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Mengapa Mulai Sekarang di Bangku SMP?</h2>
+<p class="font-body-md text-body-md text-muted">
+          Tiga alasan utama kenapa eksplorasi potensi paling pas dilakukan sejak kelas 7, 8, dan 9:
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Point 1 -->
+<div class="bg-surface rounded-[20px] p-6 shadow-sm flex flex-col justify-between">
+<div class="space-y-3">
+<div class="w-12 h-12 rounded-full bg-activity-action-plan flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">sentiment_satisfied</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Bebas Tekanan Nilai</h3>
+<p class="font-body-sm text-body-sm text-muted leading-relaxed">
+              Masa SMP adalah ruang mencoba berbagai hobi dan bidang tanpa takut salah atau dituntut hasil rapor sempurna.
+            </p>
+</div>
+<div class="pt-4 mt-4 bg-canvas rounded-lg p-2.5 text-center">
+<span class="font-label-sm text-label-sm text-on-surface">Eksplorasi Tanpa Beban</span>
+</div>
+</div>
+<!-- Point 2 -->
+<div class="bg-surface rounded-[20px] p-6 shadow-sm flex flex-col justify-between">
+<div class="space-y-3">
+<div class="w-12 h-12 rounded-full bg-activity-refleksi flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">shield</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Percaya Diri Lebih Kuat</h3>
+<p class="font-body-sm text-body-sm text-muted leading-relaxed">
+              Saat kamu tahu apa keunikanmu, kamu tidak gampang membandingkan diri secara negatif dengan pencapaian teman lain di medsos.
+            </p>
+</div>
+<div class="pt-4 mt-4 bg-canvas rounded-lg p-2.5 text-center">
+<span class="font-label-sm text-label-sm text-on-surface">Mental Remaja Sehat</span>
+</div>
+</div>
+<!-- Point 3 -->
+<div class="bg-surface rounded-[20px] p-6 shadow-sm flex flex-col justify-between">
+<div class="space-y-3">
+<div class="w-12 h-12 rounded-full bg-activity-self-check flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">alt_route</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Mantap Pilih SMA / SMK</h3>
+<p class="font-body-sm text-body-sm text-muted leading-relaxed">
+              Memudahkanmu memilih kegiatan ekstrakurikuler serta menentukan jurusan peminatan nanti tanpa ragu atau ikut-ikutan teman semata.
+            </p>
+</div>
+<div class="pt-4 mt-4 bg-canvas rounded-lg p-2.5 text-center">
+<span class="font-label-sm text-label-sm text-on-surface">Langkah Masa Depan Jelas</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Catatanku Interactive Prompt Note -->
+<section class="bg-activity-action-plan rounded-[20px] p-6 md:p-8 shadow-sm flex flex-col sm:flex-row gap-6 items-start">
+<div class="w-12 h-12 rounded-2xl bg-surface flex items-center justify-center shrink-0 text-tertiary shadow-sm">
+<span class="material-symbols-outlined text-[28px]">edit_note</span>
+</div>
+<div class="space-y-2 flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Catatan Kecil untuk Dirimu</h3>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+          Tuliskan 1 hal yang paling sering bikin kamu lupa waktu saat mengerjakannya. Bisa jadi, di sanalah benih potensi terbesarmu bersembunyi!
+        </p>
+<div class="pt-2">
+<div class="bg-surface rounded-xl p-3 flex items-center justify-between text-muted text-body-sm">
+<span>"Hal yang membuatku lupa waktu adalah..."</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Siap Dicatat</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Helpful Callout Banner -->
+<div class="bg-activity-kuis rounded-2xl p-5 flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary text-[26px] shrink-0">support_agent</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+<strong>Ada istilah yang bikin bingung?</strong> Catat di buku refleksi atau diskusikan dengan Guru BK di sekolahmu saat sesi konseling santai!
+      </p>
+</div>
+<!-- Navigation Bar between Steps -->
+<div class="pt-8 border-t-0 flex flex-col sm:flex-row items-center justify-between gap-4">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-surface text-primary font-label-md text-label-md hover:bg-activity-self-check transition-all shadow-sm" data-path="langkah-1-self-check" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+        Kembali ke Self-check (Langkah 1)
+      </a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-8 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover transition-all shadow-sm hover:shadow-md" data-path="langkah-3-mengembangkan" href="#">
+        Lanjut ke Mengembangkan Potensi (Langkah 3)
+        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</main>
+</div>
+<script>
+  function switchTab(index) {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach((tab, i) => {
+      if (i === index) {
+        tab.classList.remove('bg-surface', 'text-on-surface', 'hover:bg-activity-self-check');
+        tab.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+      } else {
+        tab.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        tab.classList.add('bg-surface', 'text-on-surface', 'hover:bg-activity-self-check');
+      }
+    });
+
+    contents.forEach((content, i) => {
+      if (i === index) {
+        content.classList.remove('hidden');
+      } else {
+        content.classList.add('hidden');
+      }
+    });
+  }
+</script></main><footer class="w-full bg-canvas shadow-[0_-1px_8px_rgba(34,22,47,0.03)] py-space-3xl mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl pb-space-2xl"><div class="md:col-span-6 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md text-primary">KREASI.ID</span><span class="px-3 py-1 rounded-full bg-activity-kenali-potensi font-label-sm text-label-sm text-on-surface">Sahabat BK Siswa SMP</span></div><p class="font-title-md text-title-md text-on-surface mt-space-xs font-bold leading-snug">Kenali, Refleksikan, Eksplorasi, dan Aktualisasikan Potensi Diri</p><p class="font-body-md text-body-md text-muted max-w-md">Ruang bimbingan dan konseling interaktif yang ramah, hangat, dan aman untuk mendampingi masa remaja dan langkah eksplorasi masa depanmu.</p></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Tautan Utama</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tips" href="#">Tips &amp; Catatanku</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></div></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Pusat Dukungan</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="panduan-privasi" href="#">Panduan Privasi</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Layanan Konseling Guru BK</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="mulai-self-check" href="#">Asesmen Mandiri Siswa</a></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left"><p class="font-body-sm text-body-sm text-muted">© 2024 KREASI.ID • Bimbingan dan Konseling Remaja Hebat. Semua hak dilindungi.</p><div class="flex items-center gap-space-lg"><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="panduan-privasi" href="#">Privasi Siswa</a><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="kontak-dan-bantuan" href="#">Bantuan BK</a></div></div></div></footer></body></html>

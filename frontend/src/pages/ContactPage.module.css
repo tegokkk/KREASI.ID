@@ -1,0 +1,259 @@
+.contactWrap {
+  max-width: 960px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heroCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heroTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-activity-blue);
+  color: var(--color-primary);
+  font-size: var(--text-caption);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.pageHeading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.introText {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-muted);
+  max-width: 68ch;
+}
+
+.sectionCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sectionIcon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+}
+
+.iconMint {
+  background-color: var(--color-tertiary);
+}
+
+.iconBlue {
+  background-color: var(--color-activity-blue);
+  color: var(--color-primary);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.sectionDesc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 68ch;
+}
+
+.loadingNote {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+
+.noticeWrap {
+  font-size: var(--text-small);
+}
+
+.noticeWrap p {
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+.contactActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.troubleGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.troubleCard {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-input);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.troubleHead {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.troubleIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary);
+}
+
+.troubleTitle {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+.stepList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stepItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: var(--text-small);
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.stepBadge {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-activity-blue);
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionBar {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.privacyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--touch-min);
+  padding: 6px 4px;
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .privacyLink:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (min-width: 768px) {
+  .contactWrap {
+    gap: 24px;
+  }
+
+  .heroCard {
+    padding: 28px 32px;
+  }
+
+  .sectionCard {
+    padding: 24px;
+  }
+
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+
+  .troubleGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .troubleCardFull {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "frontend/dist",
+  "installCommand": "npm ci",
+  "regions": ["bom1"],
+  "functions": {
+    "api/index.js": { "maxDuration": 30, "excludeFiles": "{backend/data/**,backend/test/**,e2e/**,supabase/**,stitch*/**,*.pdf,*.md}" }
+  },
+  "routes": [
+    { "src": "/api(?:/.*)?", "dest": "/api/index.js", "headers": { "Cache-Control": "no-store" } },
+    { "handle": "filesystem" },
+    { "src": "/assets/.*", "status": 404 },
+    { "src": "/.*\\.[^/]+$", "status": 404 },
+    { "src": "/.*", "dest": "/index.html", "headers": { "Cache-Control": "no-cache" } }
+  ]
+}

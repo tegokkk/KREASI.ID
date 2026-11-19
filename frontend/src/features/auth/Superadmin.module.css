@@ -1,0 +1,471 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.headingText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-activity-blue);
+  color: var(--color-primary);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: 18px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-divider);
+  color: var(--color-ink);
+}
+
+.summary_yellow {
+  background-color: var(--color-activity-yellow);
+}
+
+.summary_success {
+  background-color: var(--color-success-surface);
+  border-color: var(--color-success-border);
+}
+
+.summary_error {
+  background-color: var(--color-error-surface);
+  border-color: var(--color-error-border);
+}
+
+.summaryTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.summaryLabel {
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.summaryIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.summaryValue {
+  font-family: var(--font-display);
+  font-size: var(--text-page);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.errorRetry {
+  margin-top: 10px;
+}
+
+.listSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.stateBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-subtitle);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.tableWrap {
+  width: 100%;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background-color: var(--color-activity-blue);
+}
+
+.table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.table td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-divider);
+  font-size: var(--text-body);
+  color: var(--color-ink);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.rowSelected td {
+  background-color: var(--color-option-hover);
+}
+
+.reviewTableRow td {
+  background-color: var(--color-canvas);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.cellName,
+.cellEmail {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.nameValue {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.tableNote {
+  margin-top: 4px;
+  font-size: var(--text-small);
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.cellDate {
+  white-space: nowrap;
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+
+.tableActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.userCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface);
+}
+
+.userCardSelected {
+  border-color: var(--color-primary);
+}
+
+.cardHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cardIdentity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 200px;
+}
+
+.cardName {
+  font-family: var(--font-display);
+  font-size: var(--text-subtitle);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+}
+
+.email {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.date {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+
+.note {
+  padding: 10px 12px;
+  border-radius: var(--radius-input);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-divider);
+  font-size: var(--text-small);
+  overflow-wrap: anywhere;
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mobileReviewWrap {
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-divider);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-small);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge_pending {
+  background-color: var(--color-activity-yellow);
+  color: var(--color-ink);
+}
+
+.badge_approved {
+  background-color: var(--color-success-surface);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success);
+}
+
+.badge_rejected {
+  background-color: var(--color-error-surface);
+  border: 1px solid var(--color-error-border);
+  color: var(--color-error);
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface);
+}
+
+.reviewReject {
+  border-color: var(--color-error);
+}
+
+.reviewHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reviewMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.decisionTagApprove,
+.decisionTagReject {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.decisionTagApprove {
+  background-color: var(--color-activity-blue);
+  color: var(--color-primary);
+}
+
+.decisionTagReject {
+  background-color: var(--color-error-surface);
+  color: var(--color-error);
+}
+
+.reviewTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-subtitle);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.reviewIdentity {
+  font-size: var(--text-body);
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+}
+
+.reviewActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reviewActions > * {
+  width: 100%;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding-top: var(--space-sm);
+}
+
+.rangeText {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+
+.paginationControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.pageLabel {
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.spinner {
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .summaryCard,
+  .userCard {
+    padding: var(--space-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  .summaryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .reviewActions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .reviewActions > * {
+    width: auto;
+  }
+
+  .pagination {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.topRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.stepPill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-activity-blue);
+  color: var(--color-ink);
+  font-size: var(--text-small);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.segments {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  max-width: 360px;
+}
+
+.segment {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-divider);
+  transition: background-color var(--transition-fast);
+}
+
+.segmentActive {
+  background-color: var(--color-primary);
+}
+
+.segmentCompleted {
+  background-color: var(--color-success);
+}
+
+.segmentSkipped {
+  background-color: #d6b656;
+}

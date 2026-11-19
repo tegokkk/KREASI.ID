@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&amp;family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"feedback-success":"#176050","on-secondary-container":"#751037","outline-variant":"#c5c5d8","on-surface-variant":"#444655","on-surface":"#22162f","primary-hover":"#2337B7","muted":"#594D63","divider":"#E4DAE1","inverse-on-surface":"#f9ecff","tertiary-fixed":"#a4f1e5","primary":"#032ccd","on-secondary":"#ffffff","surface-dim":"#e6d3f5","activity-kenali-potensi":"#FFF1C5","border-field":"#81778E","surface-container":"#f7e9ff","surface":"#FFFFFF","surface-container-lowest":"#ffffff","surface-variant":"#efdbfe","outline":"#757687","secondary":"#a43759","surface-tint":"#304be4","on-tertiary-fixed":"#00201c","on-primary-container":"#d2d6ff","on-background":"#22162f","inverse-surface":"#382b45","activity-mengembangkan":"#E5F4D8","error-container":"#ffdad6","on-primary-fixed":"#000e5e","secondary-container":"#fd7d9f","secondary-fixed":"#ffd9e0","activity-action-plan":"#A2EFE3","canvas":"#FFFAEE","on-primary":"#ffffff","on-error-container":"#93000a","activity-self-check":"#E8EDFF","surface-container-highest":"#efdbfe","primary-fixed":"#dee0ff","tertiary":"#005049","activity-kuis":"#F0E8FF","primary-fixed-dim":"#bbc3ff","error":"#ba1a1a","surface-container-low":"#fbf0ff","background":"#fff7ff","on-secondary-fixed":"#3f0018","secondary-fixed-dim":"#ffb1c2","surface-bright":"#fff7ff","tertiary-fixed-dim":"#88d4c9","feedback-error-surface":"#FFF0F4","on-error":"#ffffff","tertiary-container":"#126a61","feedback-error":"#A22A46","on-primary-fixed-variant":"#032ccd","on-tertiary-fixed-variant":"#005049","activity-refleksi":"#FFE6EE","on-secondary-fixed-variant":"#841e42","on-tertiary":"#ffffff","inverse-primary":"#bbc3ff","on-tertiary-container":"#9ae7db","primary-container":"#304be4","surface-container-high":"#f3e2ff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-3xl":"4rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-md":"1rem","space-sm":"0.5rem","margin":"2rem","space-xl":"2rem","space-lg":"1.5rem","space-2xl":"2.5rem","space-xs":"0.25rem","gutter":"1.25rem"},fontFamily:{"headline-lg-mobile":["Bricolage Grotesque"],"body-lg":["DM Sans"],"label-sm":["DM Sans"],"headline-md-mobile":["Bricolage Grotesque"],"body-md":["DM Sans"],"headline-display-mobile":["Bricolage Grotesque"],"label-md":["DM Sans"],"headline-lg":["Bricolage Grotesque"],"title-md":["Bricolage Grotesque"],"body-sm":["DM Sans"],"headline-display":["Bricolage Grotesque"],"headline-md":["Bricolage Grotesque"]},fontSize:{"headline-lg-mobile":["2rem",{"lineHeight":"1.15","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["1.125rem",{"lineHeight":"1.6","fontWeight":"400"}],"label-sm":["0.875rem",{"lineHeight":"1.3","fontWeight":"700"}],"headline-md-mobile":["1.5rem",{"lineHeight":"1.25","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.55","fontWeight":"400"}],"headline-display-mobile":["2.5rem",{"lineHeight":"1.1","letterSpacing":"-0.03em","fontWeight":"800"}],"label-md":["1rem",{"lineHeight":"1.25","fontWeight":"700"}],"headline-lg":["2.75rem",{"lineHeight":"1.12","letterSpacing":"-0.025em","fontWeight":"700"}],"title-md":["1.375rem",{"lineHeight":"1.3","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.45","fontWeight":"400"}],"headline-display":["4rem",{"lineHeight":"1.05","letterSpacing":"-0.035em","fontWeight":"800"}],"headline-md":["1.75rem",{"lineHeight":"1.2","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas font-body-md text-body-md text-on-surface min-h-screen"><header class="fixed top-0 left-0 right-0 z-50 bg-canvas/95 backdrop-blur-md shadow-[0_1px_8px_rgba(34,22,47,0.04)]"><div class="h-20 max-w-[1200px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><img alt="Logo KREASI.ID" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCrNoN8Z6tIQ2oXkXpANGjjsK0ZPKC7Oyo_TvbGLi38XcqjeFdA8_zGD2F-doUQev8a-ttEyYFtnFNU4ZD2q9e0VesBtf5qTOHRvF34YVTtcxfqjeiMqQGCv6Ftjesgp_7QjDoAshMnakhJVVqO90VNBOJoOo21LXKDMunraq7c7D8tjCQrjLdFavikdadSw6abIlq8MjHqR6Jo2ATGqyMyP8RIB0oYWocHbxu1HYE"/><a class="font-title-md text-title-md text-primary tracking-tight" data-path="beranda" href="#">KREASI.ID</a></div><nav class="hidden lg:flex items-center gap-space-xs xl:gap-space-sm" data-active-classes="bg-primary text-on-primary font-bold rounded-full px-4 py-2"><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="beranda" href="#">Beranda</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tips" href="#">Tips</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover transition-colors shadow-sm" data-path="mulai-self-check" href="#">Mulai Self-check</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-canvas"><div class="flex flex-col w-full">
+<!-- Top Ambient Glow & Decorative Accent -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[360px] bg-gradient-to-b from-primary/10 via-activity-action-plan/20 to-transparent blur-3xl pointer-events-none rounded-full"></div>
+<!-- Editorial Header Section -->
+<section class="relative max-w-[1200px] mx-auto px-margin pt-space-xl pb-space-2xl w-full">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-md shadow-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span>Inspirasi &amp; Kebiasaan Baik</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-space-sm">
+            Tips Harian Teman SMP: <br class="hidden sm:inline"/>
+<span class="text-primary underline decoration-activity-action-plan decoration-wavy decoration-2">Mulai dari Langkah Kecil</span>
+</h1>
+<p class="font-body-lg text-body-lg text-muted leading-relaxed">
+            Kumpulan saran praktis dan santai untuk membantumu konsisten melatih minat, berani mencoba hal baru, dan tidak takut salah! Ingat, proses bertumbuh itu menyenangkan, bukan perlombaan.
+          </p>
+</div>
+<!-- Mini Visual Widget: Daily Streak Pill -->
+<div class="shrink-0 bg-surface rounded-3xl p-5 shadow-sm flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl bg-activity-kenali-potensi flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[30px]" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-muted uppercase tracking-wider">Target Hari Ini</div>
+<div class="font-title-md text-title-md text-on-surface">15 Menit Eksplorasi</div>
+<div class="font-body-sm text-body-sm text-feedback-success flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Mudah &amp; santai dikerjakan</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter / Category Tabs -->
+<div class="mt-space-xl flex flex-wrap items-center gap-2.5" id="tipsFilterContainer">
+<button class="tips-filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-150 bg-primary text-on-primary shadow-sm" data-filter="all" type="button">
+          Semua Tips
+        </button>
+<button class="tips-filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-150 bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-container shadow-sm" data-filter="habits" type="button">
+          🌱 Memulai Kebiasaan
+        </button>
+<button class="tips-filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-150 bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-container shadow-sm" data-filter="confidence" type="button">
+          🦁 Menghadapi Rasa Malu &amp; Takut
+        </button>
+<button class="tips-filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-150 bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-container shadow-sm" data-filter="time" type="button">
+          ⏱️ Manajemen Waktu &amp; PR
+        </button>
+<button class="tips-filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-150 bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-container shadow-sm" data-filter="support" type="button">
+          🤝 Mencari Dukungan &amp; Partner
+        </button>
+</div>
+</section>
+</div>
+<!-- BAGIAN 1: 3 Aturan Emas Remaja Hebat (Card Grid 3 Kolom) -->
+<section class="max-w-[1200px] mx-auto px-margin py-space-xl w-full">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-4">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest block mb-1">Fondasi Berpikir</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">3 Aturan Emas Remaja Hebat</h2>
+</div>
+<p class="font-body-md text-body-md text-muted max-w-md">
+        Tiga mindset sederhana yang terbukti ampuh bikin belajar dan mengasah bakat jadi jauh lebih ringan.
+      </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Card 1: Micro-Habits -->
+<div class="tip-card bg-activity-kenali-potensi rounded-3xl p-7 flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1 shadow-sm" data-category="habits">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-3 py-1 rounded-full bg-surface text-on-surface font-label-sm text-label-sm">Aturan #1</span>
+<div class="w-10 h-10 rounded-2xl bg-surface/80 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">hourglass_top</span>
+</div>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2 font-bold leading-snug">
+            Teknik Micro-Habits
+          </h3>
+<p class="font-body-md text-body-md text-on-surface mb-4 leading-relaxed">
+<strong>15 menit lebih berarti daripada 3 jam tapi cuma sekali sebulan.</strong> Otak remaja membentuk jaringan saraf lewat frekuensi pengulangan santai, bukan maraton yang bikin stres.
+          </p>
+<!-- Interactive Tip Mini Simulation -->
+<div class="bg-surface/90 rounded-2xl p-4 mt-2">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-muted">Konsistensi vs Kejenuhan</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">15 Mnt / Hari</span>
+</div>
+<!-- Visual Progress Bar -->
+<div class="w-full bg-divider h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 82%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-body-sm text-muted mt-1.5">
+<span>H-1: Siap</span>
+<span>H-7: Terbiasa</span>
+<span>H-21: Otomatis</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-on-surface/10 flex items-center justify-between text-on-surface">
+<span class="font-body-sm text-body-sm text-muted">Fokus: Konsistensi tanpa beban</span>
+<span class="material-symbols-outlined text-[20px] text-primary">verified</span>
+</div>
+</div>
+<!-- Card 2: 5 Menit Anti-Mager -->
+<div class="tip-card bg-activity-action-plan rounded-3xl p-7 flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1 shadow-sm" data-category="habits time">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-3 py-1 rounded-full bg-surface text-on-surface font-label-sm text-label-sm">Aturan #2</span>
+<div class="w-10 h-10 rounded-2xl bg-surface/80 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">electric_bolt</span>
+</div>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2 font-bold leading-snug">
+            Prinsip 5 Menit Anti-Mager
+          </h3>
+<p class="font-body-md text-body-md text-on-surface mb-4 leading-relaxed">
+<strong>Coba 5 menit dulu.</strong> Bagian tersulit dari mulai latihan menggambar, coding, atau membaca adalah membuka bukunya. Begitu 5 menit terlewati, otakmu biasanya mau lanjut sendiri!
+          </p>
+<div class="bg-surface/90 rounded-2xl p-4 mt-2">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-tertiary/10 text-tertiary flex items-center justify-center font-title-md text-title-md">
+                5'
+              </div>
+<p class="font-body-sm text-body-sm text-on-surface leading-tight">
+                "Cuma buka buku sketsa &amp; coret 1 garis." Jika lelah boleh berhenti, tapi 90% siswa lanjut berkarya!
+              </p>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-on-surface/10 flex items-center justify-between text-on-surface">
+<span class="font-body-sm text-body-sm text-muted">Fokus: Mengalahkan inersia awal</span>
+<span class="material-symbols-outlined text-[20px] text-tertiary">psychology</span>
+</div>
+</div>
+<!-- Card 3: Gagal = Data Belajar -->
+<div class="tip-card bg-activity-refleksi rounded-3xl p-7 flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1 shadow-sm" data-category="confidence">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-3 py-1 rounded-full bg-surface text-on-surface font-label-sm text-label-sm">Aturan #3</span>
+<div class="w-10 h-10 rounded-2xl bg-surface/80 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">science</span>
+</div>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2 font-bold leading-snug">
+            Gagal = Data Belajar
+          </h3>
+<p class="font-body-md text-body-md text-on-surface mb-4 leading-relaxed">
+<strong>Kesalahan bukan tanda bodoh, tapi bukti kamu sedang mencoba.</strong> Anggap dirimu peneliti: nada sumbang, gambar miring, atau kode error hanyalah petunjuk jalur mana yang perlu diperbaiki.
+          </p>
+<div class="bg-surface/90 rounded-2xl p-4 mt-2">
+<div class="flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">restart_alt</span>
+<span class="font-label-sm text-label-sm">Formula Growth Mindset</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold font-label-sm">Belum Bisa ≠ Gagal</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-on-surface/10 flex items-center justify-between text-on-surface">
+<span class="font-body-sm text-body-sm text-muted">Fokus: Menghapus takut salah</span>
+<span class="material-symbols-outlined text-[20px] text-secondary">favorite</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Break / Photographic Editorial Grid -->
+<section class="max-w-[1200px] mx-auto px-margin py-space-md w-full">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-lg items-stretch">
+<div class="md:col-span-8 bg-surface rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm overflow-hidden relative">
+<div class="w-full md:w-1/2 aspect-video md:aspect-square rounded-2xl overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A warm, bright photograph of two Indonesian junior high school students smiling while working on an art project in a cozy classroom corner. Natural soft morning light, warm cream tones, wearing neat SMP uniforms, genuine joyful expression, editorial educational photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgoNXPLr9gUJ_0CXruJvL0A1iHkrmiQqNStUBwqiVD3-1v1sfWVPCSgjBl7ssaVcnd8mWymuU6NPUhmwpApsVDDbJdJPHF2HD8YBu-KrHLrJfdT4ohUUvDSxBQkHVoSBLcJ-EOUdWMCzZVI6Tjsr99m2GsN3lKFYLRhtthVs_HAogSuMjl35UJSor4clXCPU39JPlcwhb-T9sQm7HlmE4r_Xn0297V0dsSEC_1xg"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm w-fit mb-2">Cerita Nyata Siswa</span>
+<h4 class="font-title-md text-title-md text-on-surface mb-2 font-bold leading-tight">"Dulu aku malu ikut ekskul robotik karena nggak bisa fisika..."</h4>
+<p class="font-body-md text-body-md text-muted mb-4">
+            - Rizky (Kelas VIII). "Setelah pakai Aturan 5 Menit dan ngobrol sama Bu Guru BK, ternyata seru banget! Kuncinya cuma berani tanya tanpa takut dikira cupu."
+          </p>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md">
+<span>Baca catatan refleksi siswa lainnya</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 bg-activity-mengembangkan rounded-3xl p-7 flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 bg-feedback-success/10 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="w-12 h-12 rounded-2xl bg-surface flex items-center justify-center text-feedback-success mb-4 shadow-xs">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<span class="font-label-sm text-label-sm text-feedback-success font-bold uppercase tracking-wider block mb-1">Catatan Lembut</span>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-2">Kamu Tidak Harus Sempurna Hari Ini</h4>
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+            Menemukan potensi bukanlah tes satu kali jadi. Ini perjalanan mengenal dirimu sendiri: apa yang membuatmu penasaran, apa yang membuatmu bersemangat, dan apa yang bisa kamu bagikan ke orang lain.
+          </p>
+</div>
+<div class="mt-6 flex items-center gap-2 text-feedback-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">self_improvement</span>
+<span>Ambil napas dalam-dalam, nikmati prosesnya!</span>
+</div>
+</div>
+</div>
+</section>
+<!-- BAGIAN 2: Panduan Praktis "Bagaimana Cara..." (Interactive Accordion) -->
+<section class="max-w-[1200px] mx-auto px-margin py-space-2xl w-full">
+<div class="max-w-3xl mb-space-xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-activity-self-check text-primary font-label-sm text-label-sm mb-2">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<span>Panduan Praktis Step-by-Step</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-2">Bagaimana Cara Mengatasi Situasi Sulit?</h2>
+<p class="font-body-md text-body-md text-muted">
+        Klik setiap situasi di bawah ini untuk melihat strategi ramah yang bisa langsung kamu coba di sekolah atau rumah.
+      </p>
+</div>
+<div class="space-y-4" id="faqAccordion">
+<!-- Item 1: Feedback Sahabat -->
+<div class="accordion-item bg-surface rounded-3xl overflow-hidden shadow-sm transition-all duration-200" data-category="support">
+<button class="accordion-header w-full px-7 py-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none" type="button">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-activity-action-plan/50 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">group</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary block mb-0.5">Komunikasi Teman Sebangku</span>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Cara meminta feedback ramah dari sahabat sebangku tanpa baper</h3>
+</div>
+</div>
+<div class="accordion-icon w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shrink-0 transition-transform duration-200">
+<span class="material-symbols-outlined text-[22px]">expand_more</span>
+</div>
+</button>
+<div class="accordion-content px-7 pb-7 pt-2 hidden">
+<div class="bg-canvas rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start">
+<div class="flex-1 space-y-3">
+<p class="font-body-md text-body-md text-on-surface">
+                Sahabat sering kali adalah cermin terbaik untuk melihat kelebihan yang sering kita remehkan. Agar obrolan tetap asik dan santai:
+              </p>
+<div class="space-y-2">
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Gunakan kalimat spesifik:</strong> Alih-alih bertanya "Gimana menurutmu?", tanyakan "Menurutmu bagian mana dari gambarku / presentasiku yang paling jelas dipahami?"
+                  </p>
+</div>
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Tentukan batasan sejak awal:</strong> Katakan "Kasih 1 hal yang menurutmu udah keren, dan 1 hal yang bisa aku rapikan ya!"
+                  </p>
+</div>
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Katakan terima kasih:</strong> Ingat, kritik karyamu bukan kritik atas dirimu sebagai seorang teman.
+                  </p>
+</div>
+</div>
+</div>
+<!-- Mini Notebook Aside -->
+<div class="w-full md:w-72 bg-activity-kenali-potensi/70 p-5 rounded-2xl shrink-0">
+<div class="flex items-center gap-2 mb-2 text-on-surface">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span class="font-label-sm text-label-sm">Kalimat Ajaib:</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic">
+                "Hei, aku lagi coba latihan presentasi nih. Kalau ada waktu 2 menit pas jam istirahat, boleh dengerin dan kasih jempol buat bagian yang seru?"
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2: Manajemen Waktu, Ekskul, PR -->
+<div class="accordion-item bg-surface rounded-3xl overflow-hidden shadow-sm transition-all duration-200" data-category="time habits">
+<button class="accordion-header w-full px-7 py-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none" type="button">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-activity-kenali-potensi text-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">schedule</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary block mb-0.5">Keseimbangan Kegiatan</span>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Cara membagi waktu antara ekstrakurikuler, hobi, dan PR sekolah</h3>
+</div>
+</div>
+<div class="accordion-icon w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shrink-0 transition-transform duration-200">
+<span class="material-symbols-outlined text-[22px]">expand_more</span>
+</div>
+</button>
+<div class="accordion-content px-7 pb-7 pt-2 hidden">
+<div class="bg-canvas rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start">
+<div class="flex-1 space-y-3">
+<p class="font-body-md text-body-md text-on-surface">
+                Kuncinya bukan menambah jam belajar sampai larut malam, melainkan menentukan <strong>Blok Energi</strong>:
+              </p>
+<div class="space-y-2">
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Selesaikan PR Prioritas sebelum jam 19.00:</strong> Manfaatkan jeda 30 menit setelah pulang sekolah atau saat jam kosong di kelas agar malam harimu lebih plong.
+                  </p>
+</div>
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Jadwalkan Hobi seperti Janji Temu:</strong> Sisihkan slot pasti 30-45 menit (misal: Sabtu sore khusus coding/musik), jangan tunggu waktu luang karena waktu luang tidak akan pernah datang sendiri!
+                  </p>
+</div>
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Pilih maksimal 2 ekskul:</strong> Lebih baik mendalam di 1 atau 2 bidang daripada ikut 4 ekskul tapi badan capek dan nilai terabaikan.
+                  </p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-72 bg-activity-mengembangkan/80 p-5 rounded-2xl shrink-0">
+<div class="flex items-center gap-2 mb-2 text-on-surface">
+<span class="material-symbols-outlined text-[18px]">tips_and_updates</span>
+<span class="font-label-sm text-label-sm">Rumus Sederhana:</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>PR = Tanggung Jawab</strong><br/>
+<strong>Ekskul = Eksplorasi Sosial</strong><br/>
+<strong>Hobi = Pengisi Energi Bahagia</strong><br/>
+                Kombinasikan ketiganya dengan tidur 8 jam cukup!
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3: Ngobrol dengan Guru BK -->
+<div class="accordion-item bg-surface rounded-3xl overflow-hidden shadow-sm transition-all duration-200" data-category="support confidence">
+<button class="accordion-header w-full px-7 py-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none" type="button">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-activity-self-check text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">chat_bubble</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary block mb-0.5">Bantuan Sekolah</span>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Cara ngobrol santai dengan Guru BK jika bingung menentukan minat</h3>
+</div>
+</div>
+<div class="accordion-icon w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shrink-0 transition-transform duration-200">
+<span class="material-symbols-outlined text-[22px]">expand_more</span>
+</div>
+</button>
+<div class="accordion-content px-7 pb-7 pt-2 hidden">
+<div class="bg-canvas rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start">
+<div class="flex-1 space-y-3">
+<p class="font-body-md text-body-md text-on-surface">
+                Banyak siswa mengira ruang BK hanya untuk siswa yang melanggar aturan. Padahal, tugas utama Guru BK adalah menjadi teman curhat masa depanmu!
+              </p>
+<div class="space-y-2">
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Bawa hasil tes KREASI.ID:</strong> Buka ponselmu dan tunjukkan ringkasan minat yang sudah kamu isi di langkah <em>Kenali Potensi</em>. Ini pembuka obrolan yang sempurna!
+                  </p>
+</div>
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Jujur kalau kamu belum tahu:</strong> Tidak masalah bilang <em>"Bu/Pak, saya belum tahu mau fokus ke mana, rasanya semuanya biasa aja."</em> Guru BK punya banyak latihan seru untuk membongkarnya.
+                  </p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-72 bg-activity-refleksi/80 p-5 rounded-2xl shrink-0">
+<div class="flex items-center gap-2 mb-2 text-on-surface">
+<span class="material-symbols-outlined text-[18px]">door_front</span>
+<span class="font-label-sm text-label-sm">Langkah Memulai:</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic">
+                Sapa Guru BK saat istirahat: "Permisi Bu, minggu ini ada jam senggang 15 menit kah? Saya mau konsultasi santai soal penjurusan SMA/SMK nanti."
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 4: Mengatasi Perbandingan di Sosmed / FOMO -->
+<div class="accordion-item bg-surface rounded-3xl overflow-hidden shadow-sm transition-all duration-200" data-category="confidence">
+<button class="accordion-header w-full px-7 py-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none" type="button">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">phonelink_erase</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-secondary block mb-0.5">Kesehatan Mental &amp; Digital</span>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Cara mengatasi sindrom membandingkan diri di media sosial (FOMO)</h3>
+</div>
+</div>
+<div class="accordion-icon w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shrink-0 transition-transform duration-200">
+<span class="material-symbols-outlined text-[22px]">expand_more</span>
+</div>
+</button>
+<div class="accordion-content px-7 pb-7 pt-2 hidden">
+<div class="bg-canvas rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start">
+<div class="flex-1 space-y-3">
+<p class="font-body-md text-body-md text-on-surface">
+                Melihat teman sebaya sudah juara lomba sains, punya jutaan followers, atau jago dance di TikTok sering bikin kita merasa ketinggalan. Ini penawarnya:
+              </p>
+<div class="space-y-2">
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Sosial media adalah highlight reel:</strong> Orang hanya memposting kemenangan terbaiknya, bukan 100 kali proses gagal atau malam saat mereka bingung dan lelah.
+                  </p>
+</div>
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Ganti rasa iri dengan rasa ingin tahu:</strong> Alih-alih berkata <em>"Kok dia bisa, aku enggak?"</em>, coba tanyakan <em>"Kira-kira apa ya kebiasaan latihan yang dia lakukan setiap hari? Bisa aku adaptasi nggak?"</em>
+</p>
+</div>
+<div class="flex items-start gap-3 bg-surface p-3.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-feedback-success text-[20px] mt-0.5">check_box</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Bandingkan dirimu dengan dirimu kemarin:</strong> Apakah minggu ini kamu membaca 1 bab buku baru? Itu sudah merupakan kemenangan nyata!
+                  </p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-72 bg-activity-action-plan/80 p-5 rounded-2xl shrink-0">
+<div class="flex items-center gap-2 mb-2 text-on-surface">
+<span class="material-symbols-outlined text-[18px]">spa</span>
+<span class="font-label-sm text-label-sm">Detoks 24 Jam:</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                Coba matikan notifikasi media sosial selama hari Minggu. Ganti dengan menggambar manual di kertas, berjalan kaki sore, atau merapikan kamar. Rasakan ketenangannya!
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BAGIAN 3: Kotak Inspirasi Guru BK "Kutipan Minggu Ini" -->
+<section class="max-w-[1200px] mx-auto px-margin py-space-xl w-full">
+<div class="bg-primary rounded-3xl p-8 md:p-12 text-on-primary relative overflow-hidden shadow-md">
+<!-- Soft Ambient Background Elements -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 bg-activity-action-plan/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[160px]">format_quote</span>
+</div>
+<div class="relative z-10 max-w-3xl">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-on-primary/15 text-primary-fixed font-label-sm text-label-sm mb-6 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>Pesan Hangat Guru BK • Edisi Pekan Ini</span>
+</div>
+<blockquote class="font-headline-md text-headline-md md:text-headline-lg font-bold leading-tight tracking-tight mb-6 text-canvas">
+          "Pohon beringin yang kokoh pun dulunya cuma benih kecil yang tidak terburu-buru tumbuh. Hargai setiap langkah kecilmu hari ini, kamu sedang berproses menjadi versi dirimu yang luar biasa."
+        </blockquote>
+<div class="flex items-center gap-4 pt-4 border-t border-on-primary/20">
+<div class="w-14 h-14 rounded-full bg-canvas text-primary flex items-center justify-center font-bold text-lg shrink-0">
+            BK
+          </div>
+<div>
+<div class="font-title-md text-title-md text-canvas font-bold">Tim Bimbingan dan Konseling KREASI.ID</div>
+<div class="font-body-sm text-body-sm text-on-primary-container">Mendampingi setiap mimpi siswa SMP di seluruh Nusantara</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BAGIAN 4: Panel Penutup / Tautan Aksi -->
+<section class="max-w-[1200px] mx-auto px-margin pt-space-xl pb-space-3xl w-full">
+<div class="bg-surface rounded-3xl p-8 md:p-12 shadow-sm text-center flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-activity-action-plan flex items-center justify-center text-on-surface mb-space-md shadow-xs">
+<span class="material-symbols-outlined text-[32px]">rocket_launch</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-xs">
+        Sudah Siap Mempraktikkan Tips Ini?
+      </h2>
+<p class="font-body-md text-body-md text-muted max-w-xl mx-auto mb-space-xl">
+        Pengetahuan akan jadi kekuatan nyata saat kamu mulai mencobanya. Pilih langkah berikutnya di bawah ini untuk lanjut mengisi jurnal eksplorasimu!
+      </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-space-md w-full max-w-lg">
+<a class="w-full sm:w-auto inline-flex items-center justify-center h-12 px-7 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover transition-colors shadow-sm gap-2" data-path="langkah-3-mengembangkan" href="#">
+<span>Langkah 3: Mengembangkan Potensi</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center h-12 px-7 rounded-full bg-activity-action-plan text-on-surface font-label-md text-label-md hover:bg-tertiary-fixed transition-colors shadow-sm gap-2" data-path="langkah-6-action-plan" href="#">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+<span>Langkah 6: Action Plan</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Interactive JavaScript for Category Filtering & Accordion -->
+<script>
+    (function initTipsPage() {
+      // 1. Filter Logic
+      const filterBtns = document.querySelectorAll('.tips-filter-btn');
+      const cards = document.querySelectorAll('.tip-card');
+      const accordions = document.querySelectorAll('.accordion-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active styles
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-primary', 'text-on-primary');
+            b.classList.add('bg-surface', 'text-on-surface-variant');
+          });
+          btn.classList.add('bg-primary', 'text-on-primary');
+          btn.classList.remove('bg-surface', 'text-on-surface-variant');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          // Filter 3 Golden Rules Cards
+          cards.forEach(card => {
+            const categories = card.getAttribute('data-category') || '';
+            if (filterValue === 'all' || categories.includes(filterValue)) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Filter Accordion Items
+          accordions.forEach(item => {
+            const categories = item.getAttribute('data-category') || '';
+            if (filterValue === 'all' || categories.includes(filterValue)) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 2. Accordion Logic
+      const headers = document.querySelectorAll('.accordion-header');
+      headers.forEach(header => {
+        header.addEventListener('click', () => {
+          const content = header.nextElementSibling;
+          const icon = header.querySelector('.accordion-icon');
+          const isExpanded = !content.classList.contains('hidden');
+
+          if (isExpanded) {
+            content.classList.add('hidden');
+            icon.classList.remove('rotate-180');
+          } else {
+            content.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+          }
+        });
+      });
+    })();
+  </script>
+</div></main><footer class="w-full bg-canvas shadow-[0_-1px_8px_rgba(34,22,47,0.03)] py-space-3xl mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl pb-space-2xl"><div class="md:col-span-6 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md text-primary">KREASI.ID</span><span class="px-3 py-1 rounded-full bg-activity-kenali-potensi font-label-sm text-label-sm text-on-surface">Sahabat BK Siswa SMP</span></div><p class="font-title-md text-title-md text-on-surface mt-space-xs font-bold leading-snug">Kenali, Refleksikan, Eksplorasi, dan Aktualisasikan Potensi Diri</p><p class="font-body-md text-body-md text-muted max-w-md">Ruang bimbingan dan konseling interaktif yang ramah, hangat, dan aman untuk mendampingi masa remaja dan langkah eksplorasi masa depanmu.</p></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Tautan Utama</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tips" href="#">Tips &amp; Catatanku</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></div></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Pusat Dukungan</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="panduan-privasi" href="#">Panduan Privasi</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Layanan Konseling Guru BK</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="mulai-self-check" href="#">Asesmen Mandiri Siswa</a></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left"><p class="font-body-sm text-body-sm text-muted">© 2024 KREASI.ID • Bimbingan dan Konseling Remaja Hebat. Semua hak dilindungi.</p><div class="flex items-center gap-space-lg"><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="panduan-privasi" href="#">Privasi Siswa</a><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="kontak-dan-bantuan" href="#">Bantuan BK</a></div></div></div></footer></body></html>

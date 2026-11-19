@@ -1,0 +1,40 @@
+{
+  "name": "kreasi-id",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website pendukung layanan Bimbingan dan Konseling (BK) untuk peserta didik SMP",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "engines": {
+    "node": "24.x"
+  },
+  "overrides": {
+    "@vercel/routing-utils": {
+      "path-to-regexp": "6.3.0"
+    }
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "test": "node --test backend/test/*.test.js frontend/test/*.test.js",
+    "test:e2e": "npm run build --workspace=frontend -- --outDir dist-e2e && playwright test",
+    "db:migrate": "npm run db:migrate --workspace=backend",
+    "db:import-sqlite": "npm run db:import-sqlite --workspace=backend",
+    "deploy:prepare": "node backend/src/prepare-deploy-env.js",
+    "deploy:check": "node backend/src/check-deploy.js",
+    "deploy:check-url": "node backend/src/check-url.js",
+    "test:hosted": "node backend/src/verify-hosted.js",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev:ui --workspace=frontend",
+    "build": "npm run build --workspace=frontend",
+    "start": "npm start --workspace=backend"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@vercel/routing-utils": "6.6.1",
+    "ajv": "8.20.0",
+    "ajv-draft-04": "1.0.0",
+    "embedded-postgres": "18.6.0-beta.19"
+  }
+}

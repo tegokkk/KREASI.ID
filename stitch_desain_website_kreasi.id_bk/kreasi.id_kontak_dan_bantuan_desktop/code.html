@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&amp;family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"feedback-success":"#176050","on-secondary-container":"#751037","outline-variant":"#c5c5d8","on-surface-variant":"#444655","on-surface":"#22162f","primary-hover":"#2337B7","muted":"#594D63","divider":"#E4DAE1","inverse-on-surface":"#f9ecff","tertiary-fixed":"#a4f1e5","primary":"#032ccd","on-secondary":"#ffffff","surface-dim":"#e6d3f5","activity-kenali-potensi":"#FFF1C5","border-field":"#81778E","surface-container":"#f7e9ff","surface":"#FFFFFF","surface-container-lowest":"#ffffff","surface-variant":"#efdbfe","outline":"#757687","secondary":"#a43759","surface-tint":"#304be4","on-tertiary-fixed":"#00201c","on-primary-container":"#d2d6ff","on-background":"#22162f","inverse-surface":"#382b45","activity-mengembangkan":"#E5F4D8","error-container":"#ffdad6","on-primary-fixed":"#000e5e","secondary-container":"#fd7d9f","secondary-fixed":"#ffd9e0","activity-action-plan":"#A2EFE3","canvas":"#FFFAEE","on-primary":"#ffffff","on-error-container":"#93000a","activity-self-check":"#E8EDFF","surface-container-highest":"#efdbfe","primary-fixed":"#dee0ff","tertiary":"#005049","activity-kuis":"#F0E8FF","primary-fixed-dim":"#bbc3ff","error":"#ba1a1a","surface-container-low":"#fbf0ff","background":"#fff7ff","on-secondary-fixed":"#3f0018","secondary-fixed-dim":"#ffb1c2","surface-bright":"#fff7ff","tertiary-fixed-dim":"#88d4c9","feedback-error-surface":"#FFF0F4","on-error":"#ffffff","tertiary-container":"#126a61","feedback-error":"#A22A46","on-primary-fixed-variant":"#032ccd","on-tertiary-fixed-variant":"#005049","activity-refleksi":"#FFE6EE","on-secondary-fixed-variant":"#841e42","on-tertiary":"#ffffff","inverse-primary":"#bbc3ff","on-tertiary-container":"#9ae7db","primary-container":"#304be4","surface-container-high":"#f3e2ff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-3xl":"4rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-md":"1rem","space-sm":"0.5rem","margin":"2rem","space-xl":"2rem","space-lg":"1.5rem","space-2xl":"2.5rem","space-xs":"0.25rem","gutter":"1.25rem"},fontFamily:{"headline-lg-mobile":["Bricolage Grotesque"],"body-lg":["DM Sans"],"label-sm":["DM Sans"],"headline-md-mobile":["Bricolage Grotesque"],"body-md":["DM Sans"],"headline-display-mobile":["Bricolage Grotesque"],"label-md":["DM Sans"],"headline-lg":["Bricolage Grotesque"],"title-md":["Bricolage Grotesque"],"body-sm":["DM Sans"],"headline-display":["Bricolage Grotesque"],"headline-md":["Bricolage Grotesque"]},fontSize:{"headline-lg-mobile":["2rem",{"lineHeight":"1.15","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["1.125rem",{"lineHeight":"1.6","fontWeight":"400"}],"label-sm":["0.875rem",{"lineHeight":"1.3","fontWeight":"700"}],"headline-md-mobile":["1.5rem",{"lineHeight":"1.25","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.55","fontWeight":"400"}],"headline-display-mobile":["2.5rem",{"lineHeight":"1.1","letterSpacing":"-0.03em","fontWeight":"800"}],"label-md":["1rem",{"lineHeight":"1.25","fontWeight":"700"}],"headline-lg":["2.75rem",{"lineHeight":"1.12","letterSpacing":"-0.025em","fontWeight":"700"}],"title-md":["1.375rem",{"lineHeight":"1.3","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.45","fontWeight":"400"}],"headline-display":["4rem",{"lineHeight":"1.05","letterSpacing":"-0.035em","fontWeight":"800"}],"headline-md":["1.75rem",{"lineHeight":"1.2","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas font-body-md text-body-md text-on-surface min-h-screen"><header class="fixed top-0 left-0 right-0 z-50 bg-canvas/95 backdrop-blur-md shadow-[0_1px_8px_rgba(34,22,47,0.04)]"><div class="h-20 max-w-[1200px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><img alt="Logo KREASI.ID" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCrNoN8Z6tIQ2oXkXpANGjjsK0ZPKC7Oyo_TvbGLi38XcqjeFdA8_zGD2F-doUQev8a-ttEyYFtnFNU4ZD2q9e0VesBtf5qTOHRvF34YVTtcxfqjeiMqQGCv6Ftjesgp_7QjDoAshMnakhJVVqO90VNBOJoOo21LXKDMunraq7c7D8tjCQrjLdFavikdadSw6abIlq8MjHqR6Jo2ATGqyMyP8RIB0oYWocHbxu1HYE"/><a class="font-title-md text-title-md text-primary tracking-tight" data-path="beranda" href="#">KREASI.ID</a></div><nav class="hidden lg:flex items-center gap-space-xs xl:gap-space-sm" data-active-classes="bg-primary text-on-primary font-bold rounded-full px-4 py-2"><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="beranda" href="#">Beranda</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tips" href="#">Tips</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover transition-colors shadow-sm" data-path="mulai-self-check" href="#">Mulai Self-check</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-canvas"><div class="flex flex-col w-full">
+<!-- Page Header & Warm Announcement -->
+<section class="w-full max-w-[1200px] mx-auto px-margin pt-space-xl pb-space-lg">
+<div class="flex flex-col items-start gap-space-sm max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-4 py-1.5 rounded-full bg-activity-kenali-potensi shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<span class="font-label-sm text-label-sm text-on-surface">Pusat Bantuan &amp; Konsultasi BK</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+        Pintu Ruang BK Selalu Terbuka Untukmu
+      </h1>
+<p class="font-body-lg text-body-lg text-muted">
+        Punya pertanyaan seputar bakat, kebingungan memilih kegiatan, atau kendala teknis website? Jangan ragu, kami di sini siap mendengarkan tanpa menghakimi.
+      </p>
+</div>
+</section>
+<!-- Highlight Box: Ruang Aman & Alur Konseling Sekolah -->
+<section class="w-full max-w-[1200px] mx-auto px-margin py-space-md">
+<div class="relative bg-surface rounded-[24px] p-space-xl shadow-sm overflow-hidden">
+<!-- Decorative Backdrop Geometry -->
+<div class="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-activity-kenali-potensi/40 pointer-events-none blur-2xl"></div>
+<div class="absolute right-32 -bottom-16 w-52 h-52 rounded-full bg-activity-action-plan/30 pointer-events-none blur-2xl"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl relative z-10 items-center">
+<!-- Visual Snapshot Placeholder -->
+<div class="lg:col-span-5 flex flex-col gap-space-sm">
+<div class="relative rounded-2xl overflow-hidden shadow-sm aspect-[4/3] bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Warm and welcoming guidance counselor office in an Indonesian middle school with cozy couches, natural indoor plants, bright sunlight pouring through curtains, pastel mood charts on the wall, and two friendly female Indonesian counselors smiling gently, captured in warm editorial lifestyle photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz51UbCd9dpsHKYKyVl-2xZB8s_R6sKUZazrFxw86HzCRSO4qmHz_gRDFhNFBOTHy1GxwTmu-X5P_ViLqK-bcTrroIURwJxAqi9lwp5LfzHHVYbrnQXmsWRGeggQtG6t3RmxLuVCblQcib7avaRsu_ZO44GI0OSLTxZbjX1CwFc5INTg6Tcy7A9TWZ_2NcPW1elvG5b07NGXROh4_5EhKAqmz94s9CHOu36rh7nA"/>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-feedback-success animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface">Ruang Konseling Nyaman &amp; Ramah</span>
+</div>
+</div>
+<div class="flex items-center justify-between px-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-feedback-success text-[20px]">verified_user</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Asas Kerahasiaan 100% Terjaga</span>
+</div>
+<span class="font-body-sm text-body-sm text-muted">Bebas Stigma</span>
+</div>
+</div>
+<!-- Description & Flow -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-activity-refleksi self-start">
+<span class="font-label-sm text-label-sm text-secondary font-bold">Sahabat Bertumbuh Siswa</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+            Ruang BK Bukan Tempat Anak Bermasalah, Melainkan Teman Perjalananmu!
+          </h2>
+<p class="font-body-md text-body-md text-muted">
+            Di KREASI.ID dan di sekolah, kami percaya setiap remaja memiliki keunikan dan potensi terpendam. Jangan tunggu ada masalah besar untuk mampir. Mau sekadar ngobrol soal cita-cita, curhat tugas kelompok, atau bingung menentukan ekstrakurikuler, Bu Guru dan Pak Guru BK siap menyambutmu dengan secangkir senyuman.
+          </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-xl bg-canvas flex flex-col gap-1">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">1</div>
+<span class="font-label-md text-label-md text-on-surface font-bold">Jam Istirahat</span>
+<p class="font-body-sm text-body-sm text-muted">Bisa langsung mampir santai tanpa janji saat istirahat pertama/kedua.</p>
+</div>
+<div class="p-space-sm rounded-xl bg-canvas flex flex-col gap-1">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">2</div>
+<span class="font-label-md text-label-md text-on-surface font-bold">Jam Mandiri</span>
+<p class="font-body-sm text-body-sm text-muted">Gunakan jam bimbingan terjadwal atau saat guru kelas mengizinkan.</p>
+</div>
+<div class="p-space-sm rounded-xl bg-canvas flex flex-col gap-1">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">3</div>
+<span class="font-label-md text-label-md text-on-surface font-bold">Janji Temu Daring</span>
+<p class="font-body-sm text-body-sm text-muted">Isi formulir di bawah ini untuk menentukan waktu obrolan privat.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3 Verified Support Channels -->
+<section class="w-full max-w-[1200px] mx-auto px-margin py-space-xl">
+<div class="flex flex-col gap-space-xs mb-space-lg">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Kanal Terpercaya</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">3 Jalur Terbuka untuk Membantu Kebutuhanmu</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card 1: Tatap Muka -->
+<div class="bg-surface rounded-2xl p-space-lg shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-activity-self-check text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">meeting_room</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-xs">Ruang BK Tatap Muka</h3>
+<p class="font-body-md text-body-md text-muted">Konseling langsung secara privat, santai, dan nyaman di lingkungan sekolah.</p>
+</div>
+<div class="flex flex-col gap-space-xs bg-canvas p-space-sm rounded-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_clock</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">Senin – Jumat | 07.30 - 15.00 WIB</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+<span class="font-body-sm text-body-sm text-muted">Gedung Utama Lantai 2 (Dekat Perpustakaan)</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md">
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-primary">
+            Terbuka setiap hari sekolah <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Card 2: Kotak Aspirasi & Janji Temu Digital -->
+<div class="bg-surface rounded-2xl p-space-lg shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-activity-kenali-potensi text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">mark_email_unread</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-xs">Janji Temu &amp; Konsultasi Digital</h3>
+<p class="font-body-md text-body-md text-muted">Kirim pesan cepat tanpa rasa canggung atau jadwalkan Google Meet sekolah.</p>
+</div>
+<div class="flex flex-col gap-space-xs bg-canvas p-space-sm rounded-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-feedback-success text-[18px]">videocam</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">Tersedia via Google Meet</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-muted text-[18px]">visibility_off</span>
+<span class="font-body-sm text-body-sm text-muted">Opsi gunakan inisial/anonim awal</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:text-primary-hover transition-colors" href="#form-janji-temu">
+            Isi formulir janji temu <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</a>
+</div>
+</div>
+<!-- Card 3: Teknis Website KREASI.ID -->
+<div class="bg-surface rounded-2xl p-space-lg shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-activity-action-plan text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">devices</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-xs">Bantuan Teknis Web KREASI</h3>
+<p class="font-body-md text-body-md text-muted">Panduan cepat jika kuis tertutup, kuis lemot, atau ringkasan PDF gagal diunduh.</p>
+</div>
+<div class="flex flex-col gap-space-xs bg-canvas p-space-sm rounded-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px]">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">Solusi Google Forms &amp; Simpan Catatan</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-muted text-[18px]">contact_support</span>
+<span class="font-body-sm text-body-sm text-muted">Admin IT Siswa via WhatsApp BK</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md">
+<button class="inline-flex items-center gap-1 font-label-md text-label-md text-tertiary hover:opacity-80 transition-opacity" onclick="document.getElementById('faq-teknis').scrollIntoView({behavior:'smooth'})">
+            Lihat petunjuk solusi cepat <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Appointment Form & Live Consultation Guide -->
+<section class="w-full max-w-[1200px] mx-auto px-margin py-space-xl" id="form-janji-temu">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column: Friendly Form -->
+<div class="lg:col-span-7 bg-surface rounded-[24px] p-space-xl shadow-sm">
+<div class="flex flex-col gap-space-xs mb-space-lg">
+<span class="font-label-sm text-label-sm text-primary font-bold">Langkah Mudah</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Buat Janji Temu atau Kirim Pesan Santai</h2>
+<p class="font-body-md text-body-md text-muted">
+            Semua pesan masuk langsung diterima oleh Guru BK inti dan tidak dapat dibaca oleh siswa lain.
+          </p>
+</div>
+<form class="flex flex-col gap-space-md" id="bk-appointment-form" onsubmit="event.preventDefault(); handleFormSubmit();">
+<!-- Row 1: Nama / Inisial & Kelas -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface" for="student-name">Nama Panggilan atau Inisial <span class="text-error">*</span></label>
+<input class="h-12 px-4 rounded-xl bg-canvas text-body-md text-on-surface placeholder:text-muted/60 focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary transition-all" id="student-name" placeholder="Contoh: Rian atau Siswa 8B" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface" for="student-grade">Kelas Saat Ini <span class="text-error">*</span></label>
+<select class="h-12 px-4 rounded-xl bg-canvas text-body-md text-on-surface focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary transition-all" id="student-grade" required="">
+<option disabled="" selected="" value="">Pilih kelas kamu...</option>
+<option value="7">Kelas 7 SMP</option>
+<option value="8">Kelas 8 SMP</option>
+<option value="9">Kelas 9 SMP</option>
+</select>
+</div>
+</div>
+<!-- Row 2: Topik Pembahasan -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface">Topik yang Ingin Kamu Bicarakan</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-space-xs">
+<label class="topic-chip cursor-pointer p-3 rounded-xl bg-canvas hover:bg-activity-self-check text-body-sm text-on-surface flex items-center gap-2 select-none transition-colors">
+<input checked="" class="accent-primary" name="topic" type="radio" value="eksplorasi-bakat"/>
+<span>Minat &amp; Bakat</span>
+</label>
+<label class="topic-chip cursor-pointer p-3 rounded-xl bg-canvas hover:bg-activity-self-check text-body-sm text-on-surface flex items-center gap-2 select-none transition-colors">
+<input class="accent-primary" name="topic" type="radio" value="kelanjutan-studi"/>
+<span>Rencana SMA/SMK</span>
+</label>
+<label class="topic-chip cursor-pointer p-3 rounded-xl bg-canvas hover:bg-activity-self-check text-body-sm text-on-surface flex items-center gap-2 select-none transition-colors">
+<input class="accent-primary" name="topic" type="radio" value="pertemanan"/>
+<span>Pertemanan/Sekolah</span>
+</label>
+<label class="topic-chip cursor-pointer p-3 rounded-xl bg-canvas hover:bg-activity-self-check text-body-sm text-on-surface flex items-center gap-2 select-none transition-colors">
+<input class="accent-primary" name="topic" type="radio" value="motivasi-belajar"/>
+<span>Motivasi Belajar</span>
+</label>
+<label class="topic-chip cursor-pointer p-3 rounded-xl bg-canvas hover:bg-activity-self-check text-body-sm text-on-surface flex items-center gap-2 select-none transition-colors">
+<input class="accent-primary" name="topic" type="radio" value="kendala-web"/>
+<span>Kendala Web KREASI</span>
+</label>
+<label class="topic-chip cursor-pointer p-3 rounded-xl bg-canvas hover:bg-activity-self-check text-body-sm text-on-surface flex items-center gap-2 select-none transition-colors">
+<input class="accent-primary" name="topic" type="radio" value="lainnya"/>
+<span>Lainnya (Bebas)</span>
+</label>
+</div>
+</div>
+<!-- Row 3: Pilihan Waktu & Metode -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface" for="consult-method">Metode Konsultasi</label>
+<select class="h-12 px-4 rounded-xl bg-canvas text-body-md text-on-surface focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary transition-all" id="consult-method">
+<option value="tatap-muka">Tatap Muka di Ruang BK</option>
+<option value="gmeet">Google Meet (Akun Belajar.id)</option>
+<option value="pesan-saja">Cukup Balasan Tertulis (Email/WA)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface" for="consult-time">Pilihan Waktu Bertemu</label>
+<select class="h-12 px-4 rounded-xl bg-canvas text-body-md text-on-surface focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary transition-all" id="consult-time">
+<option value="istirahat-1">Jam Istirahat 1 (09.30 - 10.00)</option>
+<option value="istirahat-2">Jam Istirahat 2 (11.45 - 12.30)</option>
+<option value="pulang-sekolah">Setelah Bel Pulang Sekolah</option>
+<option value="jam-bk">Sesi Mandiri BK Pekan Depan</option>
+</select>
+</div>
+</div>
+<!-- Row 4: Catatan / Isi Pesan Singkat -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface" for="student-message">Catatan Tambahan (Boleh Dikosongkan)</label>
+<textarea class="p-4 rounded-xl bg-canvas text-body-md text-on-surface placeholder:text-muted/60 focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none" id="student-message" placeholder="Tuliskan hal yang ingin kamu ceritakan atau tanyakan sedikit saja..." rows="3"></textarea>
+</div>
+<!-- Privacy guarantee badge -->
+<div class="p-space-sm rounded-xl bg-activity-kenali-potensi/50 flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-feedback-success text-[20px] shrink-0">lock</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Data kamu dilindungi kode etik kerahasiaan bimbingan dan konseling. Tidak akan disebar ke media sosial maupun teman sekelas.
+            </p>
+</div>
+<!-- Submit Button -->
+<div class="pt-space-xs flex items-center justify-between">
+<button class="h-12 px-8 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover shadow-sm transition-all flex items-center gap-2" type="submit">
+<span>Kirim Permintaan Konseling</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+<span class="font-label-sm text-label-sm text-feedback-success hidden items-center gap-1" id="form-success-note">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> Terkirim ke Guru BK!
+            </span>
+</div>
+</form>
+</div>
+<!-- Right Column: Counselor Profile & Warm Personal Note -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Counselor Card -->
+<div class="bg-surface rounded-[24px] p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-activity-refleksi shrink-0">
+<img class="w-full h-full object-cover" data-alt="Portrait of an Indonesian female school guidance counselor in a friendly pastel hijab and warm smile, sitting in a cheerful school library corner, natural lighting, professional and compassionate look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRHbS_hKCTHaGS-iRmTLmsM_0lb294X0a8j1N9iLQvd9mP_3hTCdnx4wRsS2ABcXA1b0YasABsx-BIyiFza3GUvDjqLk0RqLkpN7cXyZo8d-q5anr-keMLJyYl4E9ZcQ6dwcih65jDJblaI3HenuEwx3a3BYVswWsRxIuuVI-SgGEPAFiPNmmClKp4wM9cJjAKMbhXVehJK2HP71RIu3eOpXZAp70Zrtl8Gx9v5g"/>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Ibu Anindita, S.Pd., Kons.</h3>
+<p class="font-body-sm text-body-sm text-muted">Koordinator Guru BK SMP KREASI</p>
+<div class="flex items-center gap-1 mt-1 text-feedback-success">
+<span class="w-2 h-2 rounded-full bg-feedback-success"></span>
+<span class="font-label-sm text-label-sm">Aktif di Sekolah Hari Ini</span>
+</div>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-activity-action-plan text-tertiary flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">format_quote</span>
+<span class="font-label-md text-label-md font-bold">Pesan Hangat untuk Siswa:</span>
+</div>
+<p class="font-body-sm text-body-sm leading-relaxed">
+              "Menjadi remaja itu seru tapi juga kadang membingungkan. Kamu tidak harus memikirkan semuanya sendirian. Cerita apa pun yang kamu simpan, kami punya telinga yang selalu siap mendengarkan."
+            </p>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between text-body-sm text-muted">
+<span>Rata-rata respons pesan digital:</span>
+<span class="font-bold text-on-surface">Kurang dari 2 jam</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-muted">
+<span>Lokasi sesi tatap muka:</span>
+<span class="font-bold text-on-surface">Ruang Bimbingan 204</span>
+</div>
+</div>
+</div>
+<!-- Mini Tip Box: Quick Technical Rescue -->
+<div class="bg-surface rounded-[24px] p-space-lg shadow-sm flex flex-col gap-space-sm" id="faq-teknis">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[22px]">build_circle</span>
+<span class="font-title-md text-title-md text-on-surface">Solusi Cepat Masalah Web KREASI</span>
+</div>
+<ul class="flex flex-col gap-2 text-body-sm text-muted pt-1">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-feedback-success text-[18px] shrink-0 mt-0.5">check</span>
+<span><strong>Google Forms Kuis Tidak Muncul?</strong> Pastikan kamu sudah login dengan akun Google / Belajar.id sekolah di browsermu.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-feedback-success text-[18px] shrink-0 mt-0.5">check</span>
+<span><strong>Catatan Refleksi Terhapus?</strong> KREASI.ID menyimpan catatan otomatis di browser perangkatmu. Hindari mode Incognito/Private saat mengerjakan.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-feedback-success text-[18px] shrink-0 mt-0.5">check</span>
+<span><strong>Gagal Unduh Rencana Aksi?</strong> Tekan tombol "Cetak Ringkasan" lalu pilih opsi "Simpan sebagai PDF" pada dialog cetak.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive FAQ Section -->
+<section class="w-full max-w-[1200px] mx-auto px-margin py-space-xl">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Tanya Jawab Seputar BK</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-1">Pertanyaan yang Kerap Ditanyakan Sahabat Siswa</h2>
+<p class="font-body-md text-body-md text-muted mt-2">Ketahui hak-hakmu dan rasa amanmu saat memanfaatkan layanan bimbingan konseling di sekolah.</p>
+</div>
+<div class="max-w-3xl mx-auto flex flex-col gap-space-sm" id="faq-accordion">
+<!-- FAQ Item 1 -->
+<div class="faq-card bg-surface rounded-2xl p-space-md shadow-sm cursor-pointer transition-all hover:bg-activity-self-check/40" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-full bg-activity-kenali-potensi text-on-surface flex items-center justify-center font-bold text-label-sm shrink-0">1</span>
+<span class="font-title-md text-title-md text-on-surface">Apakah hasil kuis dan catatan saya dibagikan ke orang tua atau guru mapel?</span>
+</div>
+<span class="material-symbols-outlined text-primary faq-icon transition-transform duration-200">expand_more</span>
+</div>
+<div class="faq-content hidden pt-space-sm mt-space-xs text-body-md text-muted pl-11">
+<p class="p-3 bg-canvas rounded-xl">
+<strong>Tidak, sama sekali tidak!</strong> Sesuai Kode Etik Bimbingan &amp; Konseling, data refleksi diri, jawaban kuis, dan isi konseling bersifat rahasia pribadi antara kamu dan Guru BK. Hasilmu hanya digunakan untuk mendampingi kamu memahami kelebihan dirimu sendiri.
+          </p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-card bg-surface rounded-2xl p-space-md shadow-sm cursor-pointer transition-all hover:bg-activity-self-check/40" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-full bg-activity-action-plan text-tertiary flex items-center justify-center font-bold text-label-sm shrink-0">2</span>
+<span class="font-title-md text-title-md text-on-surface">Bagaimana jika saya belum tahu sama sekali apa bakat atau minat saya?</span>
+</div>
+<span class="material-symbols-outlined text-primary faq-icon transition-transform duration-200">expand_more</span>
+</div>
+<div class="faq-content hidden pt-space-sm mt-space-xs text-body-md text-muted pl-11">
+<p class="p-3 bg-canvas rounded-xl">
+            Itu hal yang sangat wajar di usia SMP! Sebagian besar teman-temanmu juga masih dalam proses mencari tahu. Kamu tidak perlu langsung menemukan bakat istimewa sekarang. Kami di BK akan mengajakmu mencoba berbagai eksplorasi minat kecil langkah demi langkah tanpa paksaan.
+          </p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-card bg-surface rounded-2xl p-space-md shadow-sm cursor-pointer transition-all hover:bg-activity-self-check/40" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-full bg-activity-refleksi text-secondary flex items-center justify-center font-bold text-label-sm shrink-0">3</span>
+<span class="font-title-md text-title-md text-on-surface">Kapan waktu paling pas untuk datang langsung ke ruang BK?</span>
+</div>
+<span class="material-symbols-outlined text-primary faq-icon transition-transform duration-200">expand_more</span>
+</div>
+<div class="faq-content hidden pt-space-sm mt-space-xs text-body-md text-muted pl-11">
+<p class="p-3 bg-canvas rounded-xl">
+            Waktu paling fleksibel adalah saat jam istirahat sekolah atau sesaat setelah bel pulang berbunyi. Jika kamu membutuhkan sesi yang lebih panjang, kamu bisa meminta surat izin bimbingan dari Guru BK untuk disampaikan kepada guru mata pelajaran yang sedang berlangsung.
+          </p>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="faq-card bg-surface rounded-2xl p-space-md shadow-sm cursor-pointer transition-all hover:bg-activity-self-check/40" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-full bg-activity-self-check text-primary flex items-center justify-center font-bold text-label-sm shrink-0">4</span>
+<span class="font-title-md text-title-md text-on-surface">Apakah berkonsultasi ke Guru BK akan mempengaruhi nilai rapor?</span>
+</div>
+<span class="material-symbols-outlined text-primary faq-icon transition-transform duration-200">expand_more</span>
+</div>
+<div class="faq-content hidden pt-space-sm mt-space-xs text-body-md text-muted pl-11">
+<p class="p-3 bg-canvas rounded-xl">
+            Sama sekali tidak mengurangi nilai akademikmu! Justru layanan bimbingan konseling hadir untuk mendukung kesejahteraan emosional, meningkatkan fokus belajar, dan membantumu mencapai performa terbaik sesuai potensimu.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Interactive CTA Panel -->
+<section class="w-full max-w-[1200px] mx-auto px-margin py-space-2xl">
+<div class="bg-primary rounded-[28px] p-space-xl sm:p-space-2xl text-on-primary relative overflow-hidden shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-xl">
+<!-- Decorative Backdrop circles -->
+<div class="absolute -left-10 -bottom-10 w-48 h-48 rounded-full bg-white/10 pointer-events-none blur-xl"></div>
+<div class="absolute right-0 top-0 w-64 h-64 rounded-full bg-activity-action-plan/15 pointer-events-none blur-2xl"></div>
+<div class="flex flex-col gap-space-xs max-w-xl z-10 text-center md:text-left">
+<span class="font-label-sm text-label-sm text-activity-action-plan uppercase tracking-wider font-bold">Siap Melangkah Lebih Jauh?</span>
+<h2 class="font-headline-md text-headline-md text-on-primary">
+          Mulai Mengenali Potensimu Sendiri Sekarang
+        </h2>
+<p class="font-body-md text-body-md text-on-primary-container">
+          Kamu bisa mencoba fitur Self-Check mandiri untuk memetakan minat dan gaya belajarmu dalam 5 menit, atau kembali membaca modul kegiatan BK.
+        </p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-sm z-10 shrink-0 w-full sm:w-auto">
+<a class="w-full sm:w-auto h-12 px-6 rounded-full bg-surface text-primary font-label-md text-label-md hover:bg-canvas transition-colors flex items-center justify-center gap-2" data-path="beranda" href="#">
+<span class="material-symbols-outlined text-[18px]">home</span>
+<span>Kembali ke Beranda</span>
+</a>
+<a class="w-full sm:w-auto h-12 px-8 rounded-full bg-activity-action-plan text-tertiary font-label-md text-label-md hover:opacity-90 shadow-sm transition-opacity flex items-center justify-center gap-2 font-bold" data-path="mulai-self-check" href="#">
+<span>Mulai Self-check</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Client-side Micro-Interactions Script -->
+<script>
+    function toggleFaq(cardElement) {
+      const content = cardElement.querySelector('.faq-content');
+      const icon = cardElement.querySelector('.faq-icon');
+      const isHidden = content.classList.contains('hidden');
+      
+      // Close all first for clean accordion
+      document.querySelectorAll('#faq-accordion .faq-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('#faq-accordion .faq-icon').forEach(i => i.classList.remove('rotate-180'));
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    }
+
+    function handleFormSubmit() {
+      const successNote = document.getElementById('form-success-note');
+      successNote.classList.remove('hidden');
+      successNote.classList.add('inline-flex');
+      
+      // Disable inputs briefly as reassurance
+      const form = document.getElementById('bk-appointment-form');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.classList.add('opacity-70', 'pointer-events-none');
+      submitBtn.innerText = 'Terkirim';
+
+      setTimeout(() => {
+        alert('Terima kasih! Pesan dan janji temu kamu sudah tersimpan di sistem Guru BK KREASI.ID. Kami akan segera menghubungimu.');
+        form.reset();
+        submitBtn.classList.remove('opacity-70', 'pointer-events-none');
+        submitBtn.innerHTML = '<span>Kirim Permintaan Konseling</span><span class="material-symbols-outlined text-[18px]">send</span>';
+        successNote.classList.add('hidden');
+      }, 1200);
+    }
+  </script>
+</div></main><footer class="w-full bg-canvas shadow-[0_-1px_8px_rgba(34,22,47,0.03)] py-space-3xl mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl pb-space-2xl"><div class="md:col-span-6 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md text-primary">KREASI.ID</span><span class="px-3 py-1 rounded-full bg-activity-kenali-potensi font-label-sm text-label-sm text-on-surface">Sahabat BK Siswa SMP</span></div><p class="font-title-md text-title-md text-on-surface mt-space-xs font-bold leading-snug">Kenali, Refleksikan, Eksplorasi, dan Aktualisasikan Potensi Diri</p><p class="font-body-md text-body-md text-muted max-w-md">Ruang bimbingan dan konseling interaktif yang ramah, hangat, dan aman untuk mendampingi masa remaja dan langkah eksplorasi masa depanmu.</p></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Tautan Utama</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tips" href="#">Tips &amp; Catatanku</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></div></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Pusat Dukungan</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="panduan-privasi" href="#">Panduan Privasi</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Layanan Konseling Guru BK</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="mulai-self-check" href="#">Asesmen Mandiri Siswa</a></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left"><p class="font-body-sm text-body-sm text-muted">© 2024 KREASI.ID • Bimbingan dan Konseling Remaja Hebat. Semua hak dilindungi.</p><div class="flex items-center gap-space-lg"><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="panduan-privasi" href="#">Privasi Siswa</a><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="kontak-dan-bantuan" href="#">Bantuan BK</a></div></div></div></footer></body></html>

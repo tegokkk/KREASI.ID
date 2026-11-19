@@ -1,0 +1,110 @@
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.labelRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.label {
+  font-weight: 700;
+  font-size: var(--text-body);
+  color: var(--color-ink);
+  line-height: 1.35;
+}
+
+.badgeRequired,
+.badgeOptional {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-small);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.badgeRequired {
+  background-color: var(--color-activity-blue);
+  color: var(--color-primary);
+}
+
+.badgeOptional {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-divider);
+  color: var(--color-muted);
+}
+
+.helper {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+
+.control {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-input);
+  border: 1.5px solid var(--color-field-border);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-size: max(1rem, var(--text-body));
+  line-height: 1.5;
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.control::placeholder {
+  color: var(--color-placeholder);
+  opacity: 1;
+}
+
+.control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(48, 75, 228, 0.2);
+}
+
+.input {
+  min-height: var(--control-height);
+}
+
+.textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+
+.controlError {
+  border-width: 2px;
+  border-color: var(--color-error);
+  background-color: var(--color-error-surface);
+}
+
+.controlError:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 2px rgba(162, 42, 70, 0.2);
+}
+
+.errorText {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-error);
+  line-height: 1.4;
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}

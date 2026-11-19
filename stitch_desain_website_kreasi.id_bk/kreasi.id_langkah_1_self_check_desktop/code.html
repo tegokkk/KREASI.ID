@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&amp;family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"feedback-success":"#176050","on-secondary-container":"#751037","outline-variant":"#c5c5d8","on-surface-variant":"#444655","on-surface":"#22162f","primary-hover":"#2337B7","muted":"#594D63","divider":"#E4DAE1","inverse-on-surface":"#f9ecff","tertiary-fixed":"#a4f1e5","primary":"#032ccd","on-secondary":"#ffffff","surface-dim":"#e6d3f5","activity-kenali-potensi":"#FFF1C5","border-field":"#81778E","surface-container":"#f7e9ff","surface":"#FFFFFF","surface-container-lowest":"#ffffff","surface-variant":"#efdbfe","outline":"#757687","secondary":"#a43759","surface-tint":"#304be4","on-tertiary-fixed":"#00201c","on-primary-container":"#d2d6ff","on-background":"#22162f","inverse-surface":"#382b45","activity-mengembangkan":"#E5F4D8","error-container":"#ffdad6","on-primary-fixed":"#000e5e","secondary-container":"#fd7d9f","secondary-fixed":"#ffd9e0","activity-action-plan":"#A2EFE3","canvas":"#FFFAEE","on-primary":"#ffffff","on-error-container":"#93000a","activity-self-check":"#E8EDFF","surface-container-highest":"#efdbfe","primary-fixed":"#dee0ff","tertiary":"#005049","activity-kuis":"#F0E8FF","primary-fixed-dim":"#bbc3ff","error":"#ba1a1a","surface-container-low":"#fbf0ff","background":"#fff7ff","on-secondary-fixed":"#3f0018","secondary-fixed-dim":"#ffb1c2","surface-bright":"#fff7ff","tertiary-fixed-dim":"#88d4c9","feedback-error-surface":"#FFF0F4","on-error":"#ffffff","tertiary-container":"#126a61","feedback-error":"#A22A46","on-primary-fixed-variant":"#032ccd","on-tertiary-fixed-variant":"#005049","activity-refleksi":"#FFE6EE","on-secondary-fixed-variant":"#841e42","on-tertiary":"#ffffff","inverse-primary":"#bbc3ff","on-tertiary-container":"#9ae7db","primary-container":"#304be4","surface-container-high":"#f3e2ff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-3xl":"4rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-md":"1rem","space-sm":"0.5rem","margin":"2rem","space-xl":"2rem","space-lg":"1.5rem","space-2xl":"2.5rem","space-xs":"0.25rem","gutter":"1.25rem"},fontFamily:{"headline-lg-mobile":["Bricolage Grotesque"],"body-lg":["DM Sans"],"label-sm":["DM Sans"],"headline-md-mobile":["Bricolage Grotesque"],"body-md":["DM Sans"],"headline-display-mobile":["Bricolage Grotesque"],"label-md":["DM Sans"],"headline-lg":["Bricolage Grotesque"],"title-md":["Bricolage Grotesque"],"body-sm":["DM Sans"],"headline-display":["Bricolage Grotesque"],"headline-md":["Bricolage Grotesque"]},fontSize:{"headline-lg-mobile":["2rem",{"lineHeight":"1.15","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["1.125rem",{"lineHeight":"1.6","fontWeight":"400"}],"label-sm":["0.875rem",{"lineHeight":"1.3","fontWeight":"700"}],"headline-md-mobile":["1.5rem",{"lineHeight":"1.25","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.55","fontWeight":"400"}],"headline-display-mobile":["2.5rem",{"lineHeight":"1.1","letterSpacing":"-0.03em","fontWeight":"800"}],"label-md":["1rem",{"lineHeight":"1.25","fontWeight":"700"}],"headline-lg":["2.75rem",{"lineHeight":"1.12","letterSpacing":"-0.025em","fontWeight":"700"}],"title-md":["1.375rem",{"lineHeight":"1.3","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.45","fontWeight":"400"}],"headline-display":["4rem",{"lineHeight":"1.05","letterSpacing":"-0.035em","fontWeight":"800"}],"headline-md":["1.75rem",{"lineHeight":"1.2","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas font-body-md text-body-md text-on-surface min-h-screen"><header class="fixed top-0 left-0 right-0 z-50 bg-canvas/95 backdrop-blur-md shadow-[0_1px_8px_rgba(34,22,47,0.04)]"><div class="h-20 max-w-[1200px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><img alt="Logo KREASI.ID" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCrNoN8Z6tIQ2oXkXpANGjjsK0ZPKC7Oyo_TvbGLi38XcqjeFdA8_zGD2F-doUQev8a-ttEyYFtnFNU4ZD2q9e0VesBtf5qTOHRvF34YVTtcxfqjeiMqQGCv6Ftjesgp_7QjDoAshMnakhJVVqO90VNBOJoOo21LXKDMunraq7c7D8tjCQrjLdFavikdadSw6abIlq8MjHqR6Jo2ATGqyMyP8RIB0oYWocHbxu1HYE"/><a class="font-title-md text-title-md text-primary tracking-tight" data-path="beranda" href="#">KREASI.ID</a></div><nav class="hidden lg:flex items-center gap-space-xs xl:gap-space-sm" data-active-classes="bg-primary text-on-primary font-bold rounded-full px-4 py-2"><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="beranda" href="#">Beranda</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tips" href="#">Tips</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover transition-colors shadow-sm" data-path="mulai-self-check" href="#">Mulai Self-check</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-canvas"><div class="flex flex-col w-full">
+<!-- Progress Header & Breadcrumbs Strip -->
+<div class="w-full bg-surface-container-low/70 py-space-md border-b-0 shadow-sm">
+<div class="max-w-[1200px] mx-auto px-margin flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider font-bold">
+          Langkah 1 dari 6
+        </span>
+<span class="font-body-sm text-body-sm text-muted">Tahap Eksplorasi Diri • Siswa SMP</span>
+</div>
+<!-- 6-Step Visual Indicator -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1.5" title="Progres Tahapan KREASI.ID">
+<!-- Step 1 Active -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-2 rounded-full bg-primary"></div>
+<span class="text-[10px] font-bold text-primary mt-1">1. Check</span>
+</div>
+<!-- Step 2 Idle -->
+<div class="flex flex-col items-center">
+<div class="w-6 h-2 rounded-full bg-outline-variant/60"></div>
+<span class="text-[10px] text-muted mt-1">2. Potensi</span>
+</div>
+<!-- Step 3 Idle -->
+<div class="flex flex-col items-center">
+<div class="w-6 h-2 rounded-full bg-outline-variant/60"></div>
+<span class="text-[10px] text-muted mt-1">3. Kuis</span>
+</div>
+<!-- Step 4 Idle -->
+<div class="flex flex-col items-center">
+<div class="w-6 h-2 rounded-full bg-outline-variant/60"></div>
+<span class="text-[10px] text-muted mt-1">4. Refleksi</span>
+</div>
+<!-- Step 5 Idle -->
+<div class="flex flex-col items-center">
+<div class="w-6 h-2 rounded-full bg-outline-variant/60"></div>
+<span class="text-[10px] text-muted mt-1">5. Rencana</span>
+</div>
+<!-- Step 6 Idle -->
+<div class="flex flex-col items-center">
+<div class="w-6 h-2 rounded-full bg-outline-variant/60"></div>
+<span class="text-[10px] text-muted mt-1">6. Kembang</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Hero Introductory Headline Section -->
+<section class="max-w-[1200px] mx-auto px-margin pt-space-2xl pb-space-lg w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-activity-self-check text-primary font-label-sm text-label-sm w-fit">
+<span class="material-symbols-outlined text-[18px]">checklist</span>
+          Asesmen Mandiri &amp; Reflektif
+        </div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface text-balance font-extrabold">
+          Self-check Minat &amp; Potensimu
+        </h1>
+<p class="font-body-lg text-body-lg text-muted max-w-2xl leading-relaxed">
+          Kenali kegiatan dan kemampuan yang menarik buatmu. Kamu boleh memilih lebih dari satu jawaban atau melewati pertanyaan. Jawabanmu bersifat pribadi untuk membantumu berefleksi.
+        </p>
+<!-- Notice Banner: Ruang Aman Siswa -->
+<div class="mt-space-sm bg-activity-action-plan text-on-surface rounded-xl p-space-md flex items-start gap-space-sm shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[24px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md font-bold text-tertiary">Ruang aman siswa:</span>
+<p class="font-body-md text-body-md text-on-surface">
+              Pilihan ini tidak dinilai, bukan tes psikologis kaku, dan tidak menentukan batas masa depanmu. Santai saja dan dengarkan suara hatimu!
+            </p>
+</div>
+</div>
+</div>
+<!-- Graphic Workbook Card / Visual Accent -->
+<div class="lg:col-span-4 relative flex flex-col items-center justify-center p-space-lg rounded-2xl bg-surface shadow-md">
+<div class="w-full flex items-center justify-between pb-space-sm border-b border-divider">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<div class="w-3 h-3 rounded-full bg-activity-kenali-potensi"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary-fixed"></div>
+</div>
+<span class="font-label-sm text-label-sm text-muted">Jurnal Belajar SMP</span>
+</div>
+<div class="w-full pt-space-md flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-activity-self-check text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">psychology_alt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Eksplorasi Bebas</span>
+<span class="font-body-sm text-body-sm text-muted">Bebas memilih sesuai rasa ingin tahumu</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-activity-kenali-potensi text-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">lock_reset</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Kerahasiaan Pribadi</span>
+<span class="font-body-sm text-body-sm text-muted">Hanya kamu dan browser milikmu</span>
+</div>
+</div>
+<!-- Mini Counter -->
+<div class="mt-2 p-3 rounded-xl bg-surface-container-high/60 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-muted">Pilihan Tercentang:</span>
+<span class="font-label-md text-label-md px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-bold" id="selected-badge-count">0 Terpilih</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive 5-Question Form Container -->
+<main class="max-w-[1200px] mx-auto px-margin py-space-xl w-full">
+<form class="flex flex-col gap-space-2xl" id="self-check-form">
+<!-- Question 1 -->
+<section class="p-space-xl bg-surface rounded-2xl shadow-sm transition-all hover:shadow-md">
+<div class="flex items-start gap-space-md mb-space-lg">
+<div class="w-10 h-10 rounded-full bg-activity-self-check text-primary font-headline-md text-headline-md flex items-center justify-center shrink-0 font-bold">
+            1
+          </div>
+<div class="flex flex-col">
+<h2 class="font-title-md text-title-md text-on-surface font-bold">
+              Kegiatan apa yang paling kamu sukai saat waktu luang atau di sekolah?
+            </h2>
+<p class="font-body-sm text-body-sm text-muted">Pilih satu atau lebih yang paling menggambarkan kebiasaan serumu.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Item 1.1 -->
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-self-check/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-self-check has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q1" type="checkbox" value="Membaca &amp; mencari tahu hal baru"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Membaca &amp; mencari tahu hal baru</span>
+<span class="font-body-sm text-body-sm text-muted">Suka ensiklopedia, artikel seru, atau cerita fiksi menarik.</span>
+</div>
+</label>
+<!-- Item 1.2 -->
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-self-check/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-self-check has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q1" type="checkbox" value="Menggambar / membuat karya visual"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Menggambar / membuat karya visual</span>
+<span class="font-body-sm text-body-sm text-muted">Mencoret sketsa, doodling, poster, kreasi estetis.</span>
+</div>
+</label>
+<!-- Item 1.3 -->
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-self-check/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-self-check has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q1" type="checkbox" value="Mengutak-atik barang / eksperimen logika"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Mengutak-atik barang / logika</span>
+<span class="font-body-sm text-body-sm text-muted">Bongkar pasang alat, teka-teki, coding, sains praktek.</span>
+</div>
+</label>
+<!-- Item 1.4 -->
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-self-check/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-self-check has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q1" type="checkbox" value="Berolahraga &amp; aktivitas fisik"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Berolahraga &amp; aktivitas fisik</span>
+<span class="font-body-sm text-body-sm text-muted">Futsal, bulutangkis, lari, bersepeda, bergerak aktif.</span>
+</div>
+</label>
+<!-- Item 1.5 -->
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-self-check/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-self-check has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q1" type="checkbox" value="Membantu teman / mendengarkan cerita"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Membantu teman / curhat</span>
+<span class="font-body-sm text-body-sm text-muted">Jadi pendengar yang baik, memberi dukungan, empati.</span>
+</div>
+</label>
+<!-- Item 1.6 -->
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-self-check/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-self-check has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q1" type="checkbox" value="Merencanakan acara kelompok"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Merencanakan acara kelompok</span>
+<span class="font-body-sm text-body-sm text-muted">Mengatur jadwal belajar bersama atau tugas kelas.</span>
+</div>
+</label>
+<!-- Item 1.7 -->
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-self-check/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-self-check has-[:checked]:shadow-sm md:col-span-2 lg:col-span-3">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q1" type="checkbox" value="Belum tahu / masih eksplorasi"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Belum tahu / masih eksplorasi rasa ingin tahu</span>
+<span class="font-body-sm text-body-sm text-muted">Sangat normal untuk usia SMP! Masih mencari kecocokan diri.</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Question 2 -->
+<section class="p-space-xl bg-surface rounded-2xl shadow-sm transition-all hover:shadow-md">
+<div class="flex items-start gap-space-md mb-space-lg">
+<div class="w-10 h-10 rounded-full bg-activity-kenali-potensi text-on-surface font-headline-md text-headline-md flex items-center justify-center shrink-0 font-bold">
+            2
+          </div>
+<div class="flex flex-col">
+<h2 class="font-title-md text-title-md text-on-surface font-bold">
+              Kemampuan apa yang kamu rasa sudah mulai berkembang dalam dirimu?
+            </h2>
+<p class="font-body-sm text-body-sm text-muted">Apresiasi sekecil apa pun kemajuan yang kamu alami belakangan ini.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kenali-potensi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kenali-potensi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q2" type="checkbox" value="Menjelaskan ide ke teman dengan jelas"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Menjelaskan ide ke teman</span>
+<span class="font-body-sm text-body-sm text-muted">Bisa menyampaikan pendapat runtut saat diskusi.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kenali-potensi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kenali-potensi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q2" type="checkbox" value="Fokus memecahkan soal/masalah rumit"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Fokus memecahkan soal/masalah rumit</span>
+<span class="font-body-sm text-body-sm text-muted">Betah berkutat mencari rumus atau jawaban tepat.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kenali-potensi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kenali-potensi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q2" type="checkbox" value="Teliti mencatat &amp; mengorganisir jadwal"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Teliti mencatat &amp; kelola jadwal</span>
+<span class="font-body-sm text-body-sm text-muted">Buku rapi, tahu tugas deadline, tidak mudah lupa.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kenali-potensi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kenali-potensi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q2" type="checkbox" value="Mudah bergaul &amp; mengajak diskusi"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Mudah bergaul &amp; ramah</span>
+<span class="font-body-sm text-body-sm text-muted">Menghidupkan suasana dan cepat akrab dengan teman baru.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kenali-potensi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kenali-potensi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q2" type="checkbox" value="Berimajinasi &amp; membuat cerita/desain"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Berimajinasi &amp; membuat ide kreatif</span>
+<span class="font-body-sm text-body-sm text-muted">Suka mengarang cerita, konten kreatif, atau konsep baru.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kenali-potensi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kenali-potensi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q2" type="checkbox" value="Mengamati hal detail di sekitar"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Mengamati hal detail &amp; peka</span>
+<span class="font-body-sm text-body-sm text-muted">Cepat sadar perubahan perasaan orang atau kesalahan kecil.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kenali-potensi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kenali-potensi has-[:checked]:shadow-sm md:col-span-2 lg:col-span-3">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q2" type="checkbox" value="Lainnya"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Lainnya</span>
+<span class="font-body-sm text-body-sm text-muted">Ada bakat lain yang unik di luar daftar di atas.</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Question 3 -->
+<section class="p-space-xl bg-surface rounded-2xl shadow-sm transition-all hover:shadow-md">
+<div class="flex items-start gap-space-md mb-space-lg">
+<div class="w-10 h-10 rounded-full bg-activity-mengembangkan text-tertiary font-headline-md text-headline-md flex items-center justify-center shrink-0 font-bold">
+            3
+          </div>
+<div class="flex flex-col">
+<h2 class="font-title-md text-title-md text-on-surface font-bold">
+              Topik atau aktivitas apa yang paling bikin kamu penasaran?
+            </h2>
+<p class="font-body-sm text-body-sm text-muted">Hal yang membuatmu betah berlama-lama menyimaknya tanpa merasa bosan.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-mengembangkan/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-mengembangkan has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q3" type="checkbox" value="Teknologi, coding, &amp; sains"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Teknologi, coding, &amp; sains</span>
+<span class="font-body-sm text-body-sm text-muted">Gawai canggih, AI, robotik, fenomena alam antariksa.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-mengembangkan/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-mengembangkan has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q3" type="checkbox" value="Seni rupa, musik, &amp; sastra"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Seni rupa, musik, &amp; sastra</span>
+<span class="font-body-sm text-body-sm text-muted">Instrumen musik, melukis, lirik lagu, puisi &amp; teater.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-mengembangkan/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-mengembangkan has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q3" type="checkbox" value="Kepemimpinan OSIS &amp; kegiatan sosial"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Kepemimpinan OSIS &amp; sosial</span>
+<span class="font-body-sm text-body-sm text-muted">Mengorganisir aksi peduli, memimpin kawan, orasi.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-mengembangkan/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-mengembangkan has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q3" type="checkbox" value="Menulis jurnal / buku cerita"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Menulis jurnal / cerita fiksi</span>
+<span class="font-body-sm text-body-sm text-muted">Mencurahkan pemikiran dalam tulisan di buku/blog.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-mengembangkan/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-mengembangkan has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q3" type="checkbox" value="Olahraga &amp; strategi permainan"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Olahraga &amp; strategi bertanding</span>
+<span class="font-body-sm text-body-sm text-muted">Kebugaran, taktik regu, kompetisi yang sportif.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-mengembangkan/40 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-mengembangkan has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q3" type="checkbox" value="Bisnis kecil / wirausaha siswa"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Bisnis kecil &amp; wirausaha siswa</span>
+<span class="font-body-sm text-body-sm text-muted">Jualan stiker, kue bazar, mengelola tabungan cerdas.</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Question 4 -->
+<section class="p-space-xl bg-surface rounded-2xl shadow-sm transition-all hover:shadow-md">
+<div class="flex items-start gap-space-md mb-space-lg">
+<div class="w-10 h-10 rounded-full bg-activity-kuis text-secondary font-headline-md text-headline-md flex items-center justify-center shrink-0 font-bold">
+            4
+          </div>
+<div class="flex flex-col">
+<h2 class="font-title-md text-title-md text-on-surface font-bold">
+              Pengalaman belajar apa yang paling terasa menyenangkan bagimu?
+            </h2>
+<p class="font-body-sm text-body-sm text-muted">Suasana belajar mana yang membuat energimu terasa penuh dan semangat?</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kuis/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kuis has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q4" type="checkbox" value="Kerja kelompok yang kompak dan saling dukung"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Kerja kelompok yang kompak</span>
+<span class="font-body-sm text-body-sm text-muted">Saling melengkapi peran dengan kawan sekelas.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kuis/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kuis has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q4" type="checkbox" value="Mengerjakan proyek mandiri dengan tenang"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Mengerjakan proyek mandiri</span>
+<span class="font-body-sm text-body-sm text-muted">Fokus mendalam dalam suasana tenang tanpa interupsi.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kuis/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kuis has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q4" type="checkbox" value="Praktik lab / membuat prakarya langsung"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Praktik lab / prakarya tangan</span>
+<span class="font-body-sm text-body-sm text-muted">Belajar dengan menyentuh, merakit, dan eksperimen fisik.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kuis/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kuis has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q4" type="checkbox" value="Presentasi santai di depan kelas"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Presentasi santai di kelas</span>
+<span class="font-body-sm text-body-sm text-muted">Membagikan hasil karya ke teman dan guru secara lisan.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-kuis/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-kuis has-[:checked]:shadow-sm md:col-span-2">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q4" type="checkbox" value="Diskusi terbuka saat jam BK"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Diskusi terbuka saat bimbingan konseling</span>
+<span class="font-body-sm text-body-sm text-muted">Ruang ngobrol nyaman tentang perasaan, cita-cita, dan pertemanan.</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Question 5 -->
+<section class="p-space-xl bg-surface rounded-2xl shadow-sm transition-all hover:shadow-md">
+<div class="flex items-start gap-space-md mb-space-lg">
+<div class="w-10 h-10 rounded-full bg-activity-refleksi text-secondary font-headline-md text-headline-md flex items-center justify-center shrink-0 font-bold">
+            5
+          </div>
+<div class="flex flex-col">
+<h2 class="font-title-md text-title-md text-on-surface font-bold">
+              Bidang atau keterampilan baru apa yang ingin kamu coba dalam waktu dekat?
+            </h2>
+<p class="font-body-sm text-body-sm text-muted">Langkah kecil apa yang bikin kamu penasaran untuk dicoba minggu ini?</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-refleksi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-refleksi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q5" type="checkbox" value="Berani bicara santai di depan banyak orang"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Berani bicara santai di depan umum</span>
+<span class="font-body-sm text-body-sm text-muted">Melatih kepercayaan diri saat mengemukakan pendapat.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-refleksi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-refleksi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q5" type="checkbox" value="Belajar desain grafis / video sederhana"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Belajar desain grafis / video</span>
+<span class="font-body-sm text-body-sm text-muted">Mencoba software grafis ponsel/laptop untuk kreasi mini.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-refleksi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-refleksi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q5" type="checkbox" value="Mempelajari bahasa asing baru"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Mempelajari bahasa asing baru</span>
+<span class="font-body-sm text-body-sm text-muted">Bahasa Inggris, Jepang, Korea, atau bahasa daerah lain.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-refleksi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-refleksi has-[:checked]:shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q5" type="checkbox" value="Menulis catatan refleksi rutin"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Menulis catatan refleksi rutin</span>
+<span class="font-body-sm text-body-sm text-muted">Membiasakan journaling untuk mengenal suasana hati.</span>
+</div>
+</label>
+<label class="group relative flex items-start gap-3 p-space-md rounded-xl bg-canvas hover:bg-activity-refleksi/50 cursor-pointer transition-colors shadow-xs has-[:checked]:bg-activity-refleksi has-[:checked]:shadow-sm md:col-span-2">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer" name="q5" type="checkbox" value="Mengikuti ekstrakurikuler baru"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Mengikuti ekstrakurikuler baru</span>
+<span class="font-body-sm text-body-sm text-muted">Pramuka, PMR, KIR, Paduan Suara, Teater, atau Olahraga baru.</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Action Buttons Row -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-space-sm">
+<button class="px-6 py-3 rounded-full bg-surface text-muted hover:text-feedback-error hover:bg-feedback-error-surface font-label-md text-label-md transition-colors shadow-sm flex items-center gap-2" id="btn-reset" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+          Kosongkan Pilihan
+        </button>
+<button class="px-8 py-3 rounded-full bg-primary hover:bg-primary-hover text-on-primary font-label-md text-label-md transition-all shadow-md flex items-center gap-2 transform active:scale-95" id="btn-sync-notes" type="button">
+<span>Lihat Catatanku</span>
+<span>✨</span>
+</button>
+</div>
+</form>
+</main>
+<!-- Interactive Panel "Catatanku" (Summary Section) -->
+<section class="max-w-[1200px] mx-auto px-margin py-space-xl w-full" id="catatanku-panel">
+<div class="p-space-xl bg-surface rounded-2xl shadow-xl flex flex-col gap-space-lg relative overflow-hidden">
+<!-- Decorative Mint Accent Bar -->
+<div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary via-activity-action-plan to-tertiary"></div>
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pt-2">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-activity-action-plan text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">edit_note</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold flex items-center gap-2">
+              📋 Catatanku Sementara
+            </h3>
+<p class="font-body-sm text-body-sm text-muted">Rangkuman poin yang telah kamu tentukan pada Langkah 1 ini.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high/80 text-muted font-label-sm text-label-sm w-fit">
+<span class="material-symbols-outlined text-[16px] text-tertiary">cloud_done</span>
+<span>Tersimpan sementara di browser ini</span>
+</div>
+</div>
+<!-- Summary Dynamic Container -->
+<div class="p-space-lg rounded-xl bg-canvas text-center flex flex-col items-center justify-center py-10 gap-2" id="summary-empty-state">
+<span class="material-symbols-outlined text-[40px] text-muted">format_list_bulleted_add</span>
+<p class="font-title-md text-title-md text-on-surface font-bold">Belum ada pilihan yang ditandai</p>
+<p class="font-body-sm text-body-sm text-muted max-w-md">Silakan centang beberapa hal di formulir atas yang menggambarkan dirimu, lalu klik "Lihat Catatanku ✨".</p>
+</div>
+<div class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md" id="summary-content">
+<!-- Rendered via JS -->
+</div>
+<!-- Encouraging Reflective Prompt Callout -->
+<div class="p-space-md rounded-xl bg-activity-action-plan text-on-surface flex items-start gap-space-md shadow-xs">
+<div class="w-8 h-8 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-tertiary">Pertanyaan Refleksi Singkat:</span>
+<p class="font-body-md text-body-md text-on-surface font-medium">
+            "Pilih satu hal dari catatanmu di atas yang paling ingin kamu pelajari lebih dalam hari ini."
+          </p>
+<input class="mt-2.5 w-full bg-surface rounded-lg p-2.5 text-on-surface font-body-sm text-body-sm placeholder:text-muted/60 focus:outline-primary" id="one-thing-input" placeholder="Tuliskan 1 hal itu di sini (opsional)..." type="text"/>
+</div>
+</div>
+<!-- Panel Action Controls -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-2">
+<div class="flex items-center gap-space-sm">
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm font-bold transition-colors flex items-center gap-1.5" id="btn-edit-answers" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+            Ubah Jawaban
+          </button>
+<button class="px-5 py-2.5 rounded-full bg-feedback-error-surface text-feedback-error hover:bg-error-container/40 font-label-sm text-label-sm font-bold transition-colors flex items-center gap-1.5" id="btn-clear-answers" type="button">
+<span class="material-symbols-outlined text-[16px]">delete_sweep</span>
+            Hapus Jawaban
+          </button>
+</div>
+<span class="font-body-sm text-body-sm text-muted">Data ini akan otomatis terbawa saat kamu berlanjut ke Langkah 2.</span>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation & Offline Fallback Strip -->
+<section class="max-w-[1200px] mx-auto px-margin pt-space-lg pb-space-3xl w-full flex flex-col gap-space-lg">
+<div class="p-space-lg bg-surface-container-low/50 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-space-md shadow-xs">
+<!-- Back Navigation -->
+<a class="px-6 py-3 rounded-full bg-surface text-primary hover:bg-surface-container font-label-md text-label-md font-bold transition-colors shadow-sm flex items-center gap-2" data-path="beranda" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        Kembali ke Beranda
+      </a>
+<!-- Forward Step Navigation -->
+<a class="px-8 py-3.5 rounded-full bg-primary hover:bg-primary-hover text-on-primary font-label-md text-label-md font-bold transition-all shadow-md flex items-center gap-2 group" data-path="langkah-2-kenali-potensi" href="#">
+<span>Lanjut ke Kenali Potensi (Langkah 2)</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Quick Fallback Text for Offline Students -->
+<div class="text-center py-2">
+<p class="font-body-sm text-body-sm text-muted flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+        Mengalami kendala koneksi internet? Siswa dapat mencatat rangkuman pilihan ini langsung di Buku Tulis BK masing-masing.
+      </p>
+</div>
+</section>
+<!-- Interactive Client-side Logic -->
+<script>
+    (function initSelfCheck() {
+      const form = document.getElementById('self-check-form');
+      const counterBadge = document.getElementById('selected-badge-count');
+      const summaryEmptyState = document.getElementById('summary-empty-state');
+      const summaryContent = document.getElementById('summary-content');
+      const btnSyncNotes = document.getElementById('btn-sync-notes');
+      const btnReset = document.getElementById('btn-reset');
+      const btnEditAnswers = document.getElementById('btn-edit-answers');
+      const btnClearAnswers = document.getElementById('btn-clear-answers');
+      const catatankuPanel = document.getElementById('catatanku-panel');
+      const oneThingInput = document.getElementById('one-thing-input');
+
+      const STORAGE_KEY = 'kreasi_self_check_data';
+      const STORAGE_NOTE_KEY = 'kreasi_self_check_focus_note';
+
+      const questionTitles = {
+        q1: '1. Kegiatan Favorit',
+        q2: '2. Kemampuan Berkembang',
+        q3: '3. Topik Penasaran',
+        q4: '4. Pengalaman Belajar',
+        q5: '5. Hal Ingin Dicoba'
+      };
+
+      // Load from LocalStorage if exists
+      function loadSavedData() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const data = JSON.parse(raw);
+            const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+              if (data[cb.name] && data[cb.name].includes(cb.value)) {
+                cb.checked = true;
+              }
+            });
+          }
+          const savedNote = localStorage.getItem(STORAGE_NOTE_KEY);
+          if (savedNote && oneThingInput) {
+            oneThingInput.value = savedNote;
+          }
+        } catch (e) {
+          console.warn('LocalStorage not accessible', e);
+        }
+        updateCounter();
+        renderSummary();
+      }
+
+      function updateCounter() {
+        const checked = form.querySelectorAll('input[type="checkbox"]:checked');
+        const count = checked.length;
+        if (counterBadge) {
+          counterBadge.textContent = `${count} Terpilih`;
+        }
+      }
+
+      function getSelectedData() {
+        const formData = new FormData(form);
+        const grouped = { q1: [], q2: [], q3: [], q4: [], q5: [] };
+        for (const [key, value] of formData.entries()) {
+          if (grouped[key]) {
+            grouped[key].push(value);
+          }
+        }
+        return grouped;
+      }
+
+      function saveToLocalStorage(data) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          if (oneThingInput) {
+            localStorage.setItem(STORAGE_NOTE_KEY, oneThingInput.value);
+          }
+        } catch (e) {
+          console.warn('LocalStorage save failed', e);
+        }
+      }
+
+      function renderSummary() {
+        const data = getSelectedData();
+        const totalSelected = Object.values(data).reduce((acc, curr) => acc + curr.length, 0);
+
+        if (totalSelected === 0) {
+          summaryEmptyState.classList.remove('hidden');
+          summaryContent.classList.add('hidden');
+          summaryContent.innerHTML = '';
+          return;
+        }
+
+        summaryEmptyState.classList.add('hidden');
+        summaryContent.classList.remove('hidden');
+        summaryContent.innerHTML = '';
+
+        for (const [qKey, items] of Object.entries(data)) {
+          if (items.length > 0) {
+            const groupCard = document.createElement('div');
+            groupCard.className = 'p-4 rounded-xl bg-canvas flex flex-col gap-2 shadow-xs';
+
+            const groupTitle = document.createElement('h4');
+            groupTitle.className = 'font-label-md text-label-md font-bold text-primary flex items-center gap-1.5';
+            groupTitle.innerHTML = `<span class="material-symbols-outlined text-[16px]">check_circle</span> ${questionTitles[qKey] || qKey}`;
+            groupCard.appendChild(groupTitle);
+
+            const ul = document.createElement('ul');
+            ul.className = 'flex flex-col gap-1.5 pl-1';
+            items.forEach(item => {
+              const li = document.createElement('li');
+              li.className = 'font-body-sm text-body-sm text-on-surface flex items-start gap-2';
+              li.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0 mt-2"></span><span>${item}</span>`;
+              ul.appendChild(li);
+            });
+            groupCard.appendChild(ul);
+            summaryContent.appendChild(groupCard);
+          }
+        }
+      }
+
+      // Event listeners
+      form.addEventListener('change', () => {
+        updateCounter();
+        const data = getSelectedData();
+        saveToLocalStorage(data);
+      });
+
+      if (oneThingInput) {
+        oneThingInput.addEventListener('input', () => {
+          try {
+            localStorage.setItem(STORAGE_NOTE_KEY, oneThingInput.value);
+          } catch(e) {}
+        });
+      }
+
+      btnSyncNotes.addEventListener('click', () => {
+        const data = getSelectedData();
+        saveToLocalStorage(data);
+        renderSummary();
+        catatankuPanel.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      function clearAll() {
+        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(cb => cb.checked = false);
+        if (oneThingInput) oneThingInput.value = '';
+        updateCounter();
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+          localStorage.removeItem(STORAGE_NOTE_KEY);
+        } catch(e) {}
+        renderSummary();
+      }
+
+      btnReset.addEventListener('click', () => {
+        if (confirm('Kosongkan semua tanda pilihan di halaman ini?')) {
+          clearAll();
+        }
+      });
+
+      btnClearAnswers.addEventListener('click', () => {
+        if (confirm('Hapus seluruh ringkasan Catatanku?')) {
+          clearAll();
+        }
+      });
+
+      btnEditAnswers.addEventListener('click', () => {
+        form.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Initial execute
+      loadSavedData();
+    })();
+  </script>
+</div></main><footer class="w-full bg-canvas shadow-[0_-1px_8px_rgba(34,22,47,0.03)] py-space-3xl mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl pb-space-2xl"><div class="md:col-span-6 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md text-primary">KREASI.ID</span><span class="px-3 py-1 rounded-full bg-activity-kenali-potensi font-label-sm text-label-sm text-on-surface">Sahabat BK Siswa SMP</span></div><p class="font-title-md text-title-md text-on-surface mt-space-xs font-bold leading-snug">Kenali, Refleksikan, Eksplorasi, dan Aktualisasikan Potensi Diri</p><p class="font-body-md text-body-md text-muted max-w-md">Ruang bimbingan dan konseling interaktif yang ramah, hangat, dan aman untuk mendampingi masa remaja dan langkah eksplorasi masa depanmu.</p></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Tautan Utama</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tips" href="#">Tips &amp; Catatanku</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></div></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Pusat Dukungan</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="panduan-privasi" href="#">Panduan Privasi</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Layanan Konseling Guru BK</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="mulai-self-check" href="#">Asesmen Mandiri Siswa</a></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left"><p class="font-body-sm text-body-sm text-muted">© 2024 KREASI.ID • Bimbingan dan Konseling Remaja Hebat. Semua hak dilindungi.</p><div class="flex items-center gap-space-lg"><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="panduan-privasi" href="#">Privasi Siswa</a><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="kontak-dan-bantuan" href="#">Bantuan BK</a></div></div></div></footer></body></html>

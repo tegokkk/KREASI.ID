@@ -1,0 +1,406 @@
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 76px;
+  padding: 14px;
+  border-radius: var(--radius-card);
+  border: 1.5px solid rgba(36, 24, 49, 0.08);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover:not([aria-disabled='true']) {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    color: var(--color-ink);
+  }
+}
+
+.cardActive {
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(48, 75, 228, 0.14);
+  animation: unlock-pop 280ms var(--ease-out) both;
+}
+
+.cardCompleted {
+  border-color: var(--color-success-border);
+}
+
+.cardSkipped {
+  border-color: #d6b656;
+}
+
+.cardLocked {
+  background-color: var(--color-surface);
+  border: 1.5px dashed var(--color-divider);
+  color: var(--color-muted);
+  cursor: not-allowed;
+}
+
+.blue {
+  background-color: var(--color-activity-blue);
+}
+
+.yellow {
+  background-color: var(--color-activity-yellow);
+}
+
+.green {
+  background-color: var(--color-activity-green);
+}
+
+.lilac {
+  background-color: var(--color-activity-lilac);
+}
+
+.pink {
+  background-color: var(--color-activity-pink);
+}
+
+.mint {
+  background-color: var(--color-activity-mint);
+}
+
+.topRow {
+  display: contents;
+}
+
+.chipsRow {
+  display: none;
+}
+
+.stepChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.iconCircle {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardActive .iconCircle {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.cardLocked .iconCircle {
+  background-color: var(--color-canvas);
+  color: var(--color-muted);
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mobileHeaderRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.mobileStepLabel {
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.cardLocked .mobileStepLabel {
+  color: var(--color-muted);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 4.2vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: normal;
+  word-break: normal;
+  color: var(--color-ink);
+}
+
+.cardLocked .title {
+  color: var(--color-muted);
+}
+
+.description {
+  font-size: var(--text-body);
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+
+.cardLocked .description {
+  color: var(--color-muted);
+  font-size: var(--text-small);
+}
+
+.footerRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lockedFooter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.ctaText {
+  display: none;
+}
+
+.arrowCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .arrowCircle {
+    transform: translateX(2px);
+  }
+}
+
+/* Status badges shared across cards, NotchNav dropdown, and StepIndicator */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-small);
+  font-weight: 700;
+  line-height: 1.25;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.statusBadgeCompact {
+  padding: 2px 7px;
+  font-size: 0.72rem;
+}
+
+.badge_active {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.badge_completed {
+  background-color: var(--color-success-surface);
+  border-color: var(--color-success-border);
+  color: var(--color-success);
+}
+
+.badge_skipped {
+  background-color: var(--color-surface);
+  border-color: #c59b27;
+  color: var(--color-ink);
+}
+
+.badge_locked {
+  background-color: var(--color-canvas);
+  border-color: var(--color-divider);
+  color: var(--color-muted);
+}
+
+/* Compact card variant (for NotchNav dropdown and mobile drawer) */
+.compact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 10px 12px;
+  border-radius: var(--radius-input);
+}
+
+.compact.cardLocked {
+  background-color: var(--color-canvas);
+}
+
+.compactIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  flex-shrink: 0;
+}
+
+.compact.cardActive .compactIcon {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.compact.cardLocked .compactIcon {
+  color: var(--color-muted);
+}
+
+.compactText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.compactTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.compactTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.compact.cardLocked .compactTitle {
+  color: var(--color-muted);
+}
+
+.compactSub {
+  font-size: var(--text-small);
+  line-height: 1.35;
+  color: var(--color-muted);
+}
+
+.compactArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+@keyframes unlock-pop {
+  from {
+    opacity: 0.7;
+    transform: scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardActive {
+    animation: none;
+  }
+
+  .card:hover,
+  .card:hover .arrowCircle {
+    transform: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .card:not(.compact) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 16px;
+    padding: var(--space-lg);
+    min-height: 236px;
+  }
+
+  .card:not(.compact) .topRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .card:not(.compact) .chipsRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .card:not(.compact) .mobileHeaderRow {
+    display: none;
+  }
+
+  .card:not(.compact) .title {
+    font-size: var(--text-card);
+  }
+
+  .card:not(.compact) .iconCircle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .card:not(.compact) .arrowCircle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .card:not(.compact) .description {
+    font-size: var(--text-body);
+    line-height: 1.5;
+  }
+
+  .card:not(.compact) .footerRow {
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+
+  .card:not(.compact) .lockedFooter {
+    margin-top: auto;
+    padding-top: 8px;
+  }
+
+  .card:not(.compact) .ctaText {
+    display: inline;
+    font-size: var(--text-body);
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+}

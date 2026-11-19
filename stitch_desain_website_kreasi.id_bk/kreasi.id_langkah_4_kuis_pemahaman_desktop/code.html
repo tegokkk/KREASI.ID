@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&amp;family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"feedback-success":"#176050","on-secondary-container":"#751037","outline-variant":"#c5c5d8","on-surface-variant":"#444655","on-surface":"#22162f","primary-hover":"#2337B7","muted":"#594D63","divider":"#E4DAE1","inverse-on-surface":"#f9ecff","tertiary-fixed":"#a4f1e5","primary":"#032ccd","on-secondary":"#ffffff","surface-dim":"#e6d3f5","activity-kenali-potensi":"#FFF1C5","border-field":"#81778E","surface-container":"#f7e9ff","surface":"#FFFFFF","surface-container-lowest":"#ffffff","surface-variant":"#efdbfe","outline":"#757687","secondary":"#a43759","surface-tint":"#304be4","on-tertiary-fixed":"#00201c","on-primary-container":"#d2d6ff","on-background":"#22162f","inverse-surface":"#382b45","activity-mengembangkan":"#E5F4D8","error-container":"#ffdad6","on-primary-fixed":"#000e5e","secondary-container":"#fd7d9f","secondary-fixed":"#ffd9e0","activity-action-plan":"#A2EFE3","canvas":"#FFFAEE","on-primary":"#ffffff","on-error-container":"#93000a","activity-self-check":"#E8EDFF","surface-container-highest":"#efdbfe","primary-fixed":"#dee0ff","tertiary":"#005049","activity-kuis":"#F0E8FF","primary-fixed-dim":"#bbc3ff","error":"#ba1a1a","surface-container-low":"#fbf0ff","background":"#fff7ff","on-secondary-fixed":"#3f0018","secondary-fixed-dim":"#ffb1c2","surface-bright":"#fff7ff","tertiary-fixed-dim":"#88d4c9","feedback-error-surface":"#FFF0F4","on-error":"#ffffff","tertiary-container":"#126a61","feedback-error":"#A22A46","on-primary-fixed-variant":"#032ccd","on-tertiary-fixed-variant":"#005049","activity-refleksi":"#FFE6EE","on-secondary-fixed-variant":"#841e42","on-tertiary":"#ffffff","inverse-primary":"#bbc3ff","on-tertiary-container":"#9ae7db","primary-container":"#304be4","surface-container-high":"#f3e2ff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-3xl":"4rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-md":"1rem","space-sm":"0.5rem","margin":"2rem","space-xl":"2rem","space-lg":"1.5rem","space-2xl":"2.5rem","space-xs":"0.25rem","gutter":"1.25rem"},fontFamily:{"headline-lg-mobile":["Bricolage Grotesque"],"body-lg":["DM Sans"],"label-sm":["DM Sans"],"headline-md-mobile":["Bricolage Grotesque"],"body-md":["DM Sans"],"headline-display-mobile":["Bricolage Grotesque"],"label-md":["DM Sans"],"headline-lg":["Bricolage Grotesque"],"title-md":["Bricolage Grotesque"],"body-sm":["DM Sans"],"headline-display":["Bricolage Grotesque"],"headline-md":["Bricolage Grotesque"]},fontSize:{"headline-lg-mobile":["2rem",{"lineHeight":"1.15","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["1.125rem",{"lineHeight":"1.6","fontWeight":"400"}],"label-sm":["0.875rem",{"lineHeight":"1.3","fontWeight":"700"}],"headline-md-mobile":["1.5rem",{"lineHeight":"1.25","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.55","fontWeight":"400"}],"headline-display-mobile":["2.5rem",{"lineHeight":"1.1","letterSpacing":"-0.03em","fontWeight":"800"}],"label-md":["1rem",{"lineHeight":"1.25","fontWeight":"700"}],"headline-lg":["2.75rem",{"lineHeight":"1.12","letterSpacing":"-0.025em","fontWeight":"700"}],"title-md":["1.375rem",{"lineHeight":"1.3","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.45","fontWeight":"400"}],"headline-display":["4rem",{"lineHeight":"1.05","letterSpacing":"-0.035em","fontWeight":"800"}],"headline-md":["1.75rem",{"lineHeight":"1.2","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas font-body-md text-body-md text-on-surface min-h-screen"><header class="fixed top-0 left-0 right-0 z-50 bg-canvas/95 backdrop-blur-md shadow-[0_1px_8px_rgba(34,22,47,0.04)]"><div class="h-20 max-w-[1200px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><img alt="Logo KREASI.ID" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCrNoN8Z6tIQ2oXkXpANGjjsK0ZPKC7Oyo_TvbGLi38XcqjeFdA8_zGD2F-doUQev8a-ttEyYFtnFNU4ZD2q9e0VesBtf5qTOHRvF34YVTtcxfqjeiMqQGCv6Ftjesgp_7QjDoAshMnakhJVVqO90VNBOJoOo21LXKDMunraq7c7D8tjCQrjLdFavikdadSw6abIlq8MjHqR6Jo2ATGqyMyP8RIB0oYWocHbxu1HYE"/><a class="font-title-md text-title-md text-primary tracking-tight" data-path="beranda" href="#">KREASI.ID</a></div><nav class="hidden lg:flex items-center gap-space-xs xl:gap-space-sm" data-active-classes="bg-primary text-on-primary font-bold rounded-full px-4 py-2"><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="beranda" href="#">Beranda</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tips" href="#">Tips</a><a class="px-3 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover transition-colors shadow-sm" data-path="mulai-self-check" href="#">Mulai Self-check</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-canvas"><div class="flex flex-col w-full">
+<div class="w-full max-w-[1200px] mx-auto px-margin py-space-xl">
+<!-- Step Breadcrumb Header & Progress Tracker -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-xl">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-activity-kuis text-primary font-label-sm text-label-sm tracking-wide">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          LANGKAH 4 DARI 6
+        </span>
+<span class="text-muted font-body-sm text-body-sm hidden sm:inline">• Modul Bimbingan Interaktif</span>
+</div>
+<!-- Stepper Indicator Pills -->
+<div aria-label="Progress langkah kuis" class="flex items-center gap-2">
+<div class="flex items-center gap-1.5">
+<div class="h-2 w-7 rounded-full bg-feedback-success" title="Langkah 1: Selesai"></div>
+<div class="h-2 w-7 rounded-full bg-feedback-success" title="Langkah 2: Selesai"></div>
+<div class="h-2 w-7 rounded-full bg-feedback-success" title="Langkah 3: Selesai"></div>
+<div class="h-2.5 w-10 rounded-full bg-primary" title="Langkah 4: Kuis (Sedang Aktif)"></div>
+<div class="h-2 w-7 rounded-full bg-surface-dim" title="Langkah 5: Belum dimulai"></div>
+<div class="h-2 w-7 rounded-full bg-surface-dim" title="Langkah 6: Belum dimulai"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-2">67% Selesai</span>
+</div>
+</div>
+<!-- Editorial Header Title Section -->
+<div class="relative bg-surface rounded-[24px] p-space-xl sm:p-space-2xl mb-space-2xl shadow-sm overflow-hidden">
+<div class="relative z-10 max-w-3xl">
+<div class="inline-flex items-center gap-2 text-primary font-label-md text-label-md mb-space-xs uppercase tracking-wider">
+<span class="material-symbols-outlined text-[20px]">quiz</span>
+          Check-in Pengetahuan Santai
+        </div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-space-sm">
+          Kuis Pemahaman Materi
+        </h1>
+<p class="font-body-lg text-body-lg text-muted max-w-2xl">
+          Uji pemahamanmu tentang materi yang sudah kamu baca lewat 6 soal reflektif santai. Kuis ini bukan ujian rapor dan hanya untuk melihat sejauh mana pemahamanmu.
+        </p>
+</div>
+<!-- Accent Halftone/Geometric Pattern Accent -->
+<div class="absolute right-0 top-0 bottom-0 w-80 pointer-events-none hidden lg:flex items-center justify-end pr-8 opacity-90">
+<svg fill="none" height="180" viewbox="0 0 220 180" width="220" xmlns="http://www.w3.org/2000/svg">
+<circle cx="170" cy="50" fill="#F0E8FF" r="45"></circle>
+<circle cx="90" cy="110" fill="#E8EDFF" r="60"></circle>
+<circle cx="160" cy="130" fill="#FFF1C5" r="28"></circle>
+<path d="M40 30 Q 70 80 120 40 T 190 70" fill="none" opacity="0.4" stroke="#304BE4" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="65" cy="45" fill="#304BE4" r="4"></circle>
+<circle cx="130" cy="115" fill="#a43759" r="5"></circle>
+<circle cx="175" cy="85" fill="#176050" r="3.5"></circle>
+</svg>
+</div>
+</div>
+<!-- SECTION 1: Integrasi Utama Google Forms (Hero Card) -->
+<section aria-labelledby="google-forms-heading" class="mb-space-3xl">
+<div class="rounded-[24px] bg-activity-kuis p-space-xl sm:p-space-2xl shadow-sm relative overflow-hidden">
+<!-- Floating decorative tag -->
+<div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm mb-space-md shadow-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+          JALUR RESMI UTAMA
+        </div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface" id="google-forms-heading">
+              Kuis Online KREASI.ID (Google Forms)
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">
+              Pilihan utama: Kerjakan 6 soal pilihan ganda di Google Forms resmi BK SMP. Jawabanmu otomatis terhitung dan pembahasan langsung muncul setelah submit.
+            </p>
+<div class="flex flex-wrap items-center gap-space-md mt-space-sm">
+<a class="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-full bg-primary-container text-canvas font-label-md text-label-md hover:bg-primary-hover transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="https://forms.google.com" rel="noopener noreferrer" target="_blank">
+<span>Buka Kuis di Google Forms</span>
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+<span class="font-label-sm text-label-sm text-muted flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-feedback-success">timer</span>
+                Estimasi pengerjaan: 5 - 8 Menit
+              </span>
+</div>
+<!-- Privacy Guarantee Micro-Card -->
+<div class="mt-space-md pt-space-md bg-canvas/70 rounded-xl p-space-md flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">lock</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<strong class="font-bold text-on-surface">Data privasi:</strong> Hasil kuis hanya digunakan untuk bahan evaluasi bimbingan, tidak dikaitkan dengan ranking nilai akademik sekolah. Guru BK-mu siap mengobrol kapan pun kamu butuh pendalaman.
+              </p>
+</div>
+</div>
+<!-- Supporting Graphic / Thumbnail -->
+<div class="lg:col-span-4 flex justify-center">
+<div class="relative w-full max-w-[280px] bg-surface rounded-[20px] p-space-lg shadow-sm flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-primary mb-space-sm">
+<span class="material-symbols-outlined text-[32px]">assignment_turned_in</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface mb-1">Skor Otomatis</span>
+<p class="font-body-sm text-body-sm text-muted mb-space-md">Nilai keluar seketika lengkap dengan kunci dan tips dari Guru BK</p>
+<div class="w-full py-2 px-3 rounded-full bg-activity-action-plan text-tertiary font-label-sm text-label-sm flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">task_alt</span>
+                Tersinkronisasi Cloud BK
+              </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Jalur Cadangan / Interaktif Mandiri di Tempat -->
+<section aria-labelledby="interactive-quiz-heading" class="mb-space-3xl">
+<div class="bg-surface rounded-[24px] p-space-xl sm:p-space-2xl shadow-sm">
+<!-- Section Header with Divider styling -->
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-space-lg mb-space-xl gap-space-sm bg-surface-container-low p-space-md rounded-2xl">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-activity-kenali-potensi flex items-center justify-center text-on-surface shrink-0 mt-1">
+<span class="material-symbols-outlined text-[22px]">offline_pin</span>
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-on-surface" id="interactive-quiz-heading">
+                Latihan Mandiri Langsung di Sini (Jalur Cadangan)
+              </h2>
+<p class="font-body-sm text-body-sm text-muted">
+                Gunakan jika Google Forms sedang bermasalah atau kamu ingin berlatih langsung di halaman ini tanpa membuka tab baru.
+              </p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 self-start md:self-center px-3 py-1 rounded-full bg-activity-mengembangkan text-feedback-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+            Mode Interaktif Offline
+          </span>
+</div>
+<!-- 6 Multiple Choice Questions Form -->
+<form class="flex flex-col gap-space-2xl" id="practice-quiz-form">
+<!-- SOAL 1 -->
+<div class="p-space-lg rounded-[20px] bg-canvas transition-colors">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-block px-3 py-1 rounded-full bg-surface font-label-sm text-label-sm text-primary shadow-xs">
+                Soal 1 dari 6
+              </span>
+<span class="font-label-sm text-label-sm text-muted">Pemahaman Konsep</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-md">
+              Apa yang membedakan "minat" dan "kemampuan"?
+            </h3>
+<div aria-label="Pilihan Soal 1" class="flex flex-col gap-space-sm" role="radiogroup">
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q1" type="radio" value="A"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>A.</strong> Minat adalah hal yang kita senangi, sedangkan kemampuan adalah hal yang sudah bisa kita lakukan dengan terampil
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q1" type="radio" value="B"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>B.</strong> Minat pasti menjadi pekerjaan masa depan, kemampuan hanyalah hobi
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q1" type="radio" value="C"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>C.</strong> Tidak ada bedanya sama sekali
+                </span>
+</label>
+</div>
+</div>
+<!-- SOAL 2 -->
+<div class="p-space-lg rounded-[20px] bg-canvas transition-colors">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-block px-3 py-1 rounded-full bg-surface font-label-sm text-label-sm text-primary shadow-xs">
+                Soal 2 dari 6
+              </span>
+<span class="font-label-sm text-label-sm text-muted">Langkah Nyata</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-md">
+              Manakah contoh langkah awal mengembangkan potensi public speaking yang paling realistis untuk siswa SMP?
+            </h3>
+<div aria-label="Pilihan Soal 2" class="flex flex-col gap-space-sm" role="radiogroup">
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q2" type="radio" value="A"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>A.</strong> Langsung berpidato 2 jam di depan seluruh siswa sekolah
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q2" type="radio" value="B"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>B.</strong> Bercerita santai 2 menit kepada teman sebangku atau kelompok kecil
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q2" type="radio" value="C"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>C.</strong> Menghafal seluruh kamus bahasa Indonesia
+                </span>
+</label>
+</div>
+</div>
+<!-- SOAL 3 -->
+<div class="p-space-lg rounded-[20px] bg-canvas transition-colors">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-block px-3 py-1 rounded-full bg-surface font-label-sm text-label-sm text-primary shadow-xs">
+                Soal 3 dari 6
+              </span>
+<span class="font-label-sm text-label-sm text-muted">Eksplorasi Diri</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-md">
+              Mengapa penting mengenali potensi sejak bangku SMP?
+            </h3>
+<div aria-label="Pilihan Soal 3" class="flex flex-col gap-space-sm" role="radiogroup">
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q3" type="radio" value="A"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>A.</strong> Supaya bisa bersaing dan mengalahkan peringkat teman sekelas
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q3" type="radio" value="B"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>B.</strong> Memberi ruang eksplorasi tanpa tekanan nilai dan mempermudah memilih kegiatan/ekskul yang cocok
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q3" type="radio" value="C"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>C.</strong> Menentukan karier pensiun sejak dini
+                </span>
+</label>
+</div>
+</div>
+<!-- SOAL 4 -->
+<div class="p-space-lg rounded-[20px] bg-canvas transition-colors">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-block px-3 py-1 rounded-full bg-surface font-label-sm text-label-sm text-primary shadow-xs">
+                Soal 4 dari 6
+              </span>
+<span class="font-label-sm text-label-sm text-muted">Mindset &amp; Emosi</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-md">
+              Ketika kamu mengalami rasa malu atau takut salah saat mencoba hal baru, sikap apa yang paling sehat?
+            </h3>
+<div aria-label="Pilihan Soal 4" class="flex flex-col gap-space-sm" role="radiogroup">
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q4" type="radio" value="A"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>A.</strong> Berhenti mencoba sama sekali dan mengurung diri
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q4" type="radio" value="B"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>B.</strong> Memahami bahwa rasa gugup itu wajar dan menjadikan kesalahan sebagai bahan latihan
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q4" type="radio" value="C"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>C.</strong> Memarahi teman yang melihat latihanmu
+                </span>
+</label>
+</div>
+</div>
+<!-- SOAL 5 -->
+<div class="p-space-lg rounded-[20px] bg-canvas transition-colors">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-block px-3 py-1 rounded-full bg-surface font-label-sm text-label-sm text-primary shadow-xs">
+                Soal 5 dari 6
+              </span>
+<span class="font-label-sm text-label-sm text-muted">Dukungan Konseling</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-md">
+              Apa peran guru BK dalam pengembangan potensimu di sekolah?
+            </h3>
+<div aria-label="Pilihan Soal 5" class="flex flex-col gap-space-sm" role="radiogroup">
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q5" type="radio" value="A"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>A.</strong> Memberi hukuman bagi siswa yang bingung minatnya
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q5" type="radio" value="B"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>B.</strong> Menjadi teman diskusi yang aman, netral, dan mendampingi rencana belajarmu
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q5" type="radio" value="C"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>C.</strong> Menentukan secara paksa kamu harus jadi dokter atau insinyur
+                </span>
+</label>
+</div>
+</div>
+<!-- SOAL 6 -->
+<div class="p-space-lg rounded-[20px] bg-canvas transition-colors">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-block px-3 py-1 rounded-full bg-surface font-label-sm text-label-sm text-primary shadow-xs">
+                Soal 6 dari 6
+              </span>
+<span class="font-label-sm text-label-sm text-muted">Konsistensi &amp; Kebiasaan</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-space-md">
+              Bagaimana cara menjaga latihan potensi tetap konsisten di tengah kesibukan sekolah?
+            </h3>
+<div aria-label="Pilihan Soal 6" class="flex flex-col gap-space-sm" role="radiogroup">
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q6" type="radio" value="A"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>A.</strong> Menunggu waktu luang seharian di akhir tahun
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q6" type="radio" value="B"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>B.</strong> Membagi target menjadi kebiasaan kecil (10-15 menit) yang rutin dilakukan
+                </span>
+</label>
+<label class="quiz-option flex items-center gap-space-md p-space-md rounded-xl bg-surface hover:bg-activity-self-check/50 cursor-pointer transition-all">
+<input class="w-5 h-5 accent-primary" name="q6" type="radio" value="C"/>
+<span class="font-body-md text-body-md text-on-surface">
+<strong>C.</strong> Tidak perlu latihan jika sudah merasa berbakat
+                </span>
+</label>
+</div>
+</div>
+<!-- Submit Button Action -->
+<div class="flex items-center justify-end pt-space-sm">
+<button class="h-12 px-8 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-hover transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center gap-2" id="submit-quiz-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">grading</span>
+              Periksa Jawaban Sekarang
+            </button>
+</div>
+</form>
+<!-- STATE PREVIEW: Result Card (Simulated Score) -->
+<div class="mt-space-2xl pt-space-xl" id="result-container">
+<div class="rounded-[24px] bg-activity-mengembangkan p-space-xl sm:p-space-2xl shadow-sm relative overflow-hidden">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-xl">
+<div class="flex items-start sm:items-center gap-space-lg">
+<!-- Circular Graphic Indicator (Inline SVG Chart) -->
+<div class="relative w-24 h-24 shrink-0 flex items-center justify-center">
+<svg class="w-24 h-24 transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-feedback-success" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="67, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-headline-md text-headline-md text-feedback-success leading-none">67%</span>
+<span class="font-label-sm text-[10px] text-muted uppercase">Skor</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-feedback-success uppercase tracking-wider font-bold">Hasil Evaluasi Diri</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">
+                    Skor Latihan: 4 dari 6 Benar (67%)
+                  </h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-1">
+                    Bagus sekali! Kamu sudah memahami konsep dasar dengan baik. Yuk tinjau 2 pembahasan soal yang masih keliru di bawah agar pemahamanmu semakin mantap!
+                  </p>
+</div>
+</div>
+<!-- Retake Button -->
+<div class="flex items-center gap-space-sm shrink-0 self-end lg:self-center">
+<button class="h-11 px-6 rounded-full bg-surface text-primary font-label-md text-label-md hover:bg-canvas transition-colors shadow-xs flex items-center gap-2" id="reset-quiz-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+                  Ulangi Latihan
+                </button>
+</div>
+</div>
+<!-- Expandable Accordion: Pembahasan Soal 1-6 -->
+<div class="mt-space-xl pt-space-lg">
+<details class="group bg-surface rounded-2xl p-space-md sm:p-space-lg transition-all" open="">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none font-title-md text-title-md text-on-surface">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">menu_book</span>
+                    Lihat Pembahasan Lengkap (Soal 1 - 6)
+                  </span>
+<span class="material-symbols-outlined transition-transform duration-200 group-open:rotate-180 text-muted">
+                    expand_more
+                  </span>
+</summary>
+<div class="mt-space-lg flex flex-col gap-space-md pt-space-sm">
+<!-- Review Item 1 -->
+<div class="p-space-md rounded-xl bg-canvas flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-feedback-success flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Soal 1: Jawaban Benar (Opsi A)
+                      </span>
+<span class="text-[12px] font-bold text-feedback-success uppercase">Benar</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+<strong>Pembahasan:</strong> Minat bersumber dari kesenangan hati/antusiasme, sedangkan kemampuan membutuhkan latihan teratur hingga terampil. Keduanya saling melengkapi!
+                    </p>
+</div>
+<!-- Review Item 2 -->
+<div class="p-space-md rounded-xl bg-canvas flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-feedback-success flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Soal 2: Jawaban Benar (Opsi B)
+                      </span>
+<span class="text-[12px] font-bold text-feedback-success uppercase">Benar</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+<strong>Pembahasan:</strong> Memulai dari audiens kecil (1-2 teman) adalah teknik bertahap terbaik untuk mengatasi grogi bicara di depan umum.
+                    </p>
+</div>
+<!-- Review Item 3 (Salah) -->
+<div class="p-space-md rounded-xl bg-feedback-error-surface flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-feedback-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+                        Soal 3: Perlu Ditinjau (Kunci: Opsi B)
+                      </span>
+<span class="text-[12px] font-bold text-feedback-error uppercase">Keliru</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+<strong>Pembahasan:</strong> Masa SMP adalah panggung mencoba beragam hobi baru tanpa rasa takut akan tuntutan karier kaku atau persaingan skor dengan rekan kelas.
+                    </p>
+</div>
+<!-- Review Item 4 -->
+<div class="p-space-md rounded-xl bg-canvas flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-feedback-success flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Soal 4: Jawaban Benar (Opsi B)
+                      </span>
+<span class="text-[12px] font-bold text-feedback-success uppercase">Benar</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+<strong>Pembahasan:</strong> Sikap growth mindset menganggap rasa gugup dan salah langkah sebagai sinyal otak sedang belajar dan berkembang.
+                    </p>
+</div>
+<!-- Review Item 5 (Salah) -->
+<div class="p-space-md rounded-xl bg-feedback-error-surface flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-feedback-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+                        Soal 5: Perlu Ditinjau (Kunci: Opsi B)
+                      </span>
+<span class="text-[12px] font-bold text-feedback-error uppercase">Keliru</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+<strong>Pembahasan:</strong> Guru BK adalah mitra dan kawan curhat edukatif, bukan polisi sekolah yang mendikte atau menghukum pilihan cita-citamu.
+                    </p>
+</div>
+<!-- Review Item 6 -->
+<div class="p-space-md rounded-xl bg-canvas flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-feedback-success flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Soal 6: Jawaban Benar (Opsi B)
+                      </span>
+<span class="text-[12px] font-bold text-feedback-success uppercase">Benar</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+<strong>Pembahasan:</strong> Metode micro-habit 10-15 menit per hari jauh lebih tahan lama dan tidak memicu kelelahan belajar di tengah PR sekolah.
+                    </p>
+</div>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Note Card "Catatanku" -->
+<div class="mb-space-3xl p-space-lg rounded-[20px] bg-activity-kenali-potensi flex items-start gap-space-md shadow-xs">
+<div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-primary shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[20px]">sticky_note_2</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Catatan KREASI untuk Kamu</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Jangan berkecil hati jika ada soal yang meleset! Kuis ini bertujuan menyegarkan ingatanmu sebelum melangkah ke sesi perenungan pribadi di <strong>Langkah 5 (Refleksi Diri)</strong>. Siapkan hatimu untuk menulis apa yang benar-benar kamu rasakan.
+        </p>
+</div>
+</div>
+<!-- Navigation Step Footer (Prinsip Editorial & UX Alur) -->
+<div class="pt-space-xl flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Back button -->
+<a class="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-surface text-primary hover:bg-surface-variant font-label-md text-label-md transition-colors shadow-xs w-full sm:w-auto" data-path="mengembangkan-potensi" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span>Kembali ke Mengembangkan Potensi (Langkah 3)</span>
+</a>
+<!-- Forward button -->
+<a class="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-full bg-primary-container text-canvas hover:bg-primary-hover font-label-md text-label-md transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 w-full sm:w-auto" data-path="refleksi-diri" href="#">
+<span>Lanjut ke Refleksi Diri (Langkah 5)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<script>
+  // Simple interactive styling handler for option selection
+  document.addEventListener('DOMContentLoaded', function() {
+    const radioInputs = document.querySelectorAll('input[type="radio"]');
+    radioInputs.forEach(input => {
+      input.addEventListener('change', function() {
+        const groupName = this.getAttribute('name');
+        document.querySelectorAll(`input[name="${groupName}"]`).forEach(peer => {
+          const card = peer.closest('.quiz-option');
+          if (peer.checked) {
+            card.classList.add('bg-activity-self-check', 'text-primary');
+            card.classList.remove('bg-surface');
+          } else {
+            card.classList.remove('bg-activity-self-check', 'text-primary');
+            card.classList.add('bg-surface');
+          }
+        });
+      });
+    });
+
+    // Scroll to results when submit is clicked
+    const submitBtn = document.getElementById('submit-quiz-btn');
+    const resultBox = document.getElementById('result-container');
+    if (submitBtn && resultBox) {
+      submitBtn.addEventListener('click', function() {
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    // Reset interaction demo
+    const resetBtn = document.getElementById('reset-quiz-btn');
+    const form = document.getElementById('practice-quiz-form');
+    if (resetBtn && form) {
+      resetBtn.addEventListener('click', function() {
+        form.reset();
+        document.querySelectorAll('.quiz-option').forEach(card => {
+          card.classList.remove('bg-activity-self-check', 'text-primary');
+          card.classList.add('bg-surface');
+        });
+        window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
+      });
+    }
+  });
+</script></main><footer class="w-full bg-canvas shadow-[0_-1px_8px_rgba(34,22,47,0.03)] py-space-3xl mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl pb-space-2xl"><div class="md:col-span-6 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md text-primary">KREASI.ID</span><span class="px-3 py-1 rounded-full bg-activity-kenali-potensi font-label-sm text-label-sm text-on-surface">Sahabat BK Siswa SMP</span></div><p class="font-title-md text-title-md text-on-surface mt-space-xs font-bold leading-snug">Kenali, Refleksikan, Eksplorasi, dan Aktualisasikan Potensi Diri</p><p class="font-body-md text-body-md text-muted max-w-md">Ruang bimbingan dan konseling interaktif yang ramah, hangat, dan aman untuk mendampingi masa remaja dan langkah eksplorasi masa depanmu.</p></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Tautan Utama</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tentang-kreasi-id" href="#">Tentang KREASI.ID</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="menu-kegiatan" href="#">Menu Kegiatan</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="tips" href="#">Tips &amp; Catatanku</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Kontak dan Bantuan</a></div></div><div class="md:col-span-3 flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md text-on-surface font-bold">Pusat Dukungan</h4><div class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="panduan-privasi" href="#">Panduan Privasi</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="kontak-dan-bantuan" href="#">Layanan Konseling Guru BK</a><a class="font-body-md text-body-md text-muted hover:text-primary transition-colors" data-path="mulai-self-check" href="#">Asesmen Mandiri Siswa</a></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left"><p class="font-body-sm text-body-sm text-muted">© 2024 KREASI.ID • Bimbingan dan Konseling Remaja Hebat. Semua hak dilindungi.</p><div class="flex items-center gap-space-lg"><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="panduan-privasi" href="#">Privasi Siswa</a><a class="font-body-sm text-body-sm text-muted hover:text-on-surface" data-path="kontak-dan-bantuan" href="#">Bantuan BK</a></div></div></div></footer></body></html>

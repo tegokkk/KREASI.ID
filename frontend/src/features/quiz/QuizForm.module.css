@@ -1,0 +1,154 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.questionCard {
+  margin: 0;
+  padding: 18px;
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+}
+
+@media (min-width: 640px) {
+  .questionCard {
+    padding: var(--space-lg);
+  }
+}
+
+.questionCardError {
+  border: 2px solid var(--color-error);
+  background-color: var(--color-error-surface);
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.questionNum {
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.topicTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-activity-lilac);
+  color: var(--color-ink);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.legend {
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-subtitle);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: var(--space-md);
+}
+
+.optionLabel {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: var(--touch-min);
+  padding: 12px 14px;
+  border-radius: var(--radius-input);
+  border: 1.5px solid var(--color-divider);
+  background-color: var(--color-surface);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .optionLabel:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-option-hover);
+  }
+}
+
+.optionLabel:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.optionLabelSelected {
+  background-color: var(--color-activity-blue);
+  border: 2px solid var(--color-primary);
+}
+
+.nativeRadio {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.customRadio {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-field-border);
+  background-color: var(--color-surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.customRadioChecked {
+  border-color: var(--color-primary);
+}
+
+.radioDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+}
+
+.optionText {
+  font-size: var(--text-body);
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+
+.errorText {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-error);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+}

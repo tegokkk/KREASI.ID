@@ -1,0 +1,24 @@
+{
+  "name": "kreasi-id-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "db:migrate": "node src/migrate-db.js",
+    "db:import-sqlite": "node src/import-sqlite-cli.js",
+    "create-superadmin": "node src/create-superadmin.js",
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@vercel/functions": "3.11.3",
+    "better-auth": "1.7.26",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "kysely": "0.29.9",
+    "pg": "8.23.1"
+  }
+}

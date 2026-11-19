@@ -1,0 +1,16 @@
+node_modules/
+frontend/dist/
+frontend/dist-e2e/
+.env
+backend/.env
+frontend/.env
+*.log
+.DS_Store
+Thumbs.db
+backend/data/
+.env.*
+!.env.example
+playwright-report/
+test-results/
+.vercel/
+supabase/.temp/

@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/data/
+backend/test/
+frontend/test/
+frontend/dist-e2e/
+e2e/
+test-results/
+playwright-report/
+*.pdf
+*.md
+docs/
+stitch*/

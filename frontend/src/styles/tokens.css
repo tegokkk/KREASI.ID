@@ -1,0 +1,99 @@
+:root {
+  /* Warna sistem desain KREASI.ID (design.md) */
+  --color-primary: #304BE4;
+  --color-primary-hover: #2337B7;
+  --color-on-primary: #FFFAEE;
+  --color-secondary: #FF7EA1;
+  --color-tertiary: #A2EFE3;
+  --color-tertiary-hover: #8CE5D7;
+  --color-canvas: #FFFAEE;
+  --color-surface: #FFFFFF;
+  --color-ink: #241831;
+  --color-muted: #594D63;
+  --color-divider: #E4DAE1;
+  --color-field-border: #81778E;
+  --color-placeholder: #6B5F75;
+  --color-option-hover: #F6F8FF;
+  --color-success-border: #B7E5DB;
+  --color-error-border: #F0B8C5;
+  --color-error: #A22A46;
+  --color-error-surface: #FFF0F4;
+  --color-success: #176050;
+  --color-success-surface: #E9F9F6;
+
+  /* Warna pastel kartu kegiatan */
+  --color-activity-blue: #E8EDFF;
+  --color-activity-yellow: #FFF1C5;
+  --color-activity-green: #E5F4D8;
+  --color-activity-lilac: #F0E8FF;
+  --color-activity-pink: #FFE6EE;
+  --color-activity-mint: #A2EFE3;
+
+  /* Tipografi */
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --text-display: 2.5rem;
+  --text-page: 2rem;
+  --text-section: 1.5rem;
+  --text-card: 1.375rem;
+  --text-subtitle: 1.25rem;
+  --text-lead: 1rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-caption: 0.75rem;
+  --line-body: 1.55;
+  --line-heading: 1.12;
+  --line-label: 1.25;
+
+  /* Radius */
+  --radius-input: 12px;
+  --radius-card: 20px;
+  --radius-hero-mobile: 24px;
+  --radius-hero: 32px;
+  --radius-full: 9999px;
+  --hero-radius: var(--radius-hero-mobile);
+
+  /* Spasi & ukuran */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --hero-padding: var(--space-lg);
+  --space-section-mobile: 40px;
+  --space-section-desktop: 64px;
+  --container-max: 1200px;
+  --reading-max: 720px;
+  --touch-min: 44px;
+  --control-height: 48px;
+  --control-compact: 44px;
+  --control-padding: 12px 24px;
+  --header-height: 73px;
+
+  /* Bayangan ringan (terbatas pada panel mengambang) */
+  --shadow-popover: 0 8px 24px rgba(36, 24, 49, 0.1);
+
+  /* Gerak */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 160ms ease-out;
+  --transition-standard: 220ms var(--ease-out);
+  --transition-spatial: 320ms var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --text-display: 3.25rem;
+    --text-page: 2.75rem;
+    --text-section: 1.75rem;
+    --text-lead: 1.125rem;
+    --hero-radius: var(--radius-hero);
+    --hero-padding: var(--space-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --text-display: 4rem;
+    --hero-padding: 48px;
+  }
+}
