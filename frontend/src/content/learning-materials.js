@@ -229,9 +229,9 @@ export const ABOUT_DATA = {
         'Nama, email, kata sandi yang telah di-hash, status verifikasi, serta status langkah perjalanan (selesai atau dilewati) disimpan untuk mengelola akses akun. Superadmin melihat nama, email, tanggal pendaftaran, dan status pengajuan. Catatan keputusan dapat kamu baca di halaman verifikasi.',
     },
     {
-      title: 'Isian pribadi hanya sementara di halaman',
+      title: 'Jawaban dan rekap yang dibagikan',
       description:
-        'Pilihan Self-check, tulisan Refleksi, dan isian Action Plan berada di memori peramban selama halaman terbuka. Isian dikosongkan saat kamu meninggalkan atau memuat ulang halaman. Salin rencana ke catatan pribadi jika ingin menyimpannya.',
+        'Isian kegiatan tetap di memori browser. Setelah menyelesaikan keenam langkah, kamu dapat memilih bagian yang ingin dibagikan lewat Rekap Jawaban. Hanya rekap yang kamu kirim yang disimpan dan terlihat oleh Admin, Superadmin, serta Guru BK sekolahmu. Kamu bisa menariknya dari menu yang sama.',
     },
     {
       title: 'Tidak ada pelacakan atau peringkat siswa',

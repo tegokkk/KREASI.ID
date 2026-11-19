@@ -6,6 +6,7 @@ import { StepIndicator } from '../components/navigation/StepIndicator';
 import { ActivityErrorBoundary } from '../components/ui/ActivityErrorBoundary';
 import { InfoPanel } from '../components/ui/InfoPanel';
 import { useJourney } from '../features/journey/JourneyProvider';
+import { recapAnswers } from '../features/journey/recap-answers';
 import { SelfCheckForm } from '../features/self-check/SelfCheckForm';
 import { SelfCheckSummary } from '../features/self-check/SelfCheckSummary';
 import { SELF_CHECK_QUESTIONS } from '../features/self-check/questions';
@@ -36,7 +37,7 @@ function StaticSelfCheckFallback() {
 
 export function SelfCheckPage() {
   const navigate = useNavigate();
-  const { journey, stepsById, savingStepId, completeStep, skipStep } = useJourney();
+  const { journey, stepsById, savingStepId, completeStep, skipStep, clearRecapStep } = useJourney();
   const [answers, setAnswers] = useState({});
   const [showSummary, setShowSummary] = useState(false);
   const [confirmingClear, setConfirmingClear] = useState(false);
@@ -53,6 +54,7 @@ export function SelfCheckPage() {
   }, []);
 
   function handleClearAnswers() {
+    clearRecapStep('self-check');
     setAnswers({});
     setConfirmingClear(false);
   }
@@ -107,7 +109,7 @@ export function SelfCheckPage() {
     const result =
       action === 'skip'
         ? await skipStep('self-check')
-        : await completeStep('self-check');
+        : await completeStep('self-check', recapAnswers(SELF_CHECK_QUESTIONS, (q) => answers[q.id]?.join(', ')));
 
     if (result.ok) {
       navigate('/kenali-potensi');
@@ -145,7 +147,7 @@ export function SelfCheckPage() {
           <InfoPanel tone="mint" icon="privacy" title="Bersifat pribadi & tidak menentukan bakat">
             <p>
               Jawabanmu membantu kamu melihat hal yang menarik untuk dicoba. Hasil ini tidak
-              menentukan bakatmu dan tidak dikirim ke mana pun.
+              menentukan bakatmu. Kamu dapat meninjau pilihan ini sebelum membagikannya lewat Rekap Jawaban.
             </p>
           </InfoPanel>
 

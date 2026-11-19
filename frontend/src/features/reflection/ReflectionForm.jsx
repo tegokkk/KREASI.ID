@@ -39,6 +39,7 @@ export function ReflectionForm({ questions, values, onChangeValue, onClearAll })
               required={false}
               optionalLabel="Opsional"
               multiline
+              maxLength={1200}
               rows={4}
               value={values[question.id] || ''}
               onChange={(event) => {

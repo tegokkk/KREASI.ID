@@ -23,7 +23,7 @@ export function Footer() {
           </p>
           <p className={styles.note}>
             Website pendukung layanan Bimbingan dan Konseling (BK) untuk peserta didik SMP.
-            Isian aktivitas bersifat sementara di perangkatmu selama halaman terbuka.
+            Jawaban tetap di browser sampai kamu memilih untuk membagikannya lewat Rekap Jawaban.
           </p>
         </div>
 

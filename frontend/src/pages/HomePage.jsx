@@ -10,12 +10,15 @@ import styles from './HomePage.module.css';
 
 export function HomePage() {
   const { user } = useAuth();
-  const isApprovedUser = Boolean(user && user.status === 'approved');
+  const isRecapStaff = user?.status === 'approved' && ['admin', 'bk'].includes(user.role);
+  const isApprovedUser = Boolean(user?.status === 'approved' && !isRecapStaff);
   const isPendingOrRejected = Boolean(user && user.status !== 'approved');
 
   let publicCta = { to: '/login', label: 'Masuk untuk Mulai' };
   if (isPendingOrRejected) {
     publicCta = { to: '/verifikasi', label: 'Lihat Status Verifikasi' };
+  } else if (isRecapStaff) {
+    publicCta = { to: '/rekap-siswa', label: 'Buka Rekap Jawaban Siswa' };
   }
 
   return (
@@ -62,7 +65,7 @@ export function HomePage() {
 
                   <p className={styles.heroMeta}>
                     <ShieldCheck size={16} aria-hidden="true" />
-                    <span>Isian bersifat pribadi &amp; sementara, bebas dari perbandingan antarsiswa.</span>
+                    <span>Kamu memilih sendiri jawaban yang ingin dibagikan lewat rekap.</span>
                   </p>
                 </div>
               </div>

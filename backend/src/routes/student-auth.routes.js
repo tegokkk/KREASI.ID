@@ -13,14 +13,16 @@ export function createStudentAuthRouter(auth) {
   const router = Router();
   const parseJson = json({ limit: '16kb' });
 
-  function handle(register) {
+  function handle(register, staff = false) {
     return async (req, res) => {
       if (!req.is('application/json')) return res.status(415).json({ error: 'Gunakan format JSON.' });
-      const { nisn: rawNisn, name: rawName, school: rawSchool, password } = req.body ?? {};
+      const { nisn: rawNisn, email: rawEmail, name: rawName, school: rawSchool, password } = req.body ?? {};
+      const email = trim(rawEmail).toLowerCase();
       const nisn = trim(rawNisn);
       const name = trim(rawName);
       const school = trim(rawSchool);
-      if (!validNisn(nisn)) return res.status(400).json({ error: 'NISN harus terdiri dari 10 angka.' });
+      if (staff && (!email || email.length > 254 || email.endsWith('.invalid'))) return res.status(400).json({ code: 'INVALID_EMAIL' });
+      if (!staff && !validNisn(nisn)) return res.status(400).json({ error: 'NISN harus terdiri dari 10 angka.' });
       if (typeof password !== 'string' || !password || password.length > 128) {
         return res.status(400).json({ error: 'Masukkan kata sandi yang valid.' });
       }
@@ -33,8 +35,8 @@ export function createStudentAuthRouter(auth) {
       const headers = fromNodeHeaders(req.headers);
       headers.delete('content-length');
       headers.delete('content-encoding');
-      const body = { email: studentEmail(nisn), password };
-      if (register) Object.assign(body, { name, studentNisn: nisn, studentSchool: school });
+      const body = { email: staff ? email : studentEmail(nisn), password };
+      if (register) Object.assign(body, staff ? { name, staffSchool: school } : { name, studentNisn: nisn, studentSchool: school });
       const response = await auth.handler(new Request(new URL(endpoint, auth.options.baseURL), {
         method: 'POST', headers, body: JSON.stringify(body),
       }));
@@ -43,12 +45,13 @@ export function createStudentAuthRouter(auth) {
       const retryAfter = response.headers.get('retry-after');
       if (retryAfter) res.set('Retry-After', retryAfter);
       const { code } = await response.json().catch(() => ({}));
-      const error = messages.get(code);
+      const error = staff ? undefined : messages.get(code);
       return res.status(response.status).json(error ? { error } : { code });
     };
   }
 
   router.post('/sign-up/siswa', parseJson, handle(true));
+  router.post('/sign-up/bk', parseJson, handle(true, true));
   router.post('/sign-in/siswa', parseJson, handle(false));
   return router;
 }

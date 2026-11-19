@@ -78,7 +78,7 @@ test('login switches between staff and student panels on desktop and mobile', as
 });
 
 test('signup, pending approval, superadmin review, six activities, and progress after login', async ({ page, browser }) => {
-  test.setTimeout(90000);
+  test.setTimeout(115000);
   const personalText = 'PRIVATE_BROWSER_ONLY_ACTION_8419';
   const nisn = '0012345678';
   const school = 'SMP Uji Alur';
@@ -152,20 +152,70 @@ test('signup, pending approval, superadmin review, six activities, and progress 
   await history.getByText('Rincian langkah', { exact: true }).click();
   await expect(history.getByText('Action Plan', { exact: true })).toBeVisible();
   await expect(admin.getByText(personalText, { exact: false })).toHaveCount(0);
-  await adminContext.close();
+
+  await dashboardMenu.getByRole('link', { name: 'Rekap Jawaban Siswa' }).click();
+  await expect(admin.getByText('Belum ada rekap yang dibagikan siswa.')).toBeVisible();
+  await page.getByRole('link', { name: 'Buka Rekap Jawaban' }).click();
+  await expect(page.getByRole('heading', { name: 'Rekap Jawaban', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Kirim Rekap' })).toBeDisabled();
+  await page.getByLabel('Bagikan Action Plan').uncheck();
+  await page.getByLabel('Saya ingin membagikan jawaban yang dipilih.').check();
+  await page.getByRole('button', { name: 'Kirim Rekap' }).click();
+  await expect(page.getByText('Rekap sudah dibagikan.', { exact: true })).toBeVisible();
+  await admin.getByRole('button', { name: 'Muat Ulang' }).click();
+  await admin.getByRole('link', { name: 'Lihat Jawaban' }).click();
+  await expect(admin.getByRole('region', { name: 'Refleksi' }).getByText(personalText, { exact: true })).toBeVisible();
+  await expect(admin.getByRole('region', { name: 'Action Plan' }).getByText(personalText, { exact: true })).toHaveCount(0);
 
   const bkContext = await browser.newContext({ viewport: { width: 360, height: 800 } });
   const bk = await bkContext.newPage();
-  await login(bk, 'bk@example.test');
-  await expect(bk).toHaveURL(/\/riwayat-siswa$/);
+  await bk.goto('/login');
+  await bk.getByRole('link', { name: 'Daftar akun Guru BK' }).click();
+  await bk.getByLabel('Nama', { exact: true }).fill('Guru BK Baru');
+  await bk.getByLabel('Email', { exact: true }).fill('bk-new@example.test');
+  await bk.getByLabel('Sekolah', { exact: true }).fill(school);
+  await bk.getByLabel('Kata sandi', { exact: true }).fill(password);
+  await bk.getByRole('button', { name: 'Daftar Akun' }).click();
+  await expect(bk).toHaveURL(/\/verifikasi$/);
+  expect((await bk.request.get('/api/staff/recaps')).status()).toBe(403);
+  await admin.goto('/superadmin');
+  await admin.getByRole('button', { name: 'Setujui', exact: true }).click();
+  await expect(admin.getByLabel('Setujui sebagai')).toHaveValue('bk');
+  await admin.getByRole('button', { name: 'Konfirmasi Persetujuan' }).click();
+  await expect(admin.getByRole('status').filter({ hasText: 'telah disetujui' })).toBeVisible();
+  await bk.getByRole('button', { name: 'Periksa Status' }).click();
+  await expect(bk).toHaveURL(/\/rekap-siswa$/);
   await expect(bk.getByRole('heading', { name: 'Siswa Alur', exact: true })).toBeVisible();
   await expect.poll(() => bk.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await bk.getByRole('button', { name: 'Buka menu navigasi' }).click();
   const mobileMenu = bk.getByRole('navigation', { name: 'Menu navigasi ponsel' });
   await mobileMenu.getByText('Akun', { exact: true }).click();
-  await expect(mobileMenu.getByRole('link', { name: 'Riwayat Siswa', exact: true })).toBeVisible();
+  await expect(mobileMenu.getByRole('link', { name: 'Rekap Jawaban Siswa', exact: true })).toBeVisible();
+  await expect(mobileMenu.getByRole('link', { name: 'Verifikasi Akun', exact: true })).toHaveCount(0);
   expect((await bk.request.get('/api/admin/users')).status()).toBe(403);
+  expect((await bk.request.get('/api/staff/student-history')).status()).toBe(403);
+  await bk.getByRole('button', { name: 'Tutup menu navigasi' }).click();
+  await bk.getByRole('link', { name: 'Lihat Jawaban' }).click();
+  await expect(bk.getByRole('region', { name: 'Refleksi' }).getByText(personalText)).toBeVisible();
+
+  await admin.getByRole('button', { name: /^Disetujui/ }).click();
+  const bkRow = admin.getByRole('row').filter({ hasText: 'Guru BK Baru' });
+  await bkRow.getByRole('button', { name: 'Jadikan Admin' }).click();
+  await admin.getByRole('button', { name: 'Konfirmasi Admin' }).click();
+  await expect(admin.getByRole('status').filter({ hasText: 'sudah menjadi Admin' })).toBeVisible();
+  await bk.goto('/rekap-siswa');
+  await expect(bk.getByRole('navigation', { name: 'Menu dashboard' }).getByRole('link', { name: 'Riwayat Siswa' })).toBeVisible();
+
+  await bkRow.getByRole('button', { name: 'Hapus Akun', exact: true }).click();
+  await admin.getByRole('button', { name: 'Hapus Akun Permanen', exact: true }).click();
+  await expect(admin.getByRole('status').filter({ hasText: 'telah dihapus' })).toBeVisible();
+  await bk.reload();
+  await expect(bk).toHaveURL(/\/login$/);
   await bkContext.close();
+  await adminContext.close();
+
+  await page.getByRole('button', { name: 'Tarik Rekap' }).click();
+  await expect(page.getByText('Rekap sudah ditarik dari dashboard staf.')).toBeVisible();
 
   const freshContext = await browser.newContext();
   const fresh = await freshContext.newPage();

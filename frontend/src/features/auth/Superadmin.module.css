@@ -297,6 +297,45 @@
   display: block;
 }
 
+.recapCheck {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--touch-min);
+}
+
+.recapAnswers {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.recapAnswers dt {
+  font-weight: 700;
+}
+
+.recapAnswers dd {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.roleSelect {
+  display: grid;
+  gap: var(--space-xs);
+  align-self: flex-start;
+  font-weight: 700;
+}
+
+.roleSelect select {
+  min-height: var(--touch-min);
+  border: 1px solid var(--color-field-border);
+  border-radius: var(--radius-input);
+  padding: var(--space-sm);
+  background: var(--color-surface);
+  font: inherit;
+}
+
 .note {
   padding: 10px 12px;
   border-radius: var(--radius-input);

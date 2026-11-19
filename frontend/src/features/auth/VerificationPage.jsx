@@ -28,7 +28,7 @@ export function VerificationPage() {
         <p className={styles.brand}>KREASI.ID</p>
         <h1 id="status-heading">{rejected ? 'Pengajuan belum disetujui' : 'Menunggu verifikasi'}</h1>
         <p>Halo, <strong>{user.name}</strong>.</p>
-        <p>{rejected ? 'Superadmin telah meninjau pengajuan akunmu. Hubungi pengelola sekolah untuk informasi lebih lanjut.' : 'Pendaftaranmu berhasil. Superadmin akan meninjau akunmu sebelum akses kegiatan dibuka.'}</p>
+        <p>{rejected ? 'Superadmin telah meninjau pengajuan akunmu. Hubungi pengelola sekolah untuk informasi lebih lanjut.' : user.role === 'bk' ? 'Superadmin akan menentukan akses akunmu sebagai Admin atau Guru BK.' : 'Pendaftaranmu berhasil. Superadmin akan meninjau akunmu sebelum akses kegiatan dibuka.'}</p>
         <p className={styles.email}>{user.nisn ? `NISN ${user.nisn} · ${user.school}` : user.email}</p>
         {user.reviewNote && <div className={styles.reviewNote}><strong>Catatan superadmin</strong><p>{user.reviewNote}</p></div>}
         <p className={styles.muted}>Status diperiksa otomatis. Kamu juga bisa memeriksanya melalui tombol di bawah.</p>

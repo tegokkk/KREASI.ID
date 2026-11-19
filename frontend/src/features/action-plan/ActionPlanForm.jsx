@@ -35,6 +35,7 @@ export function ActionPlanForm({
             optionalLabel="Opsional di rencana awal"
             helperText={field.helperText}
             multiline={field.multiline}
+            maxLength={1200}
             rows={field.multiline ? 3 : undefined}
             value={values[field.id] || ''}
             error={errors[field.id]}

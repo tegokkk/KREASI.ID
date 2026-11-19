@@ -74,9 +74,12 @@ export async function createAuthService(options = {}) {
             const profile = studentAccountFields(user.email, ctx?.body);
             // Only the local Guru BK provisioning command supplies this server-side option.
             const bk = options.bkAccount?.email === user.email ? options.bkAccount : null;
+            const requestedSchool = ctx?.body?.staffSchool;
+            const requestedBk = !profile.nisn && typeof requestedSchool === 'string' && requestedSchool.trim().length > 0 && requestedSchool.trim().length <= 150;
             return { data: {
-              ...user, ...profile, name, reviewNote: '',
-              ...(bk ? { school: bk.school, role: 'bk', status: 'approved' } : { role: 'user', status: 'pending' }),
+              ...user, ...profile, name, reviewNote: '', status: bk ? 'approved' : 'pending',
+              role: bk || requestedBk ? 'bk' : 'user',
+              ...(bk || requestedBk ? { school: bk?.school ?? requestedSchool.trim() } : {}),
             } };
           },
         },

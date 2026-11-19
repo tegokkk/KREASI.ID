@@ -1,13 +1,14 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { getJourney, updateStepProgress } from '../../services/journey';
 import { useAuth } from '../auth/AuthProvider';
+import { useEphemeralReset } from '../useEphemeralReset';
 import { newestJourney } from './progress-snapshot';
 
 const JourneyContext = createContext(null);
 
 export function JourneyProvider({ children }) {
   const { user } = useAuth();
-  const isApproved = Boolean(user && user.status === 'approved');
+  const isApproved = Boolean(user && user.status === 'approved' && ['user', 'superadmin'].includes(user.role));
   return (
     <JourneySessionProvider key={isApproved ? user.id : 'guest'} isApproved={isApproved}>
       {children}
@@ -20,6 +21,8 @@ function JourneySessionProvider({ children, isApproved }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [savingStepId, setSavingStepId] = useState(null);
+  const [recapDraft, setRecapDraft] = useState({});
+  useEphemeralReset(useCallback(() => setRecapDraft({}), []));
   const sequence = useRef(0);
   const mutationSequence = useRef(0);
 
@@ -90,7 +93,11 @@ function JourneySessionProvider({ children, isApproved }) {
   }, []);
 
   const completeStep = useCallback(
-    (stepId) => submitStepAction(stepId, 'complete'),
+    async (stepId, answers) => {
+      const result = await submitStepAction(stepId, 'complete');
+      if (result.ok && answers?.length) setRecapDraft((current) => ({ ...current, [stepId]: answers }));
+      return result;
+    },
     [submitStepAction]
   );
 
@@ -98,6 +105,11 @@ function JourneySessionProvider({ children, isApproved }) {
     (stepId) => submitStepAction(stepId, 'skip'),
     [submitStepAction]
   );
+
+  const clearRecapStep = useCallback((stepId) => setRecapDraft((current) => {
+    const { [stepId]: removed, ...rest } = current;
+    return removed ? rest : current;
+  }), []);
 
   const stepsById = useMemo(() => {
     if (!journey?.steps) return {};
@@ -115,8 +127,10 @@ function JourneySessionProvider({ children, isApproved }) {
       syncJourney,
       completeStep,
       skipStep,
+      recapDraft,
+      clearRecapStep,
     }),
-    [journey, stepsById, loading, error, savingStepId, refreshJourney, syncJourney, completeStep, skipStep]
+    [journey, stepsById, loading, error, savingStepId, refreshJourney, syncJourney, completeStep, skipStep, recapDraft, clearRecapStep]
   );
 
   return <JourneyContext.Provider value={value}>{children}</JourneyContext.Provider>;

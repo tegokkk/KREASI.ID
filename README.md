@@ -211,9 +211,11 @@ npm run create-superadmin --workspace=backend
 
 Jika `SUPERADMIN_PASSWORD` kosong, script menghasilkan kata sandi acak dan menampilkannya sekali di terminal. Simpan secara pribadi, lalu login melalui `/login` dan buka `/superadmin`. Akun siswa yang mendaftar melalui `/daftar` perlu ditinjau dari dashboard tersebut. Script bootstrap membuat akun baru dan akan menolak email yang sudah terdaftar.
 
-### 5. Buat akun Guru BK
+### 5. Setujui akun Guru BK dan Admin
 
-Setelah migrasi database dijalankan, buat akun Guru BK dengan email yang belum terdaftar. Gunakan nama sekolah yang sama dengan yang digunakan siswa saat mendaftar.
+Guru BK dapat mengajukan akun lewat **Daftar akun Guru BK** di `/login`. Dari **Verifikasi Akun**, Superadmin dapat memilih peran Guru BK atau Admin saat menyetujui pengajuan. Superadmin juga dapat menjadikan akun aktif sebagai Admin atau menghapus akun. Admin melihat riwayat progres serta rekap yang dibagikan siswa. Guru BK melihat rekap dari akun siswa dengan nama sekolah yang sama dengan sekolah pada akunnya.
+
+Setelah migrasi database dijalankan, operator juga dapat membuat akun Guru BK memakai email baru melalui terminal.
 
 ```powershell
 $env:BK_NAME = 'Nama Guru'
@@ -222,7 +224,7 @@ $env:BK_SCHOOL = 'Nama Sekolah'
 npm run create-bk --workspace=backend
 ```
 
-Perintah menampilkan kata sandi yang dibuat untuk akun tersebut. Akun Guru BK masuk dengan email melalui `/login` dan langsung membuka **Riwayat Siswa** untuk sekolahnya. Superadmin membuka **Riwayat Siswa** dari dashboard untuk melihat siswa tuntas dari semua sekolah.
+Perintah menampilkan kata sandi yang dibuat untuk akun tersebut. Guru BK masuk dengan email dan langsung membuka **Rekap Jawaban Siswa**.
 
 ## Konfigurasi Environment
 
@@ -321,8 +323,8 @@ Endpoint **`GET /api/health`** memeriksa proses HTTP. **`GET /api/ready`** memer
 
 ## Privasi dan Akses
 
-- **Isian pribadi bersifat sementara.** Jawaban latihan lokal, refleksi, dan isi Action Plan berada di memori halaman; muat ulang atau menutup halaman dapat menghapus isian. Siswa dapat menyalin Action Plan ke catatan pribadi.
-- **Progres terpisah dari jawaban.** Backend menyimpan akun, sesi, metadata progres, catatan peninjauan, dan data operasional autentikasi; bukan isi bebas jawaban kegiatan lokal.
+- **Draf jawaban berada di tab browser.** Setelah enam langkah selesai, siswa dapat meninjau bagian yang tersedia dan memilih apa yang dibagikan melalui **Rekap Jawaban**.
+- **Progres terpisah dari rekap.** Server menyimpan jawaban yang dipilih setelah siswa mengirim rekap. Siswa dapat menarik rekap dari menu yang sama.
 - **Persetujuan diperiksa di server.** Role dan status akun tidak dapat ditentukan melalui input pendaftaran. Endpoint kegiatan memerlukan akun yang disetujui; endpoint admin memerlukan role superadmin.
 - **Sesi produksi memakai cookie aman.** Autentikasi menggunakan cookie HttpOnly, Secure pada HTTPS produksi, SameSite, pemeriksaan origin, dan pembatasan percobaan pada endpoint auth.
 - **Rahasia berada di backend.** File `.env`, SQLite lokal, dan secret tidak masuk Git. Jangan menambahkan prefix `VITE_` pada rahasia atau connection string.

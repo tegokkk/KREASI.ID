@@ -6,6 +6,7 @@ import { StepIndicator } from '../components/navigation/StepIndicator';
 import { ActivityErrorBoundary } from '../components/ui/ActivityErrorBoundary';
 import { InfoPanel } from '../components/ui/InfoPanel';
 import { useJourney } from '../features/journey/JourneyProvider';
+import { recapAnswers } from '../features/journey/recap-answers';
 import { ReflectionForm } from '../features/reflection/ReflectionForm';
 import { REFLECTION_QUESTIONS } from '../features/reflection/questions';
 import { useEphemeralReset } from '../features/useEphemeralReset';
@@ -31,7 +32,7 @@ function StaticReflectionFallback() {
 
 export function ReflectionPage() {
   const navigate = useNavigate();
-  const { journey, stepsById, savingStepId, completeStep, skipStep } = useJourney();
+  const { journey, stepsById, savingStepId, completeStep, skipStep, clearRecapStep } = useJourney();
   const [values, setValues] = useState({});
   const [saveError, setSaveError] = useState('');
   const [lastAction, setLastAction] = useState('complete');
@@ -57,11 +58,10 @@ export function ReflectionPage() {
   async function handleProgress(action) {
     setLastAction(action);
     setSaveError('');
-    // Never send private reflection text in progress requests.
     const result =
       action === 'skip'
         ? await skipStep('refleksi')
-        : await completeStep('refleksi');
+        : await completeStep('refleksi', recapAnswers(REFLECTION_QUESTIONS, (q) => values[q.id]));
 
     if (result.ok) {
       navigate('/action-plan');
@@ -101,7 +101,7 @@ export function ReflectionPage() {
           <InfoPanel tone="pink" icon="privacy" title="Catatan pribadi & sementara">
             <p>
               Kamu boleh menulis di sini atau di buku catatan. Isian di halaman ini bersifat
-              sementara dan akan hilang saat kamu keluar.
+              sementara di browser. Hanya bagian yang kamu pilih dan kirim lewat Rekap Jawaban yang dibagikan kepada staf.
             </p>
           </InfoPanel>
 
@@ -117,7 +117,7 @@ export function ReflectionPage() {
               questions={REFLECTION_QUESTIONS}
               values={values}
               onChangeValue={handleChangeValue}
-              onClearAll={resetAll}
+              onClearAll={() => { clearRecapStep('refleksi'); resetAll(); }}
             />
           </ActivityErrorBoundary>
 

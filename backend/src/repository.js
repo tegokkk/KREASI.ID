@@ -32,16 +32,24 @@ export function createRepository(database, { dialect, schema }) {
     : async (sql, params = []) => (await all(sql, params))[0];
   const run = (sql, params = []) => { const { statement, values } = sqliteStatement(sql, params); return statement.run(...values); };
   const accountSql = `SELECT ${ACCOUNT_FIELDS} FROM ${table('user')} WHERE id = $1`;
-  const countsSql = `SELECT status, COUNT(*) AS count FROM ${table('user')} WHERE role = 'user' GROUP BY status`;
+  const countsSql = `SELECT status, COUNT(*) AS count FROM ${table('user')} WHERE role <> 'superadmin' GROUP BY status`;
   const progressSql = `SELECT step_id, status, completed_at, updated_at FROM ${table('user_journey_progress')} WHERE user_id = $1`;
-  const reviewSql = `UPDATE ${table('user')} SET status = $1, "reviewNote" = $2, "updatedAt" = $3
-    WHERE id = $4 AND role = 'user' AND status = 'pending' RETURNING ${ACCOUNT_FIELDS}`;
+  const reviewSql = `UPDATE ${table('user')} SET status = $1, "reviewNote" = $2, "updatedAt" = $3,
+    role = CASE WHEN role = 'bk' AND $1 = 'approved' AND $4 = 'admin' THEN 'admin' ELSE role END
+    WHERE id = $5 AND role IN ('user', 'bk') AND status = 'pending' RETURNING ${ACCOUNT_FIELDS}`;
   const auditSql = `INSERT INTO ${table('account_reviews')} (user_id, admin_id, decision, note, created_at) VALUES ($1, $2, $3, $4, $5)`;
   const completeSql = `INSERT INTO ${table('user_journey_progress')} (user_id, step_id, status, completed_at, updated_at)
     VALUES ($1, $2, 'completed', $3, $3) ON CONFLICT(user_id, step_id) DO UPDATE SET
     status = 'completed', completed_at = COALESCE(${table('user_journey_progress')}.completed_at, excluded.completed_at), updated_at = excluded.updated_at`;
   const skipSql = `INSERT INTO ${table('user_journey_progress')} (user_id, step_id, status, completed_at, updated_at)
     VALUES ($1, $2, 'skipped', NULL, $3) ON CONFLICT(user_id, step_id) DO NOTHING`;
+  const recapColumns = 'u.id, u.name, u.nisn, u.school, r.submitted_at AS "submittedAt"';
+  const recapJoin = `FROM ${table('student_recaps')} r JOIN ${table('user')} u ON u.id = r.user_id
+    WHERE u.role = 'user' AND u.status = 'approved'
+    AND (CAST($1 AS TEXT) IS NULL OR LOWER(TRIM(u.school)) = LOWER(TRIM($1)))`;
+  const editableAccount = `SELECT id FROM ${table('user')} WHERE id = $1 AND role <> 'superadmin'`;
+  const deleteReviews = `DELETE FROM ${table('account_reviews')} WHERE user_id = $1 OR admin_id = $1`;
+  const deleteUser = `DELETE FROM ${table('user')} WHERE id = $1 AND role <> 'superadmin' RETURNING id`;
 
   async function pgTransaction(work) {
     const client = await database.connect();
@@ -79,6 +87,30 @@ export function createRepository(database, { dialect, schema }) {
       if (dialect === 'sqlite') run(sql, [id]); else await database.query(sql, [id]);
     },
     getProgress: (id) => all(progressSql, [id]),
+    async getRecap(id) {
+      const row = await one(`SELECT answers, submitted_at AS "submittedAt" FROM ${table('student_recaps')} WHERE user_id = $1`, [id]);
+      return row ? { ...row, answers: JSON.parse(row.answers) } : null;
+    },
+    async saveRecap(id, answers) {
+      const row = await one(`INSERT INTO ${table('student_recaps')} (user_id, answers, submitted_at)
+        SELECT u.id, $2, $3 FROM ${table('user')} u WHERE u.id = $1 AND u.role = 'user' AND u.status = 'approved'
+        AND (SELECT COUNT(*) FROM ${table('user_journey_progress')} WHERE user_id = u.id AND status = 'completed') = $4
+        ON CONFLICT(user_id) DO UPDATE SET answers = excluded.answers, submitted_at = excluded.submitted_at
+        RETURNING submitted_at AS "submittedAt"`, [id, JSON.stringify(answers), new Date().toISOString(), JOURNEY_STEPS.length]);
+      return row ? { ...row, answers } : null;
+    },
+    async removeRecap(id) {
+      await one(`DELETE FROM ${table('student_recaps')} WHERE user_id = $1 RETURNING user_id`, [id]);
+    },
+    async listRecaps({ page, school }) {
+      const students = await all(`SELECT ${recapColumns} ${recapJoin}
+        ORDER BY r.submitted_at DESC, u.id DESC LIMIT $2 OFFSET $3`, [school, PAGE_SIZE + 1, (page - 1) * PAGE_SIZE]);
+      return { page, hasMore: students.length > PAGE_SIZE, students: students.slice(0, PAGE_SIZE) };
+    },
+    async staffRecap(id, school) {
+      const row = await one(`SELECT ${recapColumns}, r.answers ${recapJoin} AND u.id = $2`, [school, id]);
+      return row ? { ...row, answers: JSON.parse(row.answers) } : null;
+    },
     async listCompletedStudents({ page, school }) {
       const stepIds = JOURNEY_STEPS.map((step) => step.id);
       const stepParams = stepIds.map((_, index) => `$${index + 1}`).join(', ');
@@ -125,7 +157,7 @@ export function createRepository(database, { dialect, schema }) {
       const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
       const page = Math.min(requestedPage, totalPages);
       const users = await all(`SELECT ${ACCOUNT_FIELDS} FROM ${table('user')}
-        WHERE role = 'user' AND status = $1 ORDER BY "createdAt" DESC, id DESC LIMIT $2 OFFSET $3`,
+        WHERE role <> 'superadmin' AND status = $1 ORDER BY "createdAt" DESC, id DESC LIMIT $2 OFFSET $3`,
       [status, PAGE_SIZE, (page - 1) * PAGE_SIZE]);
       return { users, total, counts, page, pageSize: PAGE_SIZE, totalPages };
     },
@@ -136,22 +168,40 @@ export function createRepository(database, { dialect, schema }) {
         const version = await one(`SELECT version FROM ${table('schema_migrations')} WHERE version = $1`, [SCHEMA_VERSION]);
         if (!version) throw new Error('Migrasi database belum dijalankan.');
       }
+      await one(`SELECT user_id FROM ${table('student_recaps')} LIMIT 1`);
     },
-    reviewAccount({ userId, adminId, decision, note }) {
+    async makeAdmin(id) {
+      return one(`UPDATE ${table('user')} SET role = 'admin', "updatedAt" = $2
+        WHERE id = $1 AND role IN ('user', 'bk') AND status = 'approved' RETURNING ${ACCOUNT_FIELDS}`,
+      [id, dialect === 'sqlite' ? Date.now() : new Date()]);
+    },
+    deleteAccount(id) {
+      if (dialect === 'sqlite') return sqliteTransaction(() => {
+        if (!one(editableAccount, [id])) return false;
+        run(deleteReviews, [id]);
+        return Boolean(one(deleteUser, [id]));
+      });
+      return pgTransaction(async (client) => {
+        if (!(await client.query(`${editableAccount} FOR UPDATE`, [id])).rowCount) return false;
+        await client.query(deleteReviews, [id]);
+        return Boolean((await client.query(deleteUser, [id])).rowCount);
+      });
+    },
+    reviewAccount({ userId, adminId, decision, note, role = null }) {
       const now = new Date();
       if (dialect === 'sqlite') return sqliteTransaction(() => {
         const account = one(`SELECT id, role FROM ${table('user')} WHERE id = $1`, [userId]);
-        if (!account || account.role !== 'user') return { kind: 'not-found' };
-        const user = one(reviewSql, [decision, note, now.getTime(), userId]);
+        if (!account || account.role === 'superadmin') return { kind: 'not-found' };
+        const user = one(reviewSql, [decision, note, now.getTime(), role, userId]);
         if (!user) return { kind: 'conflict' };
         run(auditSql, [userId, adminId, decision, note, now.toISOString()]);
         return { kind: 'reviewed', user, counts: countsFromRows(all(countsSql)) };
       });
       return pgTransaction(async (client) => {
         const account = (await client.query(`SELECT id, role FROM ${table('user')} WHERE id = $1`, [userId])).rows[0];
-        if (!account || account.role !== 'user') return { kind: 'not-found' };
+        if (!account || account.role === 'superadmin') return { kind: 'not-found' };
         // PostgreSQL locks and rechecks the pending predicate after waiting for another reviewer.
-        const user = (await client.query(reviewSql, [decision, note, now, userId])).rows[0];
+        const user = (await client.query(reviewSql, [decision, note, now, role, userId])).rows[0];
         if (!user) return { kind: 'conflict' };
         await client.query(auditSql, [userId, adminId, decision, note, now.toISOString()]);
         return { kind: 'reviewed', user, counts: countsFromRows((await client.query(countsSql)).rows) };

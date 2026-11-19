@@ -5,7 +5,8 @@ import { Button } from '../../components/ui/Button';
 import styles from './Auth.module.css';
 
 const AuthContext = createContext(null);
-export const STAFF_ROLES = ['superadmin', 'bk'];
+export const STAFF_ROLES = ['superadmin', 'admin', 'bk'];
+export const HISTORY_ROLES = ['superadmin', 'admin'];
 
 export function AuthProvider({ children }) {
   const [state, setState] = useState({ user: null, loading: true, error: '' });
@@ -50,7 +51,7 @@ export function useAuth() {
 export function accountDestination(user) {
   if (user.status !== 'approved') return '/verifikasi';
   if (user.role === 'superadmin') return '/superadmin';
-  return user.role === 'bk' ? '/riwayat-siswa' : '/';
+  return STAFF_ROLES.includes(user.role) ? '/rekap-siswa' : '/';
 }
 
 export function AuthLoading() {

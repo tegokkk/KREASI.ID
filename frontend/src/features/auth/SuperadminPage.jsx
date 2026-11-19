@@ -45,6 +45,13 @@ const STATUS_META = [
 ];
 
 const STATUS_BY_KEY = Object.fromEntries(STATUS_META.map((item) => [item.value, item]));
+const ACCOUNT_ROLES = { user: 'Siswa', admin: 'Admin', bk: 'Guru BK' };
+const ACCOUNT_ACTIONS = {
+  approved: ['Setujui akun ini?', 'Konfirmasi Persetujuan', 'telah disetujui'],
+  rejected: ['Tolak pengajuan akun ini?', 'Konfirmasi Penolakan', 'telah ditolak'],
+  admin: ['Jadikan akun ini Admin?', 'Konfirmasi Admin', 'sudah menjadi Admin'],
+  delete: ['Hapus akun ini?', 'Hapus Akun Permanen', 'telah dihapus'],
+};
 
 function useDesktopLayout() {
   const [isDesktop, setIsDesktop] = useState(() =>
@@ -75,6 +82,22 @@ function accountIdentifier(user) {
   return user.nisn ? `NISN ${user.nisn}` : user.email;
 }
 
+function AccountActions({ user, review, busy, onOpenReview }) {
+  const actionButton = (decision, label, variant) => (
+    <Button key={decision} size="sm" variant={variant} disabled={busy}
+      aria-expanded={review?.user.id === user.id && review.decision === decision}
+      onClick={(event) => onOpenReview(user, decision, event.currentTarget)}>{label}</Button>
+  );
+  return (
+    <>
+      {user.status === 'pending' && actionButton('approved', 'Setujui', 'primary')}
+      {user.status === 'pending' && actionButton('rejected', 'Tolak', 'dangerOutline')}
+      {user.status === 'approved' && user.role !== 'admin' && actionButton('admin', 'Jadikan Admin', 'secondary')}
+      {actionButton('delete', 'Hapus Akun', 'dangerText')}
+    </>
+  );
+}
+
 function StatusBadge({ status }) {
   const meta = STATUS_BY_KEY[status] || STATUS_BY_KEY.pending;
   const Icon = meta.Icon;
@@ -95,8 +118,11 @@ function ReviewPanel({
   onCancel,
   noteInputRef,
 }) {
-  const isApprove = review.decision === 'approved';
-  const actionTitle = isApprove ? 'Setujui akun ini?' : 'Tolak pengajuan akun ini?';
+  const { decision } = review;
+  const isApprove = decision === 'approved';
+  const isApplication = isApprove || decision === 'rejected';
+  const positive = isApprove || decision === 'admin';
+  const [actionTitle, confirmLabel] = ACCOUNT_ACTIONS[decision];
 
   function handleKeyDown(event) {
     if (event.key === 'Escape' && !busy) {
@@ -107,16 +133,13 @@ function ReviewPanel({
 
   return (
     <form
-      className={`${styles.reviewForm} ${isApprove ? styles.reviewApprove : styles.reviewReject}`}
+      className={`${styles.reviewForm} ${positive ? styles.reviewApprove : styles.reviewReject}`}
       onSubmit={onSubmit}
       onKeyDown={handleKeyDown}
       aria-labelledby="review-title"
     >
       <div className={styles.reviewHeader}>
         <div className={styles.reviewMeta}>
-          <span className={isApprove ? styles.decisionTagApprove : styles.decisionTagReject}>
-            {isApprove ? 'Keputusan: Setujui' : 'Keputusan: Tolak'}
-          </span>
           <h2 id="review-title" className={styles.reviewTitle}>
             {actionTitle}
           </h2>
@@ -128,7 +151,15 @@ function ReviewPanel({
         </div>
       </div>
 
-      <FormField
+      {isApprove && review.user.role === 'bk' && (
+        <label className={styles.roleSelect}>Setujui sebagai
+          <select name="staffRole" defaultValue="bk" disabled={busy}>
+            <option value="bk">Guru BK</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+      )}
+      {isApplication && <FormField
         ref={noteInputRef}
         id="review-note"
         label="Catatan untuk pengguna"
@@ -145,17 +176,19 @@ function ReviewPanel({
             : 'Contoh: Gunakan nama lengkap siswa atau hubungi guru BK sekolah.'
         }
         helperText={`Maksimal 500 karakter (${note.length}/500). Catatan ini dapat dibaca pengguna.`}
-      />
+      />}
+      {decision === 'delete' && <p>Akun, sesi, progres, dan rekap jawaban akun ini akan dihapus permanen.</p>}
+      {decision === 'admin' && <p>Admin dapat melihat riwayat progres dan rekap yang dibagikan siswa dari semua sekolah. Akun ini memakai cara masuk yang sama.</p>}
 
       <div className={styles.reviewActions}>
-        <Button type="submit" variant={isApprove ? 'primary' : 'danger'} disabled={busy}>
+        <Button ref={isApplication ? undefined : noteInputRef} type="submit" variant={positive ? 'primary' : 'danger'} disabled={busy}>
           {busy ? (
             <>
               <Loader2 size={18} aria-hidden="true" className={styles.spinner} />
               <span>Menyimpan keputusan…</span>
             </>
           ) : (
-            <span>{isApprove ? 'Konfirmasi Persetujuan' : 'Konfirmasi Penolakan'}</span>
+            <span>{confirmLabel}</span>
           )}
         </Button>
 
@@ -272,21 +305,19 @@ export function SuperadminPage() {
     setError('');
     const targetUser = review.user;
     const decision = review.decision;
+    const role = new FormData(event.currentTarget).get('staffRole');
+    const url = `/api/admin/users/${encodeURIComponent(targetUser.id)}`;
     try {
-      const result = await accountRequest(
-        `/api/admin/users/${encodeURIComponent(targetUser.id)}/review`,
-        {
-          method: 'POST',
-          body: { decision, note },
-        }
-      );
+      const result = decision === 'delete'
+        ? await accountRequest(url, { method: 'DELETE' })
+        : decision === 'admin'
+          ? await accountRequest(`${url}/make-admin`, { method: 'POST', body: {} })
+          : await accountRequest(`${url}/review`, { method: 'POST', body: { decision, note, role } });
       if (result.counts) {
         setData((prev) => ({ ...prev, counts: result.counts }));
       }
       setMessage(
-        `Akun ${targetUser.name} (${accountIdentifier(targetUser)}) ${
-          decision === 'approved' ? 'telah disetujui' : 'telah ditolak'
-        }.`
+        `Akun ${targetUser.name} (${accountIdentifier(targetUser)}) ${ACCOUNT_ACTIONS[decision][2]}.`
       );
       closeReview();
       await load(status, page);
@@ -315,7 +346,7 @@ export function SuperadminPage() {
             </span>
             <h1 className="page-title">Verifikasi Akun</h1>
             <p className="lead-text">
-              Tinjau pengajuan akun sebelum peserta didik mengakses kegiatan KREASI.ID.
+              Setujui pengajuan, kelola peran, dan hapus akun dari KREASI.ID.
             </p>
           </div>
         </header>
@@ -468,6 +499,7 @@ export function SuperadminPage() {
                     <div className={styles.cardHeader}>
                       <div className={styles.cardIdentity}>
                         <h2 className={styles.cardName}>{user.name}</h2>
+                        <p className={styles.email}>{ACCOUNT_ROLES[user.role]}</p>
                         <p className={styles.email}>{accountIdentifier(user)}</p>
                         {user.school && <p className={styles.email}>{user.school}</p>}
                       </div>
@@ -485,30 +517,7 @@ export function SuperadminPage() {
                     )}
 
                     <div className={styles.cardActions}>
-                      {user.status === 'pending' ? (
-                        <>
-                          <Button
-                            size="sm"
-                            variant="primary"
-                            disabled={busy}
-                            aria-expanded={isReviewing && review.decision === 'approved'}
-                            onClick={(event) => openReview(user, 'approved', event.currentTarget)}
-                          >
-                            Setujui
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="dangerOutline"
-                            disabled={busy}
-                            aria-expanded={isReviewing && review.decision === 'rejected'}
-                            onClick={(event) => openReview(user, 'rejected', event.currentTarget)}
-                          >
-                            Tolak
-                          </Button>
-                        </>
-                      ) : (
-                        <span className="supporting-text">Sudah ditinjau</span>
-                      )}
+                      <AccountActions user={user} review={review} busy={busy} onOpenReview={openReview} />
                     </div>
 
                     {isReviewing && (
@@ -592,6 +601,7 @@ function DesktopAccountRows({
       <tr className={isReviewing ? styles.rowSelected : undefined}>
         <td className={styles.cellName}>
           <div className={styles.nameValue}>{user.name}</div>
+          <p className={styles.email}>{ACCOUNT_ROLES[user.role]}</p>
           {user.reviewNote && (
             <p className={styles.tableNote}>Catatan: {user.reviewNote}</p>
           )}
@@ -605,30 +615,9 @@ function DesktopAccountRows({
           <StatusBadge status={user.status} />
         </td>
         <td>
-          {user.status === 'pending' ? (
-            <div className={styles.tableActions}>
-              <Button
-                size="sm"
-                variant="primary"
-                disabled={busy}
-                aria-expanded={isReviewing && review.decision === 'approved'}
-                onClick={(event) => onOpenReview(user, 'approved', event.currentTarget)}
-              >
-                Setujui
-              </Button>
-              <Button
-                size="sm"
-                variant="dangerOutline"
-                disabled={busy}
-                aria-expanded={isReviewing && review.decision === 'rejected'}
-                onClick={(event) => onOpenReview(user, 'rejected', event.currentTarget)}
-              >
-                Tolak
-              </Button>
-            </div>
-          ) : (
-            <span className="supporting-text">Sudah ditinjau</span>
-          )}
+          <div className={styles.tableActions}>
+            <AccountActions user={user} review={review} busy={busy} onOpenReview={onOpenReview} />
+          </div>
         </td>
       </tr>
       {isReviewing && (

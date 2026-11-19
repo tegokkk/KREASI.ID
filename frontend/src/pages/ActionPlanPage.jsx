@@ -15,6 +15,7 @@ import {
   INITIAL_ACTION_PLAN_VALUES,
 } from '../features/action-plan/template';
 import { useJourney } from '../features/journey/JourneyProvider';
+import { recapAnswers } from '../features/journey/recap-answers';
 import { useEphemeralReset } from '../features/useEphemeralReset';
 import styles from './ActivityPage.module.css';
 
@@ -42,7 +43,7 @@ function StaticActionPlanFallback() {
 
 export function ActionPlanPage() {
   const navigate = useNavigate();
-  const { journey, stepsById, savingStepId, completeStep } = useJourney();
+  const { journey, stepsById, savingStepId, completeStep, clearRecapStep } = useJourney();
   const [values, setValues] = useState(INITIAL_ACTION_PLAN_VALUES);
   const [errors, setErrors] = useState({});
   const [submittedPlan, setSubmittedPlan] = useState(null);
@@ -121,13 +122,13 @@ export function ActionPlanPage() {
       });
       return;
     }
+    clearRecapStep('action-plan');
     resetAll();
   }
 
   async function handleComplete() {
     setSaveError('');
-    // Never send Action Plan field values in progress requests.
-    const result = await completeStep('action-plan');
+    const result = await completeStep('action-plan', recapAnswers(ACTION_PLAN_FIELDS, (field) => submittedPlan?.[field.id]));
     if (result.ok) {
       navigate('/#jelajahi');
       return;
@@ -224,7 +225,7 @@ export function ActionPlanPage() {
                 onEditPlan={handleEditPlan}
                 onRequestClear={() => setConfirmingClear(true)}
                 confirmingClear={confirmingClear}
-                onConfirmClear={resetAll}
+                onConfirmClear={() => { clearRecapStep('action-plan'); resetAll(); }}
                 onCancelClear={() => setConfirmingClear(false)}
               />
             )}

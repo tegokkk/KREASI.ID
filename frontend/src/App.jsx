@@ -10,11 +10,13 @@ import { RecognizePotentialPage } from './pages/RecognizePotentialPage';
 import { ReflectionPage } from './pages/ReflectionPage';
 import { SelfCheckPage } from './pages/SelfCheckPage';
 import { TipsPage } from './pages/TipsPage';
-import { AuthProvider, RequireAccount, STAFF_ROLES } from './features/auth/AuthProvider';
+import { AuthProvider, RequireAccount, STAFF_ROLES, HISTORY_ROLES } from './features/auth/AuthProvider';
 import { AuthPage } from './features/auth/AuthPage';
 import { VerificationPage } from './features/auth/VerificationPage';
 import { SuperadminPage } from './features/auth/SuperadminPage';
 import { StudentHistoryPage } from './features/auth/StudentHistoryPage';
+import { StaffRecapPage } from './features/auth/StaffRecapPage';
+import { StudentRecapPage } from './features/journey/StudentRecapPage';
 import { JourneyProvider } from './features/journey/JourneyProvider';
 import { RequireStepAccess } from './features/journey/RequireStepAccess';
 
@@ -29,14 +31,22 @@ export function App() {
           <Route path="/kontak" element={<ContactPage />} />
           <Route path="/login" element={<AuthPage />} />
           <Route path="/daftar" element={<AuthPage register />} />
+          <Route path="/daftar-bk" element={<AuthPage register registerStaff />} />
           <Route path="/verifikasi" element={<VerificationPage />} />
           <Route element={<RequireAccount roles={['superadmin']} />}>
             <Route path="/superadmin" element={<SuperadminPage />} />
           </Route>
-          <Route element={<RequireAccount roles={STAFF_ROLES} />}>
+          <Route element={<RequireAccount roles={HISTORY_ROLES} />}>
             <Route path="/riwayat-siswa" element={<StudentHistoryPage />} />
           </Route>
-          <Route element={<RequireAccount />}>
+          <Route element={<RequireAccount roles={STAFF_ROLES} />}>
+            <Route path="/rekap-siswa" element={<StudentHistoryPage key="recaps" recaps />} />
+            <Route path="/rekap-siswa/:studentId" element={<StaffRecapPage />} />
+          </Route>
+          <Route element={<RequireAccount roles={['user']} />}>
+            <Route path="/rekap" element={<StudentRecapPage />} />
+          </Route>
+          <Route element={<RequireAccount roles={['user', 'superadmin']} />}>
             <Route
               path="/self-check"
               element={

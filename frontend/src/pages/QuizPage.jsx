@@ -8,6 +8,7 @@ import { ActivityErrorBoundary } from '../components/ui/ActivityErrorBoundary';
 import { Button } from '../components/ui/Button';
 import { InfoPanel } from '../components/ui/InfoPanel';
 import { useJourney } from '../features/journey/JourneyProvider';
+import { recapAnswers } from '../features/journey/recap-answers';
 import { QuizForm } from '../features/quiz/QuizForm';
 import { QuizPractice } from '../features/quiz/QuizPractice';
 import { QuizResult } from '../features/quiz/QuizResult';
@@ -69,7 +70,10 @@ export function QuizPage() {
 
   async function handleComplete() {
     setSaveError('');
-    const result = await completeStep('kuis');
+    const responses = !isGoogleFormsMode && submitted
+      ? recapAnswers(QUIZ_QUESTIONS, (q) => q.options.find((option) => option.id === answers[q.id])?.text)
+      : undefined;
+    const result = await completeStep('kuis', responses);
     if (result.ok) {
       navigate('/refleksi');
       return;

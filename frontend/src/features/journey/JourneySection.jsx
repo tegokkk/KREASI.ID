@@ -4,12 +4,14 @@ import { ActivityCard } from '../../components/navigation/ActivityCard';
 import { Button } from '../../components/ui/Button';
 import { InfoPanel } from '../../components/ui/InfoPanel';
 import { useJourney } from './JourneyProvider';
+import { useAuth } from '../auth/AuthProvider';
 import styles from './JourneySection.module.css';
 
 const ACTIVITY_BY_ID = Object.fromEntries(ACTIVITIES.map((item) => [item.id, item]));
 
 export function JourneySection({ id = 'jelajahi' }) {
   const { journey, stepsById, loading, error, refreshJourney } = useJourney();
+  const { user } = useAuth();
 
   const summary = journey?.summary ?? {
     totalSteps: 6,
@@ -106,6 +108,8 @@ export function JourneySection({ id = 'jelajahi' }) {
           </div>
         </div>
       </div>
+
+      {summary.isAllCompleted && user?.role === 'user' && <Button to="/rekap" variant="secondary">Buka Rekap Jawaban</Button>}
 
       {error && (
         <InfoPanel tone="error" icon="warning" role="alert" title="Progres perjalanan belum dapat dimuat">

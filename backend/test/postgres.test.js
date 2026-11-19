@@ -116,7 +116,7 @@ test('PostgreSQL supports independent API instances, atomic writes, shared limit
     assert.equal((await cold.repo.getProgress(studentId)).length, 6);
     assert.ok(await cold.auth.api.getSession({ headers: new Headers({ Cookie: studentJar.cookie }) }));
   });
-  await t.test('staff history excludes skipped steps and scopes Guru BK to their school', async () => {
+  await t.test('account administration and shared recaps enforce completion, roles, and school scope', async () => {
     const bkAccount = { email: 'bk@example.test', school: 'smp asal' };
     const provisioning = await createAuthService({ ...options, bkAccount });
     services.push(provisioning);
@@ -127,17 +127,26 @@ test('PostgreSQL supports independent API instances, atomic writes, shared limit
     assert.equal((await bk('/api/auth/sign-in/email', { email: bkAccount.email, password }, headers)).status, 200);
     assert.equal((await bk('/api/admin/users')).status, 403);
 
+    const recaps = '/api/staff/recaps';
+    const fixtureIds = [];
+    const submitted = { share: true, answers: [{ id: 'refleksi', answers: [{ question: 'Uji rekap', answer: 'Contoh jawaban siswa' }] }] };
     for (const [index, school, skipReflection] of [[1, 'SMP Asal', false], [2, 'SMP Lain', false], [3, 'SMP Asal', true]]) {
       const fixture = client(servers[0]);
       const name = `Siswa Riwayat ${index}`;
       const registration = await fixture('/api/auth/sign-up/siswa', { name, nisn: `001234560${index}`, school, password }, headers);
       assert.equal(registration.status, 200);
       const { user } = (await fixture('/api/access/me')).data;
+      fixtureIds.push(user.id);
       await first.repo.reviewAccount({ userId: user.id, adminId, decision: 'approved', note: '' });
       for (const step of JOURNEY_STEPS) {
         const action = skipReflection && step.id === 'refleksi' ? 'skip' : 'complete';
         assert.equal((await first.repo.recordProgress({ userId: user.id, stepId: step.id, action })).allowed, true);
       }
+      const send = await fetch(`http://127.0.0.1:${servers[0].address().port}/api/journey/recap`, {
+        method: 'PUT', headers: { Origin: 'http://localhost:5173', Cookie: registration.headers.getSetCookie().map((value) => value.split(';')[0]).join('; '), 'Content-Type': 'application/json', ...headers },
+        body: JSON.stringify(submitted),
+      });
+      assert.equal(send.status, skipReflection ? 409 : 200);
     }
 
     const history = '/api/staff/student-history';
@@ -146,13 +155,31 @@ test('PostgreSQL supports independent API instances, atomic writes, shared limit
     const adminHistory = await adminB(history);
     assert.equal(adminHistory.status, 200);
     assert.deepEqual(adminHistory.data.students.map(({ name }) => name).sort(), ['Siswa PG', 'Siswa Riwayat 1', 'Siswa Riwayat 2']);
-    const bkHistory = await bk(`${history}?school=SMP%20Lain`);
+    assert.equal((await bk(history)).status, 403);
+    const bkHistory = await bk(`${recaps}?school=SMP%20Lain`);
     assert.equal(bkHistory.status, 200);
     assert.deepEqual(bkHistory.data.students.map(({ name }) => name), ['Siswa Riwayat 1']);
-    const [student] = bkHistory.data.students;
-    assert.deepEqual(student.steps.map(({ id }) => id), JOURNEY_STEPS.map(({ id }) => id));
-    assert.equal(student.finishedAt, student.steps.at(-1).completedAt);
-    assert.equal((await bk(`${history}?page=2`)).data.students.length, 0);
+    assert.equal((await bk(`${recaps}/${fixtureIds[1]}`)).status, 404);
+    assert.deepEqual((await bk(`${recaps}/${fixtureIds[0]}`)).data.recap.answers, submitted.answers);
+    assert.equal((await studentA(recaps)).status, 403);
+    assert.equal((await bk(`${recaps}?page=2`)).data.students.length, 0);
+
+    const applicant = client(servers[1]);
+    assert.equal((await applicant('/api/auth/sign-up/bk', { name: 'Pendaftar BK', email: 'aplicant@example.test', school: 'SMP Asal', password, role: 'superadmin' }, headers)).status, 200);
+    const pending = (await applicant('/api/access/me')).data.user;
+    assert.deepEqual([pending.role, pending.status], ['bk', 'pending']);
+    assert.equal((await applicant(recaps)).status, 403);
+    assert.equal((await adminA(`/api/admin/users/${pending.id}/review`, { decision: 'approved', role: 'admin' })).status, 200);
+    assert.equal((await applicant(recaps)).data.students.length, 2);
+    assert.equal((await applicant('/api/admin/users')).status, 403);
+    assert.equal((await adminA(`/api/admin/users/${fixtureIds[2]}/make-admin`, {})).data.user.role, 'admin');
+    const deleteUrl = `http://127.0.0.1:${servers[0].address().port}/api/admin/users/`;
+    const deleteAsAdmin = (id) => fetch(deleteUrl + id, { method: 'DELETE', headers: { Origin: 'http://localhost:5173', Cookie: adminJar.cookie, ...headers } });
+    assert.equal((await deleteAsAdmin(adminId)).status, 404);
+    assert.equal((await deleteAsAdmin(fixtureIds[0])).status, 200);
+    assert.equal((await bk(`${recaps}/${fixtureIds[0]}`)).status, 404);
+    assert.equal((await first.repo.getProgress(fixtureIds[0])).length, 0);
+    assert.equal(await first.repo.getAccount(fixtureIds[0]), undefined);
   });
   await t.test('audit failure rolls back the approval instead of leaving a partial decision', async () => {
     const account = await first.auth.api.signUpEmail({ body: { name: 'Rollback PG', email: 'rollback@example.test', password } });
@@ -212,7 +239,7 @@ test('PostgreSQL supports independent API instances, atomic writes, shared limit
       await sqlite.repo.recordProgress({ userId: student.user.id, stepId: 'self-check', action: 'skip' });
       const target = await createAuthService({ ...options, schema: 'kreasi_import', migrate: true }); services.push(target);
       const counts = await importSqlite({ sourcePath, pool: target.db, schema: 'kreasi_import' });
-      assert.deepEqual(counts, { user: 2, account: 2, account_reviews: 1, user_journey_progress: 1 });
+      assert.deepEqual(counts, { user: 2, account: 2, account_reviews: 1, user_journey_progress: 1, student_recaps: 0 });
       assert.ok(await target.auth.api.signInEmail({ body: { email: 'legacy-student@example.test', password } }));
       assert.equal((await target.repo.getAccount(student.user.id)).reviewNote, 'Legacy note');
       assert.equal((await target.repo.getProgress(student.user.id))[0].status, 'skipped');

@@ -33,6 +33,7 @@ export function Header() {
   const mobileToggleRef = useRef(null);
 
   const isApprovedUser = Boolean(user && user.status === 'approved');
+  const canBrowseActivities = !isApprovedUser || !['admin', 'bk'].includes(user.role);
   const isActivityRoute = ACTIVITIES.some((item) => item.path === pathname);
 
   useEffect(() => {
@@ -143,7 +144,7 @@ export function Header() {
             value={isActivityRoute ? 'activities' : pathname}
             items={[
               ...MAIN_LINKS.map((item) => ({ value: item.to, ...item })),
-              {
+              ...(canBrowseActivities ? [{
                 value: 'activities',
                 label: 'Kegiatan',
                 onClick: () => setDesktopMenuOpen((open) => !open),
@@ -156,11 +157,11 @@ export function Header() {
                     className={desktopMenuOpen ? styles.chevronOpen : styles.chevron}
                   />
                 ),
-              },
+              }] : []),
               ...SECONDARY_LINKS.map((item) => ({ value: item.to, ...item })),
             ]}
           />
-          {desktopMenuOpen && (
+          {canBrowseActivities && desktopMenuOpen && (
             <div
               id="desktop-activities-menu"
               className={styles.dropdownPanel}
@@ -262,7 +263,7 @@ export function Header() {
               </li>
             </ul>
 
-            <div className={styles.mobileSection}>
+            {canBrowseActivities && <div className={styles.mobileSection}>
               <div className={styles.dropdownHeader}>
                 <p className={styles.mobileSectionLabel}>Kegiatan</p>
                 {isApprovedUser && journey?.summary && (
@@ -283,7 +284,7 @@ export function Header() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div>}
 
             <ul className={styles.mobileMainList}>
               {SECONDARY_LINKS.map((item) => {

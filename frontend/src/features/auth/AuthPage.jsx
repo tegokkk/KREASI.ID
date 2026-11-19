@@ -10,12 +10,12 @@ import styles from './Auth.module.css';
 
 const emptyForm = { name: '', email: '', nisn: '', school: '', password: '' };
 
-export function AuthPage({ register = false }) {
+export function AuthPage({ register = false, registerStaff = false }) {
   const { user, loading, error: connectionError, refresh } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const student = !register && searchParams.get('mode') === 'siswa';
   const legacyEmail = student && searchParams.get('akun') === 'email';
-  const usesNisn = register || (student && !legacyEmail);
+  const usesNisn = (register && !registerStaff) || (student && !legacyEmail);
   const [form, setForm] = useState(emptyForm);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -24,7 +24,7 @@ export function AuthPage({ register = false }) {
     document.title = `${register ? 'Daftar Akun' : student ? 'Login Siswa' : 'Login Guru BK & Superadmin'} — KREASI.ID`;
     setForm(emptyForm);
     setError('');
-  }, [register, student, legacyEmail]);
+  }, [register, registerStaff, student, legacyEmail]);
 
   if (loading || connectionError) return <AuthLoading />;
   if (user) return <Navigate to={accountDestination(user)} replace />;
@@ -43,7 +43,7 @@ export function AuthPage({ register = false }) {
     setBusy(true);
     try {
       const action = register ? 'sign-up' : 'sign-in';
-      const method = usesNisn ? 'siswa' : 'email';
+      const method = registerStaff ? 'bk' : usesNisn ? 'siswa' : 'email';
       const body = usesNisn ? { nisn, password } : { email, password };
       if (register) Object.assign(body, { name, school });
       await accountRequest(`/api/auth/${action}/${method}`, { method: 'POST', body });
@@ -57,9 +57,9 @@ export function AuthPage({ register = false }) {
   }
 
   const AuthIcon = student || register ? GraduationCap : LockKeyhole;
-  const title = register ? 'Daftar akun siswa' : student ? 'Masuk sebagai siswa' : 'Selamat datang kembali';
+  const title = registerStaff ? 'Daftar akun Guru BK' : register ? 'Daftar akun siswa' : student ? 'Masuk sebagai siswa' : 'Selamat datang kembali';
   const description = register
-    ? 'Daftar untuk mengajukan akses ke KREASI.ID.'
+    ? (registerStaff ? 'Ajukan akses untuk ditinjau oleh Superadmin.' : 'Daftar untuk mengajukan akses ke KREASI.ID.')
     : student ? (legacyEmail ? 'Gunakan email akun yang sudah terdaftar.' : 'Gunakan NISN dan kata sandi akunmu.') : 'Masuk dengan akun Guru BK atau Superadmin.';
 
   return (
@@ -102,11 +102,12 @@ export function AuthPage({ register = false }) {
             )}
             {register && <FormField id="school" name="school" label="Sekolah" required maxLength={150} value={form.school} onChange={change('school')} />}
             <FormField id="password" name="password" label="Kata sandi" required type="password" autoComplete={register ? 'new-password' : 'current-password'} minLength={register ? 12 : undefined} maxLength={128} helperText={register ? 'Gunakan minimal 12 karakter.' : undefined} value={form.password} onChange={change('password')} />
-            {register && <p className={styles.privacy}>Nama, NISN, dan sekolah digunakan untuk membuat akun dan meninjau akses oleh superadmin. Jawaban kegiatan pribadi diproses sementara di perangkatmu.</p>}
+            {register && !registerStaff && <p className={styles.privacy}>Nama, NISN, dan sekolah digunakan untuk verifikasi akun. Kamu dapat memilih jawaban yang ingin dibagikan kepada staf melalui menu Rekap Jawaban.</p>}
             {error && <p className={styles.error} role="alert">{error}</p>}
             <Button type="submit" fullWidth disabled={busy}>{busy ? 'Memproses…' : register ? 'Daftar Akun' : 'Masuk'}<ArrowRight size={18} aria-hidden="true" /></Button>
           </form>
-          {register && <p className={styles.switchLink}>Sudah punya akun? <Link to="/login?mode=siswa">Login Siswa</Link></p>}
+          {register && <p className={styles.switchLink}>Sudah punya akun? {registerStaff ? <Link to="/login">Login Guru BK</Link> : <Link to="/login?mode=siswa">Login Siswa</Link>}</p>}
+          {!register && !student && <p className={styles.switchLink}><Link to="/daftar-bk">Daftar akun Guru BK</Link></p>}
           {student && <p className={styles.switchLink}>Belum punya akun? <Link to="/daftar">Daftar sekarang</Link></p>}
           {student && <p className={styles.switchLink}><Link to={legacyEmail ? '?mode=siswa' : '?mode=siswa&akun=email'}>{legacyEmail ? 'Masuk dengan NISN' : 'Masuk dengan email akun lama'}</Link></p>}
           <p className={styles.switchLink}><Link to="/">Kembali ke Beranda</Link></p>

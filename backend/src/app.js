@@ -46,12 +46,16 @@ export function createApp({ getPublicConfig, authService, distDir = defaultDistD
     app.use('/api/auth', createStudentAuthRouter(authService.auth));
     app.all('/api/auth/*splat', toNodeHandler(authService.auth));
   }
+  app.use('/api/journey/recap', express.json({ limit: '160kb' }));
   app.use(express.json({ limit: '16kb' }));
   const access = createAccessControl(authService);
   app.use('/api/access', access.accessRouter);
   app.use('/api/admin', access.adminRouter);
   app.use('/api/staff', access.staffRouter);
-  app.use('/api/journey', access.requireApproved, createJourneyRouter(authService));
+  app.use('/api/journey', access.requireApproved, (req, res, next) => {
+    if (['admin', 'bk'].includes(req.account.role)) return res.status(403).json({ error: 'Kegiatan tersedia untuk akun siswa.' });
+    next();
+  }, createJourneyRouter(authService));
   app.get('/api/support', (_req, res) => {
     res.json({ support: getPublicConfig().support });
   });
