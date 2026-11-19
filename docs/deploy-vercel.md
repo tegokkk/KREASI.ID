@@ -50,7 +50,7 @@ Root Directory harus `./`, bukan hanya `frontend` atau `backend`.
 
 Konfigurasi yang sama sudah ada di repository. Sertakan folder `api`, `backend`, `frontend`, file root `package.json`, `package-lock.json`, dan `vercel.json`. `.vercelignore` mengecualikan kredensial lokal, SQLite, hasil tes, dan proposal dari upload deployment.
 
-Folder kerja ini belum merupakan repository Git. Anda dapat membuat repository lalu mengimpornya melalui dashboard, atau mengunggah folder langsung menggunakan CLI. Untuk jalur CLI, jalankan dari root:
+Repository tersedia di [tegokkk/KREASI.ID](https://github.com/tegokkk/KREASI.ID), dengan branch `main`. Import repository tersebut melalui dashboard Vercel menggunakan konfigurasi di atas. Sebagai alternatif, untuk jalur CLI, jalankan dari root:
 
 ```powershell
 npx vercel@66.2.0 login
