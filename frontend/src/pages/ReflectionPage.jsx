@@ -98,10 +98,12 @@ export function ReflectionPage() {
             </InfoPanel>
           )}
 
-          <InfoPanel tone="pink" icon="privacy" title="Catatan pribadi & sementara">
+          <InfoPanel tone="pink" icon="privacy" title="Tersimpan otomatis saat dilanjutkan">
             <p>
-              Kamu boleh menulis di sini atau di buku catatan. Isian di halaman ini bersifat
-              sementara di browser. Hanya bagian yang kamu pilih dan kirim lewat Rekap Jawaban yang dibagikan kepada staf.
+              Kamu boleh menulis di sini atau di buku catatan. Jika kamu menuliskan refleksi lalu
+              menekan <strong>Lanjut ke Action Plan</strong>, isi refleksimu tersimpan otomatis di
+              Rekap Jawaban akunmu untuk pendampingan Guru BK, Admin, dan Superadmin. Tekan{' '}
+              <strong>Lewati untuk sekarang</strong> jika tidak ingin menyimpan teks.
             </p>
           </InfoPanel>
 

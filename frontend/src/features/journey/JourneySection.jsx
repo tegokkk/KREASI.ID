@@ -1,4 +1,14 @@
-import { ArrowRight, CheckCircle2, Compass, FastForward, Loader2, Sparkles } from 'lucide-react';
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  ChevronDown,
+  ClipboardList,
+  Compass,
+  FastForward,
+  Loader2,
+  Sparkles,
+} from 'lucide-react';
 import { ACTIVITIES } from '../../content/activities';
 import { ActivityCard } from '../../components/navigation/ActivityCard';
 import { Button } from '../../components/ui/Button';
@@ -8,10 +18,26 @@ import { useAuth } from '../auth/AuthProvider';
 import styles from './JourneySection.module.css';
 
 const ACTIVITY_BY_ID = Object.fromEntries(ACTIVITIES.map((item) => [item.id, item]));
+const ANSWER_ACTIVITIES = ACTIVITIES.filter((item) =>
+  ['self-check', 'kuis', 'refleksi', 'action-plan'].includes(item.id)
+);
+const recapDateFormat = new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
 
 export function JourneySection({ id = 'jelajahi' }) {
-  const { journey, stepsById, loading, error, refreshJourney } = useJourney();
+  const {
+    journey,
+    stepsById,
+    loading,
+    error,
+    refreshJourney,
+    recap,
+    recapLoading,
+    recapError,
+    refreshRecap,
+    recapDraft,
+  } = useJourney();
   const { user } = useAuth();
+  const isStudent = user?.role === 'user';
 
   const summary = journey?.summary ?? {
     totalSteps: 6,
@@ -21,6 +47,19 @@ export function JourneySection({ id = 'jelajahi' }) {
     isAllCompleted: false,
     currentStepId: 'self-check',
   };
+
+  const mergedSections = new Map(
+    (recap?.answers || []).map((section) => [section.id, section])
+  );
+  for (const [stepId, entries] of Object.entries(recapDraft || {})) {
+    if (Array.isArray(entries) && entries.length > 0) {
+      mergedSections.set(stepId, { id: stepId, answers: entries });
+    }
+  }
+  const savedRecapSections = ANSWER_ACTIVITIES.flatMap((activity) => {
+    const section = mergedSections.get(activity.id);
+    return section ? [{ activity, answers: section.answers }] : [];
+  });
 
   const currentActivity = ACTIVITY_BY_ID[summary.currentStepId] || ACTIVITIES[0];
   let primaryLabel = 'Mulai Perjalanan';
@@ -48,7 +87,7 @@ export function JourneySection({ id = 'jelajahi' }) {
           </h1>
           <p className={styles.heroLead}>
             {summary.isAllCompleted
-              ? 'Selamat! Keenam langkah eksplorasi sudah selesai. Kamu bisa meninjau kembali materi atau rencanamu kapan saja.'
+              ? 'Selamat! Keenam langkah eksplorasi sudah selesai. Kamu bisa meninjau kembali materi atau rekap jawabanmu kapan saja.'
               : 'Ikuti enam langkah secara berurutan dari Self-check sampai Action Plan. Langkah yang dilewati tetap bisa kamu kerjakan kembali nanti.'}
           </p>
 
@@ -109,8 +148,6 @@ export function JourneySection({ id = 'jelajahi' }) {
         </div>
       </div>
 
-      {summary.isAllCompleted && user?.role === 'user' && <Button to="/rekap" variant="secondary">Buka Rekap Jawaban</Button>}
-
       {error && (
         <InfoPanel tone="error" icon="warning" role="alert" title="Progres perjalanan belum dapat dimuat">
           <p>{error}</p>
@@ -169,6 +206,108 @@ export function JourneySection({ id = 'jelajahi' }) {
             );
           })}
         </ol>
+      )}
+
+      {isStudent && (
+        <section
+          id="rekap-jawaban"
+          className={styles.recapSection}
+          aria-labelledby="student-recap-heading"
+        >
+          <div className={styles.recapHeader}>
+            <div className={styles.recapTitleGroup}>
+              <div className={styles.recapBadgeRow}>
+                <span className={styles.recapPill}>
+                  <ClipboardList size={15} aria-hidden="true" />
+                  <span>
+                    {savedRecapSections.length} dari {ANSWER_ACTIVITIES.length} kegiatan terekam
+                  </span>
+                </span>
+                {recap?.submittedAt && (
+                  <span className={styles.recapDate}>
+                    Terakhir diperbarui {recapDateFormat.format(new Date(recap.submittedAt))}
+                  </span>
+                )}
+              </div>
+              <h2 id="student-recap-heading" className="section-title">
+                Rekap Jawabanmu
+              </h2>
+              <p className={styles.recapLead}>
+                Jawaban dari Self-check, Kuis, Refleksi, dan Action Plan tersimpan otomatis setelah
+                kamu menyelesaikan langkah agar bisa ditinjau kembali olehmu maupun guru BK sekolahmu.
+              </p>
+            </div>
+
+            <div className={styles.recapHeaderAction}>
+              <Button to="/rekap" size="sm" variant="secondary">
+                <span>Buka Rekap Lengkap</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </Button>
+            </div>
+          </div>
+
+          {recapError && (
+            <InfoPanel tone="error" icon="warning" role="alert" title="Rekap jawaban belum dapat dimuat">
+              <p>{recapError}</p>
+              <div className={styles.retryWrap}>
+                <Button variant="secondary" size="sm" onClick={refreshRecap}>
+                  Coba Lagi
+                </Button>
+              </div>
+            </InfoPanel>
+          )}
+
+          {recapLoading && !recap ? (
+            <div className={styles.recapLoading} role="status">
+              <Loader2 size={18} aria-hidden="true" className={styles.spinner} />
+              <span>Memuat rekap jawabanmu…</span>
+            </div>
+          ) : savedRecapSections.length > 0 ? (
+            <div className={styles.recapList}>
+              {savedRecapSections.map(({ activity, answers }, index) => (
+                <details
+                  key={activity.id}
+                  className={styles.recapAccordion}
+                  open={index === 0}
+                >
+                  <summary className={styles.recapSummary}>
+                    <span className={styles.recapSummaryTitle}>
+                      <span className={styles.recapStepTag}>Langkah {activity.step}</span>
+                      <span>{activity.title}</span>
+                    </span>
+                    <span className={styles.recapSummaryMeta}>
+                      <span>{answers.length} isian</span>
+                      <ChevronDown size={16} aria-hidden="true" className={styles.recapChevron} />
+                    </span>
+                  </summary>
+                  <dl className={styles.recapAnswers}>
+                    {answers.map((entry, entryIdx) => (
+                      <div key={`${activity.id}-${entryIdx}`} className={styles.recapAnswerItem}>
+                        <dt>{entry.question}</dt>
+                        <dd>{entry.answer}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </details>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.recapEmpty}>
+              <BookOpen size={20} aria-hidden="true" className={styles.recapEmptyIcon} />
+              <div className={styles.recapEmptyText}>
+                <p>
+                  <strong>Belum ada jawaban terekam.</strong>
+                </p>
+                <p>
+                  Selesaikan Self-check, Kuis, Refleksi, atau Action Plan untuk melihat rekapan
+                  jawabanmu tampil langsung di sini. Jika kamu menuntaskan kegiatan sebelum fitur
+                  ini aktif, buka kembali kegiatan tersebut lalu tekan tombol Selesai untuk
+                  menyimpan jawabannya.
+                </p>
+              </div>
+            </div>
+          )}
+        </section>
       )}
     </section>
   );

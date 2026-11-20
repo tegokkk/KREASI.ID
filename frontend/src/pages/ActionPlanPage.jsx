@@ -151,10 +151,11 @@ export function ActionPlanPage() {
             <p className="lead-text">Susun satu rencana kecil yang bisa kamu mulai.</p>
           </div>
 
-          <InfoPanel tone="mint" icon="privacy" title="Simpan salinan rencanamu sebelum keluar">
+          <InfoPanel tone="mint" icon="privacy" title="Tersimpan di Rekap &amp; siap disalin">
             <p>
-              Salin rencanamu ke buku atau catatan pribadi sebelum keluar jika ingin membacanya
-              kembali. Membuka ulang halaman ini akan memulai isian baru.
+              Saat kamu menekan <strong>Selesai &amp; Kembali ke Perjalanan</strong>, Action Plan ini
+              otomatis tersimpan ke menu Rekap Jawaban pada dashboardmu dan dapat dilihat staf
+              terkait. Kamu juga dapat menyalinnya langsung ke catatan pribadi atau buku BK.
             </p>
           </InfoPanel>
 

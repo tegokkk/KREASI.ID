@@ -3,6 +3,27 @@ import { SCHEMA_VERSION } from './migrations.js';
 
 export const ACCOUNT_FIELDS = 'id, name, CASE WHEN nisn IS NULL THEN email END AS email, nisn, school, role, status, "reviewNote", "createdAt"';
 const PAGE_SIZE = 20;
+const ANSWER_STEP_ORDER = ['self-check', 'kuis', 'refleksi', 'action-plan'];
+
+function mergeRecapSections(existingJson, stepId, entries) {
+  let current = [];
+  if (existingJson) {
+    try {
+      const parsed = JSON.parse(existingJson);
+      if (Array.isArray(parsed)) current = parsed;
+    } catch {
+      current = [];
+    }
+  }
+  const byId = new Map(current.filter((item) => item?.id && Array.isArray(item.answers)).map((item) => [item.id, item]));
+  byId.set(stepId, { id: stepId, answers: entries });
+  return ANSWER_STEP_ORDER.flatMap((id) => (byId.has(id) ? [byId.get(id)] : []));
+}
+
+function parseRecapRow(row) {
+  if (!row) return null;
+  return { submittedAt: row.submitted_at, answers: JSON.parse(row.answers) };
+}
 
 function countsFromRows(rows) {
   const counts = { pending: 0, approved: 0, rejected: 0 };
@@ -43,6 +64,9 @@ export function createRepository(database, { dialect, schema }) {
     status = 'completed', completed_at = COALESCE(${table('user_journey_progress')}.completed_at, excluded.completed_at), updated_at = excluded.updated_at`;
   const skipSql = `INSERT INTO ${table('user_journey_progress')} (user_id, step_id, status, completed_at, updated_at)
     VALUES ($1, $2, 'skipped', NULL, $3) ON CONFLICT(user_id, step_id) DO NOTHING`;
+  const selectRecapSql = `SELECT answers, submitted_at FROM ${table('student_recaps')} WHERE user_id = $1`;
+  const upsertRecapSql = `INSERT INTO ${table('student_recaps')} (user_id, answers, submitted_at)
+    VALUES ($1, $2, $3) ON CONFLICT(user_id) DO UPDATE SET answers = excluded.answers, submitted_at = excluded.submitted_at`;
   const recapColumns = 'u.id, u.name, u.nisn, u.school, r.submitted_at AS "submittedAt"';
   const recapJoin = `FROM ${table('student_recaps')} r JOIN ${table('user')} u ON u.id = r.user_id
     WHERE u.role = 'user' AND u.status = 'approved'
@@ -94,22 +118,45 @@ export function createRepository(database, { dialect, schema }) {
     async saveRecap(id, answers) {
       const row = await one(`INSERT INTO ${table('student_recaps')} (user_id, answers, submitted_at)
         SELECT u.id, $2, $3 FROM ${table('user')} u WHERE u.id = $1 AND u.role = 'user' AND u.status = 'approved'
-        AND (SELECT COUNT(*) FROM ${table('user_journey_progress')} WHERE user_id = u.id AND status = 'completed') = $4
         ON CONFLICT(user_id) DO UPDATE SET answers = excluded.answers, submitted_at = excluded.submitted_at
-        RETURNING submitted_at AS "submittedAt"`, [id, JSON.stringify(answers), new Date().toISOString(), JOURNEY_STEPS.length]);
+        RETURNING submitted_at AS "submittedAt"`, [id, JSON.stringify(answers), new Date().toISOString()]);
       return row ? { ...row, answers } : null;
     },
     async removeRecap(id) {
       await one(`DELETE FROM ${table('student_recaps')} WHERE user_id = $1 RETURNING user_id`, [id]);
     },
     async listRecaps({ page, school }) {
-      const students = await all(`SELECT ${recapColumns} ${recapJoin}
+      const rows = await all(`SELECT ${recapColumns}, r.answers,
+        (SELECT COUNT(*) FROM ${table('user_journey_progress')} p WHERE p.user_id = u.id AND p.status = 'completed') AS completed_count
+        ${recapJoin}
         ORDER BY r.submitted_at DESC, u.id DESC LIMIT $2 OFFSET $3`, [school, PAGE_SIZE + 1, (page - 1) * PAGE_SIZE]);
-      return { page, hasMore: students.length > PAGE_SIZE, students: students.slice(0, PAGE_SIZE) };
+      return {
+        page,
+        hasMore: rows.length > PAGE_SIZE,
+        students: rows.slice(0, PAGE_SIZE).map(({ answers, completed_count, ...student }) => {
+          const parsed = JSON.parse(answers);
+          return {
+            ...student,
+            completedCount: Number(completed_count),
+            totalSteps: JOURNEY_STEPS.length,
+            sectionIds: parsed.map((section) => section.id),
+            sectionCount: parsed.length,
+          };
+        }),
+      };
     },
     async staffRecap(id, school) {
-      const row = await one(`SELECT ${recapColumns}, r.answers ${recapJoin} AND u.id = $2`, [school, id]);
-      return row ? { ...row, answers: JSON.parse(row.answers) } : null;
+      const row = await one(`SELECT ${recapColumns}, r.answers,
+        (SELECT COUNT(*) FROM ${table('user_journey_progress')} p WHERE p.user_id = u.id AND p.status = 'completed') AS completed_count
+        ${recapJoin} AND u.id = $2`, [school, id]);
+      if (!row) return null;
+      const { answers, completed_count, ...student } = row;
+      return {
+        ...student,
+        completedCount: Number(completed_count),
+        totalSteps: JOURNEY_STEPS.length,
+        answers: JSON.parse(answers),
+      };
     },
     async listCompletedStudents({ page, school }) {
       const stepIds = JOURNEY_STEPS.map((step) => step.id);
@@ -130,16 +177,28 @@ export function createRepository(database, { dialect, schema }) {
         ORDER BY finished_at DESC NULLS LAST, p.user_id DESC
         LIMIT ${limit} OFFSET ${offset}
       )
-      SELECT u.id, u.name, u.nisn, u.school, f.finished_at, p.step_id, p.completed_at
+      SELECT u.id, u.name, u.nisn, u.school, f.finished_at, r.submitted_at AS recap_submitted_at, p.step_id, p.completed_at
       FROM finished f
       JOIN ${table('user')} u ON u.id = f.user_id
+      LEFT JOIN ${table('student_recaps')} r ON r.user_id = f.user_id
       JOIN ${table('user_journey_progress')} p ON p.user_id = f.user_id AND p.step_id IN (${stepParams})
       ORDER BY f.finished_at DESC NULLS LAST, u.id DESC`,
       [...stepIds, stepIds.length, school, PAGE_SIZE + 1, (page - 1) * PAGE_SIZE]);
 
       const students = new Map();
-      for (const { id, name, nisn, school, finished_at, step_id, completed_at } of rows) {
-        if (!students.has(id)) students.set(id, { id, name, nisn, school, finishedAt: finished_at, dates: new Map() });
+      for (const { id, name, nisn, school, finished_at, recap_submitted_at, step_id, completed_at } of rows) {
+        if (!students.has(id)) {
+          students.set(id, {
+            id,
+            name,
+            nisn,
+            school,
+            finishedAt: finished_at,
+            hasRecap: Boolean(recap_submitted_at),
+            recapSubmittedAt: recap_submitted_at ?? null,
+            dates: new Map(),
+          });
+        }
         students.get(id).dates.set(step_id, completed_at);
       }
       return {
@@ -207,7 +266,7 @@ export function createRepository(database, { dialect, schema }) {
         return { kind: 'reviewed', user, counts: countsFromRows((await client.query(countsSql)).rows) };
       });
     },
-    recordProgress({ userId, stepId, action }) {
+    recordProgress({ userId, stepId, action, answers = null }) {
       const now = new Date().toISOString();
       if (dialect === 'sqlite') return sqliteTransaction(() => {
         const rows = all(progressSql, [userId]);
@@ -215,7 +274,13 @@ export function createRepository(database, { dialect, schema }) {
         if (!before.allowed) return before;
         const saved = rows.find((row) => row.step_id === stepId);
         if (saved?.status !== 'completed') run(action === 'complete' ? completeSql : skipSql, [userId, stepId, now]);
-        return progressResult(all(progressSql, [userId]), stepId);
+        if (action === 'complete' && answers?.length) {
+          const existing = one(selectRecapSql, [userId]);
+          const merged = mergeRecapSections(existing?.answers, stepId, answers);
+          run(upsertRecapSql, [userId, JSON.stringify(merged), now]);
+        }
+        const recap = parseRecapRow(one(selectRecapSql, [userId]));
+        return { ...progressResult(all(progressSql, [userId]), stepId), recap };
       });
       return pgTransaction(async (client) => {
         // Lock one existing parent row: serializes every step action for this user across instances.
@@ -225,7 +290,13 @@ export function createRepository(database, { dialect, schema }) {
         if (!before.allowed) return before;
         const saved = rows.find((row) => row.step_id === stepId);
         if (saved?.status !== 'completed') await client.query(action === 'complete' ? completeSql : skipSql, [userId, stepId, now]);
-        return progressResult((await client.query(progressSql, [userId])).rows, stepId);
+        if (action === 'complete' && answers?.length) {
+          const existing = (await client.query(selectRecapSql, [userId])).rows[0];
+          const merged = mergeRecapSections(existing?.answers, stepId, answers);
+          await client.query(upsertRecapSql, [userId, JSON.stringify(merged), now]);
+        }
+        const recap = parseRecapRow((await client.query(selectRecapSql, [userId])).rows[0]);
+        return { ...progressResult((await client.query(progressSql, [userId])).rows, stepId), recap };
       });
     },
   };

@@ -146,7 +146,7 @@ test('PostgreSQL supports independent API instances, atomic writes, shared limit
         method: 'PUT', headers: { Origin: 'http://localhost:5173', Cookie: registration.headers.getSetCookie().map((value) => value.split(';')[0]).join('; '), 'Content-Type': 'application/json', ...headers },
         body: JSON.stringify(submitted),
       });
-      assert.equal(send.status, skipReflection ? 409 : 200);
+      assert.equal(send.status, 200);
     }
 
     const history = '/api/staff/student-history';
@@ -155,12 +155,17 @@ test('PostgreSQL supports independent API instances, atomic writes, shared limit
     const adminHistory = await adminB(history);
     assert.equal(adminHistory.status, 200);
     assert.deepEqual(adminHistory.data.students.map(({ name }) => name).sort(), ['Siswa PG', 'Siswa Riwayat 1', 'Siswa Riwayat 2']);
+    assert.equal(adminHistory.data.students.find((s) => s.name === 'Siswa Riwayat 1')?.hasRecap, true);
+    assert.equal(adminHistory.data.students.find((s) => s.name === 'Siswa PG')?.hasRecap, false);
     assert.equal((await bk(history)).status, 403);
     const bkHistory = await bk(`${recaps}?school=SMP%20Lain`);
     assert.equal(bkHistory.status, 200);
-    assert.deepEqual(bkHistory.data.students.map(({ name }) => name), ['Siswa Riwayat 1']);
+    assert.deepEqual(bkHistory.data.students.map(({ name }) => name).sort(), ['Siswa Riwayat 1', 'Siswa Riwayat 3']);
+    assert.equal(bkHistory.data.students[0].sectionCount, 1);
+    assert.deepEqual(bkHistory.data.students[0].sectionIds, ['refleksi']);
     assert.equal((await bk(`${recaps}/${fixtureIds[1]}`)).status, 404);
     assert.deepEqual((await bk(`${recaps}/${fixtureIds[0]}`)).data.recap.answers, submitted.answers);
+    assert.equal((await adminB(recaps)).data.students.length, 3);
     assert.equal((await studentA(recaps)).status, 403);
     assert.equal((await bk(`${recaps}?page=2`)).data.students.length, 0);
 
@@ -170,7 +175,7 @@ test('PostgreSQL supports independent API instances, atomic writes, shared limit
     assert.deepEqual([pending.role, pending.status], ['bk', 'pending']);
     assert.equal((await applicant(recaps)).status, 403);
     assert.equal((await adminA(`/api/admin/users/${pending.id}/review`, { decision: 'approved', role: 'admin' })).status, 200);
-    assert.equal((await applicant(recaps)).data.students.length, 2);
+    assert.equal((await applicant(recaps)).data.students.length, 3);
     assert.equal((await applicant('/api/admin/users')).status, 403);
     assert.equal((await adminA(`/api/admin/users/${fixtureIds[2]}/make-admin`, {})).data.user.role, 'admin');
     const deleteUrl = `http://127.0.0.1:${servers[0].address().port}/api/admin/users/`;

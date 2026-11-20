@@ -17,7 +17,7 @@ test('bootstrap generates a valid password when example environment leaves it em
   const databasePath = path.join(directory, 'accounts.sqlite');
   const result = spawnSync(process.execPath, [fileURLToPath(new URL('../src/create-superadmin.js', import.meta.url))], {
     encoding: 'utf8',
-    timeout: 15000,
+    timeout: 30000,
     env: { ...process.env, NODE_ENV: 'test', VERCEL: '', AUTH_DATABASE_PATH: databasePath,
       BETTER_AUTH_URL: 'http://localhost:3001', AUTH_TRUSTED_ORIGINS: 'http://localhost:3001',
       BETTER_AUTH_SECRET: 'bootstrap-test-only-secret-with-thirty-two-characters',

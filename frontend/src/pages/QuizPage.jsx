@@ -70,9 +70,32 @@ export function QuizPage() {
 
   async function handleComplete() {
     setSaveError('');
-    const responses = !isGoogleFormsMode && submitted
-      ? recapAnswers(QUIZ_QUESTIONS, (q) => q.options.find((option) => option.id === answers[q.id])?.text)
-      : undefined;
+    let responses;
+    if (!isGoogleFormsMode && submitted) {
+      const correctCount = QUIZ_QUESTIONS.reduce(
+        (total, question) => total + (answers[question.id] === question.correctOptionId ? 1 : 0),
+        0
+      );
+      responses = [
+        {
+          question: 'Skor Kuis Pemahaman',
+          answer: `${correctCount} dari ${QUIZ_QUESTIONS.length} soal benar`,
+        },
+        ...recapAnswers(QUIZ_QUESTIONS, (question) => {
+          const chosen = question.options.find((option) => option.id === answers[question.id]);
+          if (!chosen) return '';
+          const statusLabel = chosen.id === question.correctOptionId ? 'Benar' : 'Belum tepat';
+          return `${chosen.text} (${statusLabel})`;
+        }),
+      ];
+    } else if (isGoogleFormsMode && formsConfirmed) {
+      responses = [
+        {
+          question: 'Mode Kuis',
+          answer: 'Dikerjakan melalui Google Forms (dikonfirmasi siswa)',
+        },
+      ];
+    }
     const result = await completeStep('kuis', responses);
     if (result.ok) {
       navigate('/refleksi');

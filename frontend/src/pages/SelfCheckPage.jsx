@@ -144,10 +144,12 @@ export function SelfCheckPage() {
             </InfoPanel>
           )}
 
-          <InfoPanel tone="mint" icon="privacy" title="Bersifat pribadi & tidak menentukan bakat">
+          <InfoPanel tone="mint" icon="privacy" title="Tersimpan otomatis ke Rekap Jawabanmu">
             <p>
-              Jawabanmu membantu kamu melihat hal yang menarik untuk dicoba. Hasil ini tidak
-              menentukan bakatmu. Kamu dapat meninjau pilihan ini sebelum membagikannya lewat Rekap Jawaban.
+              Jawabanmu membantu kamu melihat hal yang menarik untuk dicoba dan tidak menentukan
+              bakatmu. Saat kamu menekan <strong>Selesai &amp; Lanjut</strong>, pilihanmu otomatis
+              tersimpan ke menu Rekap Jawaban agar dapat kamu tinjau kembali serta dilihat oleh Guru
+              BK sekolahmu, Admin, dan Superadmin.
             </p>
           </InfoPanel>
 

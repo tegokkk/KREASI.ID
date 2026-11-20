@@ -82,8 +82,6 @@ test('signup, pending approval, superadmin review, six activities, and progress 
   const personalText = 'PRIVATE_BROWSER_ONLY_ACTION_8419';
   const nisn = '0012345678';
   const school = 'SMP Uji Alur';
-  const postedBodies = [];
-  page.on('request', (request) => { if (request.method() === 'POST') postedBodies.push(request.postData() || ''); });
   await page.goto('/daftar');
   await page.getByLabel('Nama', { exact: true }).fill('Siswa Alur');
   await page.getByLabel('NISN', { exact: true }).fill(nisn);
@@ -140,30 +138,41 @@ test('signup, pending approval, superadmin review, six activities, and progress 
   await page.getByRole('button', { name: 'Lihat Rencanaku', exact: true }).click();
   await finish.click();
   await expect(page.getByText('Perjalanan tuntas!', { exact: true })).toBeVisible();
-  expect(postedBodies.join('')).not.toContain(personalText);
   expect(await page.evaluate(() => JSON.stringify({ ...localStorage, ...sessionStorage }))).not.toContain(personalText);
   expect((await (await page.request.get('/api/journey')).json()).summary.completedCount).toBe(6);
   expect((await page.request.get('/api/staff/student-history')).status()).toBe(403);
+
+  // Dashboard siswa otomatis menampilkan Rekap Jawabanmu tanpa perlu kirim manual
+  const studentRecapSection = page.getByRole('region', { name: 'Rekap Jawabanmu' });
+  await expect(studentRecapSection).toBeVisible();
+  await expect(studentRecapSection.getByText('4 dari 4 kegiatan terekam')).toBeVisible();
+  await expect(studentRecapSection.getByText('Langkah 4', { exact: true })).toBeVisible();
+  await expect(studentRecapSection.getByText('Langkah 6', { exact: true })).toBeVisible();
 
   const dashboardMenu = admin.getByRole('navigation', { name: 'Menu dashboard' });
   await dashboardMenu.getByRole('link', { name: 'Riwayat Siswa' }).click();
   const history = admin.getByRole('region', { name: 'Siswa yang sudah tuntas' });
   await expect(history.getByRole('heading', { name: 'Siswa Alur', exact: true })).toBeVisible();
+  await expect(history.getByRole('link', { name: 'Lihat Jawaban' })).toBeVisible();
   await history.getByText('Rincian langkah', { exact: true }).click();
   await expect(history.getByText('Action Plan', { exact: true })).toBeVisible();
-  await expect(admin.getByText(personalText, { exact: false })).toHaveCount(0);
 
+  // Superadmin dashboard Rekap Jawaban Siswa langsung terisi otomatis
   await dashboardMenu.getByRole('link', { name: 'Rekap Jawaban Siswa' }).click();
-  await expect(admin.getByText('Belum ada rekap yang dibagikan siswa.')).toBeVisible();
-  await page.getByRole('link', { name: 'Buka Rekap Jawaban' }).click();
-  await expect(page.getByRole('heading', { name: 'Rekap Jawaban', exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Kirim Rekap' })).toBeDisabled();
-  await page.getByLabel('Bagikan Action Plan').uncheck();
-  await page.getByLabel('Saya ingin membagikan jawaban yang dipilih.').check();
-  await page.getByRole('button', { name: 'Kirim Rekap' }).click();
-  await expect(page.getByText('Rekap sudah dibagikan.', { exact: true })).toBeVisible();
-  await admin.getByRole('button', { name: 'Muat Ulang' }).click();
+  await expect(admin.getByText('4/4 kegiatan dijawab')).toBeVisible();
   await admin.getByRole('link', { name: 'Lihat Jawaban' }).click();
+  await expect(admin.getByRole('region', { name: 'Kuis' }).getByText(/Skor Kuis Pemahaman/i)).toBeVisible();
+  await expect(admin.getByRole('region', { name: 'Refleksi' }).getByText(personalText, { exact: true })).toBeVisible();
+  await expect(admin.getByRole('region', { name: 'Action Plan' }).getByText(personalText, { exact: true }).first()).toBeVisible();
+
+  // Siswa dapat meninjau & memperbarui pilihan di /rekap (mis. menghapus bagian Action Plan)
+  await page.getByRole('link', { name: 'Buka Rekap Lengkap' }).click();
+  await expect(page).toHaveURL(/\/rekap$/);
+  await expect(page.getByRole('heading', { name: 'Rekap Jawaban', exact: true })).toBeVisible();
+  await page.getByLabel('Bagikan Action Plan').uncheck();
+  await page.getByRole('button', { name: 'Simpan Pilihan Rekap' }).click();
+  await expect(page.getByText('Rekap jawaban sudah diperbarui.', { exact: true })).toBeVisible();
+  await admin.reload();
   await expect(admin.getByRole('region', { name: 'Refleksi' }).getByText(personalText, { exact: true })).toBeVisible();
   await expect(admin.getByRole('region', { name: 'Action Plan' }).getByText(personalText, { exact: true })).toHaveCount(0);
 
@@ -214,16 +223,17 @@ test('signup, pending approval, superadmin review, six activities, and progress 
   await bkContext.close();
   await adminContext.close();
 
-  await page.getByRole('button', { name: 'Tarik Rekap' }).click();
-  await expect(page.getByText('Rekap sudah ditarik dari dashboard staf.')).toBeVisible();
-
   const freshContext = await browser.newContext();
   const fresh = await freshContext.newPage();
   await login(fresh, nisn, { student: true });
   await expect(fresh.getByText('Perjalanan tuntas!', { exact: true })).toBeVisible();
+  await expect(fresh.getByRole('region', { name: 'Rekap Jawabanmu' }).getByText('3 dari 4 kegiatan terekam')).toBeVisible();
   await fresh.goto('/action-plan');
   await expect(fresh.locator('#plan-potensi')).toHaveValue('');
   await freshContext.close();
+
+  await page.getByRole('button', { name: 'Hapus Rekap' }).click();
+  await expect(page.getByText('Rekap sudah dihapus dari penyimpanan akun dan dashboard staf.')).toBeVisible();
 });
 
 test('superadmin adapts to screen sizes and hides stale rows while changing filters', async ({ page }) => {

@@ -74,10 +74,11 @@ test('journey progress enforces sequential access, skip/revisit rules, concurren
   assert.equal((await student('/api/journey/steps/kenali-potensi/access')).status, 403);
   assert.equal((await student('/api/journey/steps/kuis', { action: 'complete' })).status, 403);
 
-  // Skip self-check -> unlocks kenali-potensi, counts separated
+  // Skip self-check -> unlocks kenali-potensi, counts separated, ignores unknown payload
   const skipSc = await student('/api/journey/steps/self-check', {
     action: 'skip',
     reflectionText: 'should never be stored',
+    answers: [{ question: 'Should not save on skip', answer: 'ignored' }],
   });
   assert.equal(skipSc.status, 200);
   assert.equal(skipSc.data.step.status, 'skipped');
@@ -85,15 +86,29 @@ test('journey progress enforces sequential access, skip/revisit rules, concurren
   assert.equal(skipSc.data.journey.summary.completedCount, 0);
   assert.equal(skipSc.data.journey.summary.skippedCount, 1);
   assert.equal(skipSc.data.journey.summary.currentStepId, 'kenali-potensi');
+  assert.equal(skipSc.data.recap, null);
+
+  // Malformed answers rejected cleanly with 400
+  const invalidAnswers = await student('/api/journey/steps/self-check', {
+    action: 'complete',
+    answers: [{ question: '', answer: 'Kosong' }],
+  });
+  assert.equal(invalidAnswers.status, 400);
 
   // Cannot skip non-skippable step
   const badSkip = await student('/api/journey/steps/kenali-potensi', { action: 'skip' });
   assert.equal(badSkip.status, 400);
 
-  // Complete kenali-potensi, mengembangkan-potensi, kuis
+  // Complete kenali-potensi, mengembangkan-potensi, kuis (with 7 answer rows: score + 6 items)
   assert.equal((await student('/api/journey/steps/kenali-potensi', { action: 'complete' })).status, 200);
   assert.equal((await student('/api/journey/steps/mengembangkan-potensi', { action: 'complete' })).status, 200);
-  assert.equal((await student('/api/journey/steps/kuis', { action: 'complete' })).status, 200);
+  const quizAnswers = [
+    { question: 'Skor Kuis Pemahaman', answer: '6 dari 6 soal benar' },
+    { question: 'Soal 1', answer: 'Minat dan kemampuan (Benar)' },
+  ];
+  const quizRes = await student('/api/journey/steps/kuis', { action: 'complete', answers: quizAnswers });
+  assert.equal(quizRes.status, 200);
+  assert.deepEqual(quizRes.data.recap.answers, [{ id: 'kuis', answers: quizAnswers }]);
 
   // Skip refleksi -> unlocks action-plan
   const skipRef = await student('/api/journey/steps/refleksi', { action: 'skip' });
@@ -101,9 +116,10 @@ test('journey progress enforces sequential access, skip/revisit rules, concurren
   assert.equal(skipRef.data.journey.summary.completedCount, 3);
   assert.equal(skipRef.data.journey.summary.skippedCount, 2);
 
-  // Revisit skipped self-check and complete concurrently with skip -> stays completed & preserves completed_at
+  // Revisit skipped self-check and complete concurrently with skip -> stays completed & preserves completed_at and merges self-check answers
+  const scAnswers = [{ question: 'Kegiatan favorit', answer: 'Membaca dan mencari tahu hal baru' }];
   const concurrent = await Promise.all([
-    student('/api/journey/steps/self-check', { action: 'complete' }),
+    student('/api/journey/steps/self-check', { action: 'complete', answers: scAnswers }),
     student('/api/journey/steps/self-check', { action: 'skip' }),
   ]);
   assert.deepEqual(
@@ -116,26 +132,37 @@ test('journey progress enforces sequential access, skip/revisit rules, concurren
   assert.ok(scStep.completedAt);
   const firstCompletedAt = scStep.completedAt;
 
-  // Idempotent repeat complete preserves original completed_at
-  const repeat = await student('/api/journey/steps/self-check', { action: 'complete' });
+  // Revisiting completed step with empty array keeps saved answers intact
+  const repeat = await student('/api/journey/steps/self-check', { action: 'complete', answers: [] });
   assert.equal(repeat.data.step.completedAt, firstCompletedAt);
+  assert.equal(repeat.data.recap.answers.length, 2);
+  assert.deepEqual(repeat.data.recap.answers.map((s) => s.id), ['self-check', 'kuis']);
 
   // Complete action-plan & skipped refleksi
   assert.equal((await student('/api/journey/steps/action-plan', { action: 'complete' })).status, 200);
-  const finalRes = await student('/api/journey/steps/refleksi', { action: 'complete' });
+  const finalRes = await student('/api/journey/steps/refleksi', {
+    action: 'complete',
+    answers: [{ question: 'Potensi yang disadari', answer: 'Menulis catatan belajar' }],
+  });
   assert.equal(finalRes.data.journey.summary.completedCount, 6);
   assert.equal(finalRes.data.journey.summary.skippedCount, 0);
   assert.equal(finalRes.data.journey.summary.isAllCompleted, true);
+  assert.deepEqual(finalRes.data.recap.answers.map((s) => s.id), ['self-check', 'kuis', 'refleksi']);
 
-  // Verify database table schema contains only status metadata (no personal answers)
+  // Verify GET /api/journey/recap and DB persistence across reopen
+  const recapFetch = await student('/api/journey/recap');
+  assert.equal(recapFetch.status, 200);
+  assert.deepEqual(recapFetch.data.recap.answers.map((s) => s.id), ['self-check', 'kuis', 'refleksi']);
+
   const columns = service.db.prepare('PRAGMA table_info(user_journey_progress)').all().map((c) => c.name);
   assert.deepEqual(columns, ['user_id', 'step_id', 'status', 'completed_at', 'updated_at']);
 
-  // Verify persistence across DB reopen
   const reopened = await createAuthService(options);
   const persistedCount = reopened.db
     .prepare("SELECT COUNT(*) AS total FROM user_journey_progress WHERE user_id = ? AND status = 'completed'")
     .get(userId).total;
   assert.equal(persistedCount, 6);
+  const persistedRecap = await reopened.repo.getRecap(userId);
+  assert.deepEqual(persistedRecap.answers.map((s) => s.id), ['self-check', 'kuis', 'refleksi']);
   reopened.db.close();
 });

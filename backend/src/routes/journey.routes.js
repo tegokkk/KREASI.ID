@@ -5,21 +5,30 @@ export { buildJourneyState, JOURNEY_STEPS } from '../domain/journey.js';
 const STEP_INDEX_BY_ID = new Map(JOURNEY_STEPS.map((step, index) => [step.id, index]));
 const ANSWER_STEPS = new Set(['self-check', 'kuis', 'refleksi', 'action-plan']);
 
+export function validateStepAnswers(stepId, entries) {
+  if (!ANSWER_STEPS.has(stepId) || !Array.isArray(entries) || entries.length === 0 || entries.length > 7) {
+    return null;
+  }
+  const answers = [];
+  for (const entry of entries) {
+    if (typeof entry?.question !== 'string' || typeof entry?.answer !== 'string') return null;
+    const question = entry.question.trim();
+    const answer = entry.answer.trim();
+    if (!question || question.length > 500 || !answer || answer.length > 1200) return null;
+    answers.push({ question, answer });
+  }
+  return answers;
+}
+
 function validateRecap(value) {
   if (!Array.isArray(value) || value.length === 0 || value.length > ANSWER_STEPS.size) return null;
   const seen = new Set();
   const recap = [];
   for (const section of value) {
-    if (!ANSWER_STEPS.has(section?.id) || seen.has(section.id) || !Array.isArray(section.answers) || !section.answers.length || section.answers.length > 6) return null;
+    if (!ANSWER_STEPS.has(section?.id) || seen.has(section.id)) return null;
+    const answers = validateStepAnswers(section.id, section.answers);
+    if (!answers) return null;
     seen.add(section.id);
-    const answers = [];
-    for (const entry of section.answers) {
-      if (typeof entry?.question !== 'string' || typeof entry.answer !== 'string') return null;
-      const question = entry.question.trim();
-      const answer = entry.answer.trim();
-      if (!question || question.length > 500 || !answer || answer.length > 1200) return null;
-      answers.push({ question, answer });
-    }
     recap.push({ id: section.id, answers });
   }
   return recap;
@@ -41,11 +50,11 @@ export function createJourneyRouter(service) {
     catch (error) { next(error); }
   });
   router.put('/recap', async (req, res, next) => {
-    const answers = req.is('application/json') && req.body?.share === true && validateRecap(req.body.answers);
-    if (!answers) return res.status(400).json({ error: 'Pilih jawaban yang valid dan konfirmasi pengiriman rekap.' });
+    const answers = req.is('application/json') && validateRecap(req.body?.answers);
+    if (!answers) return res.status(400).json({ error: 'Pilih jawaban yang valid untuk disimpan di rekap.' });
     try {
       const recap = await service.repo.saveRecap(req.account.id, answers);
-      return recap ? res.json({ recap }) : res.status(409).json({ error: 'Selesaikan keenam langkah sebelum mengirim rekap.' });
+      return recap ? res.json({ recap }) : res.status(403).json({ error: 'Akun siswa belum aktif.' });
     } catch (error) { next(error); }
   });
   router.delete('/recap', async (req, res, next) => {
@@ -73,12 +82,22 @@ export function createJourneyRouter(service) {
     const action = req.body?.action;
     if (!['complete', 'skip'].includes(action)) return res.status(400).json({ error: 'Tindakan progres harus bernilai complete atau skip.' });
     if (action === 'skip' && !JOURNEY_STEPS[index].allowSkip) return res.status(400).json({ error: 'Langkah ini harus diselesaikan sebelum melanjutkan.' });
+    let stepAnswers = null;
+    if (action === 'complete' && req.account.role === 'user' && req.body?.answers !== undefined) {
+      if (!ANSWER_STEPS.has(stepId) || !Array.isArray(req.body.answers)) {
+        return res.status(400).json({ error: 'Format jawaban kegiatan tidak valid.' });
+      }
+      if (req.body.answers.length > 0) {
+        stepAnswers = validateStepAnswers(stepId, req.body.answers);
+        if (!stepAnswers) return res.status(400).json({ error: 'Format jawaban kegiatan tidak valid.' });
+      }
+    }
     try {
-      const result = await service.repo.recordProgress({ userId: req.account.id, stepId, action });
+      const result = await service.repo.recordProgress({ userId: req.account.id, stepId, action, answers: stepAnswers });
       if (!result.allowed) return res.status(403).json({
         error: 'Selesaikan langkah sebelumnya terlebih dahulu.', redirectStepId: result.journey.summary.currentStepId, journey: result.journey,
       });
-      res.json({ step: result.step, nextStepId: result.nextStepId, journey: result.journey });
+      res.json({ step: result.step, nextStepId: result.nextStepId, journey: result.journey, recap: result.recap });
     } catch (error) { next(error); }
   });
   return router;

@@ -276,6 +276,33 @@
   color: var(--color-muted);
 }
 
+.historyActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectionChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sectionChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-activity-blue);
+  color: var(--color-primary);
+  font-size: var(--text-caption);
+  font-weight: 700;
+}
+
 .historyDetails {
   border-top: 1px solid var(--color-divider);
 }
