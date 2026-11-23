@@ -23,7 +23,7 @@ export function HomePage() {
 
   return (
     <PageLayout title="Beranda" mainClassName={styles.homeMain}>
-      <section className={styles.opening} aria-label="Animasi pembuka KREASI.ID">
+      <section className={styles.opening} aria-label="Pembuka KREASI.ID">
         <StickerIntro />
       </section>
       <div className={`container ${styles.pageStack}`}>
