@@ -1,26 +1,14 @@
 import { forwardRef } from 'react';
-import { CheckCircle2, HelpCircle, RotateCcw } from 'lucide-react';
+import { CheckCircle2, RotateCcw, Sparkles } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
+import { QUIZ_PROFILES, summarizeQuizResult } from './questions';
 import styles from './QuizResult.module.css';
 
 export const QuizResult = forwardRef(function QuizResult(
   { questions, answers, onRetry },
   ref
 ) {
-  const correctCount = questions.reduce(
-    (sum, question) => sum + (answers[question.id] === question.correctOptionId ? 1 : 0),
-    0
-  );
-
-  let feedbackText =
-    'Kamu bisa membaca ulang pembahasan di bawah atau kembali ke materi untuk memperkuat pemahamanmu.';
-  if (correctCount === questions.length) {
-    feedbackText =
-      'Hebat! Kamu memahami seluruh konsep dasar tentang mengenali dan mengembangkan potensi diri.';
-  } else if (correctCount >= 4) {
-    feedbackText =
-      'Bagus! Sebagian besar pemahamanmu sudah tepat. Tinjau kembali pembahasan untuk soal yang masih perlu diperkuat.';
-  }
+  const summary = summarizeQuizResult(questions, answers);
 
   return (
     <section
@@ -31,11 +19,21 @@ export const QuizResult = forwardRef(function QuizResult(
     >
       <div className={styles.scoreHeader}>
         <div>
-          <p className={styles.scoreLabel}>Hasil Percobaan Ini</p>
+          <p className={styles.scoreLabel}>Hasil Kuis KREASI.ID</p>
           <h2 id="quiz-result-heading" className="section-title">
-            {correctCount} dari {questions.length} jawaban benar
+            {summary.headline}
           </h2>
-          <p className={styles.feedbackText}>{feedbackText}</p>
+          {summary.topProfiles.map((profile) => (
+            <div key={profile.id} className={styles.profileBlock}>
+              <p className={styles.feedbackText}>
+                <strong>{profile.label}:</strong> {profile.summary}
+              </p>
+              <p className={styles.suggestionText}>
+                <Sparkles size={16} aria-hidden="true" />
+                <span>{profile.suggestion}</span>
+              </p>
+            </div>
+          ))}
         </div>
         <Button type="button" variant="secondary" onClick={onRetry}>
           <RotateCcw size={18} aria-hidden="true" />
@@ -44,49 +42,29 @@ export const QuizResult = forwardRef(function QuizResult(
       </div>
 
       <p className={styles.disclaimer}>
-        Catatan: Nilai ini hanya menunjukkan pemahamanmu terhadap materi pada percobaan kali ini,
-        bukan penilaian bakat atau nilai rapor sekolah.
+        Catatan: Tidak ada jawaban benar atau salah dalam kuis ini. Hasil ini membantumu mengenali
+        kecenderungan potensi saat ini sebagai bahan refleksi, bukan penilaian mutlak atau nilai
+        rapor sekolah.
       </p>
 
       <div className={styles.reviewList}>
         {questions.map((question) => {
           const userAnswerId = answers[question.id];
-          const isCorrect = userAnswerId === question.correctOptionId;
           const userOption = question.options.find((opt) => opt.id === userAnswerId);
-          const correctOption = question.options.find(
-            (opt) => opt.id === question.correctOptionId
-          );
+          const profile = userAnswerId ? QUIZ_PROFILES[userAnswerId] : null;
 
           return (
-            <article
-              key={question.id}
-              className={[
-                styles.reviewItem,
-                isCorrect ? styles.reviewCorrect : styles.reviewIncorrect,
-              ].join(' ')}
-            >
+            <article key={question.id} className={`${styles.reviewItem} ${styles.reviewCorrect}`}>
               <div className={styles.reviewTop}>
                 <span className={styles.reviewNum}>
                   Soal {question.number} · {question.topic}
                 </span>
-                <span
-                  className={[
-                    styles.statusPill,
-                    isCorrect ? styles.statusPillCorrect : styles.statusPillIncorrect,
-                  ].join(' ')}
-                >
-                  {isCorrect ? (
-                    <>
-                      <CheckCircle2 size={15} aria-hidden="true" />
-                      <span>Jawaban benar</span>
-                    </>
-                  ) : (
-                    <>
-                      <HelpCircle size={15} aria-hidden="true" />
-                      <span>Perlu ditinjau</span>
-                    </>
-                  )}
-                </span>
+                {profile && (
+                  <span className={`${styles.statusPill} ${styles.statusPillCorrect}`}>
+                    <CheckCircle2 size={15} aria-hidden="true" />
+                    <span>{profile.shortLabel}</span>
+                  </span>
+                )}
               </div>
 
               <h3 className={styles.reviewPrompt}>{question.prompt}</h3>
@@ -94,17 +72,6 @@ export const QuizResult = forwardRef(function QuizResult(
               <p className={styles.answerLine}>
                 <strong>Jawabanmu:</strong>{' '}
                 {userOption ? `${userOption.id.toUpperCase()}. ${userOption.text}` : '-'}
-              </p>
-
-              {!isCorrect && correctOption && (
-                <p className={styles.answerLine}>
-                  <strong>Jawaban tepat:</strong> {correctOption.id.toUpperCase()}.{' '}
-                  {correctOption.text}
-                </p>
-              )}
-
-              <p className={styles.explanation}>
-                <strong>Pembahasan:</strong> {question.explanation}
               </p>
             </article>
           );

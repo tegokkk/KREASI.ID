@@ -34,7 +34,7 @@ export const ACTIVITIES = [
     step: 4,
     path: '/kuis',
     title: 'Kuis',
-    description: 'Cek pemahamanmu tentang materi.',
+    description: 'Kenali kecenderungan potensimu lewat lima pertanyaan.',
     colorToken: 'lilac',
     iconName: 'ListChecks',
     ctaLabel: 'Buka Kuis',

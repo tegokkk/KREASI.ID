@@ -127,7 +127,7 @@ export function QuizForm({ questions, answers, onSelectOption, onSubmitQuiz }) {
 
       <div className={styles.actions}>
         <Button type="submit" variant="primary">
-          Periksa Jawaban
+          Lihat Hasil Kuis
         </Button>
       </div>
     </form>

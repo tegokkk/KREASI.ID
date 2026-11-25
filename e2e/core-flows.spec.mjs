@@ -161,7 +161,7 @@ test('signup, pending approval, superadmin review, six activities, and progress 
   await dashboardMenu.getByRole('link', { name: 'Rekap Jawaban Siswa' }).click();
   await expect(admin.getByText('4/4 kegiatan dijawab')).toBeVisible();
   await admin.getByRole('link', { name: 'Lihat Jawaban' }).click();
-  await expect(admin.getByRole('region', { name: 'Kuis' }).getByText(/Skor Kuis Pemahaman/i)).toBeVisible();
+  await expect(admin.getByRole('region', { name: 'Kuis' }).getByText(/Hasil Kecenderungan Potensi/i)).toBeVisible();
   await expect(admin.getByRole('region', { name: 'Refleksi' }).getByText(personalText, { exact: true })).toBeVisible();
   await expect(admin.getByRole('region', { name: 'Action Plan' }).getByText(personalText, { exact: true }).first()).toBeVisible();
 

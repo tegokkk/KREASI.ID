@@ -10,9 +10,8 @@ import { InfoPanel } from '../components/ui/InfoPanel';
 import { useJourney } from '../features/journey/JourneyProvider';
 import { recapAnswers } from '../features/journey/recap-answers';
 import { QuizForm } from '../features/quiz/QuizForm';
-import { QuizPractice } from '../features/quiz/QuizPractice';
 import { QuizResult } from '../features/quiz/QuizResult';
-import { QUIZ_QUESTIONS } from '../features/quiz/questions';
+import { QUIZ_QUESTIONS, summarizeQuizResult } from '../features/quiz/questions';
 import { DEFAULT_PUBLIC_CONFIG, fetchPublicConfig } from '../services/public-config';
 import styles from './ActivityPage.module.css';
 
@@ -72,20 +71,16 @@ export function QuizPage() {
     setSaveError('');
     let responses;
     if (!isGoogleFormsMode && submitted) {
-      const correctCount = QUIZ_QUESTIONS.reduce(
-        (total, question) => total + (answers[question.id] === question.correctOptionId ? 1 : 0),
-        0
-      );
+      const summary = summarizeQuizResult(QUIZ_QUESTIONS, answers);
       responses = [
         {
-          question: 'Skor Kuis Pemahaman',
-          answer: `${correctCount} dari ${QUIZ_QUESTIONS.length} soal benar`,
+          question: 'Hasil Kecenderungan Potensi',
+          answer: summary.headline,
         },
         ...recapAnswers(QUIZ_QUESTIONS, (question) => {
           const chosen = question.options.find((option) => option.id === answers[question.id]);
           if (!chosen) return '';
-          const statusLabel = chosen.id === question.correctOptionId ? 'Benar' : 'Belum tepat';
-          return `${chosen.text} (${statusLabel})`;
+          return `${chosen.id.toUpperCase()}. ${chosen.text}`;
         }),
       ];
     } else if (isGoogleFormsMode && formsConfirmed) {
@@ -115,18 +110,19 @@ export function QuizPage() {
               status={currentStep?.status}
               steps={journey?.steps}
             />
-            <h1 className="page-title">Kuis Pemahaman Materi</h1>
+            <h1 className="page-title">Kuis KREASI.ID</h1>
             <p className="lead-text">
-              Kuis ini terdiri dari enam soal untuk mengecek pemahamanmu tentang cara mengenali
-              potensi, pentingnya mengembangkannya, dan langkah pengembangan diri.
+              Jawab lima pertanyaan berikut untuk mengenali kecenderungan potensi dirimu, mulai dari
+              aktivitas yang kamu sukai, caramu menghadapi tantangan, hingga kemampuan yang ingin
+              kamu kembangkan.
             </p>
           </div>
 
-          <InfoPanel tone="blue" icon="info" title="Tujuan kuis & catatan materi">
+          <InfoPanel tone="blue" icon="info" title="Petunjuk pengisian kuis">
             <p>
-              Nilai kuis hanya menunjukkan pemahamanmu terhadap materi pada percobaan kali ini sebagai
-              umpan balik pembelajaran, bukan menentukan tingkat bakat atau nilai rapor sekolah.
-              Ingin membaca ulang materi? <Link to="/kenali-potensi">Buka Kenali Potensi</Link> atau{' '}
+              Tidak ada jawaban benar atau salah dalam kuis ini. Pilih jawaban yang paling sesuai
+              dengan dirimu saat ini. Hasil kuis otomatis tersimpan ke Rekap Jawabanmu. Ingin
+              membaca ulang materi? <Link to="/kenali-potensi">Buka Kenali Potensi</Link> atau{' '}
               <Link to="/mengembangkan-potensi">Mengembangkan Potensi</Link>.
             </p>
           </InfoPanel>
@@ -141,16 +137,16 @@ export function QuizPage() {
                 Kerjakan kuis di Google Forms
               </h2>
               <p>
-                Kuis ini membantumu mengecek pemahaman materi. Google Forms akan terbuka di tab
-                baru. Setelah mengirim jawaban, kamu dapat langsung melihat skor individu dan
-                pembahasannya, lalu kembali ke halaman KREASI.ID ini untuk lanjut ke Refleksi.
+                Kuis ini membantumu mengenali kecenderungan potensi diri. Google Forms akan terbuka
+                di tab baru. Setelah mengirim jawaban, kembali ke halaman KREASI.ID ini untuk lanjut
+                ke Refleksi.
               </p>
 
               <InfoPanel tone="yellow" icon="privacy" title="Informasi data & privasi kuis">
                 <p>
-                  Jawaban pilihan ganda, skor, dan waktu pengiriman dicatat oleh layanan Google
-                  Forms dan hanya dapat diakses pengelola layanan BK yang ditugaskan. Usulan masa
-                  simpan respons maksimal {publicConfig.quiz.retentionDays} hari.
+                  Jawaban pilihan ganda dan waktu pengiriman dicatat oleh layanan Google Forms dan
+                  hanya dapat diakses pengelola layanan BK yang ditugaskan. Usulan masa simpan
+                  respons maksimal {publicConfig.quiz.retentionDays} hari.
                 </p>
                 <p>
                   Email pribadi tidak dikumpulkan. Jika terdapat kolom komentar, jangan menuliskan
@@ -177,10 +173,7 @@ export function QuizPage() {
                   onChange={(event) => setFormsConfirmed(event.target.checked)}
                   style={{ marginRight: '10px', width: '20px', height: '20px' }}
                 />
-                <span>
-                  Saya sudah mengerjakan kuis dan melihat pembahasannya (atau mempelajari latihan
-                  cadangan di bawah).
-                </span>
+                <span>Saya sudah mengerjakan kuis KREASI.ID dan siap lanjut ke Refleksi.</span>
               </label>
             </section>
           ) : (
@@ -189,12 +182,18 @@ export function QuizPage() {
                 <InfoPanel tone="yellow" icon="info" title="Mode kuis lokal aktif">
                   <p>
                     Pengaturan kuis eksternal tidak dapat dimuat saat ini. Kamu tetap dapat
-                    mengerjakan seluruh enam soal kuis pemahaman langsung di peramban ini.
+                    mengerjakan seluruh lima pertanyaan Kuis KREASI.ID langsung di peramban ini.
                   </p>
                 </InfoPanel>
               )}
 
-              <ActivityErrorBoundary fallback={<QuizPractice />}>
+              <ActivityErrorBoundary
+                fallback={
+                  <InfoPanel tone="error" icon="warning" title="Kuis sedang terkendala">
+                    <p>Muat ulang halaman ini untuk mencoba mengerjakan Kuis KREASI.ID kembali.</p>
+                  </InfoPanel>
+                }
+              >
                 {submitted ? (
                   <QuizResult
                     ref={resultRef}
@@ -214,8 +213,6 @@ export function QuizPage() {
             </>
           )}
 
-          <QuizPractice />
-
           <ActivityNavigation
             prev={{ to: '/mengembangkan-potensi', label: 'Sebelumnya: Mengembangkan Potensi' }}
             next={{
@@ -223,7 +220,7 @@ export function QuizPage() {
               disabled: !canContinue,
               loading: savingStepId === 'kuis',
               hint: !canContinue
-                ? 'Selesaikan keenam soal kuis dan lihat pembahasannya terlebih dahulu untuk membuka Refleksi.'
+                ? 'Jawab kelima pertanyaan kuis dan lihat hasilnya terlebih dahulu untuk membuka Refleksi.'
                 : undefined,
               onClick: handleComplete,
             }}
