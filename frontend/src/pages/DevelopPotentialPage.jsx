@@ -5,6 +5,7 @@ import { ActivityNavigation } from '../components/navigation/ActivityNavigation'
 import { StepIndicator } from '../components/navigation/StepIndicator';
 import { MENGEMBANGKAN_POTENSI_DATA } from '../content/learning-materials';
 import { useJourney } from '../features/journey/JourneyProvider';
+import { StudentMaterialsList } from '../features/materials/StudentMaterialsList';
 import styles from './ActivityPage.module.css';
 
 export function DevelopPotentialPage() {
@@ -104,6 +105,12 @@ export function DevelopPotentialPage() {
               ))}
             </div>
           </section>
+
+          <StudentMaterialsList
+            category="mengembangkan-potensi"
+            heading="Materi Tambahan: Mengembangkan Potensi"
+            lead="Materi tambahan dari Guru BK atau pengelola sekolah untuk membantumu berlatih lebih terarah."
+          />
 
           <ActivityNavigation
             prev={{ to: '/kenali-potensi', label: 'Sebelumnya: Kenali Potensi' }}

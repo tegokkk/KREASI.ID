@@ -228,6 +228,38 @@ export function createRepository(database, { dialect, schema }) {
         if (!version) throw new Error('Migrasi database belum dijalankan.');
       }
       await one(`SELECT user_id FROM ${table('student_recaps')} LIMIT 1`);
+      await one(`SELECT id FROM ${table('learning_materials')} LIMIT 1`);
+    },
+    async listMaterials({ school = null, category = null, staffSchoolOnly = false } = {}) {
+      const cols = `id, title, category, summary, content, resource_url AS "resourceUrl", school,
+        author_id AS "authorId", author_name AS "authorName", author_role AS "authorRole",
+        created_at AS "createdAt", updated_at AS "updatedAt"`;
+      if (staffSchoolOnly) {
+        return all(`SELECT ${cols} FROM ${table('learning_materials')}
+          WHERE (CAST($1 AS TEXT) IS NULL OR LOWER(TRIM(school)) = LOWER(TRIM($1)))
+            AND (CAST($2 AS TEXT) IS NULL OR category = $2)
+          ORDER BY created_at DESC, id DESC LIMIT 100`, [school, category]);
+      }
+      return all(`SELECT ${cols} FROM ${table('learning_materials')}
+        WHERE (school IS NULL OR (CAST($1 AS TEXT) IS NOT NULL AND LOWER(TRIM(school)) = LOWER(TRIM($1))))
+          AND (CAST($2 AS TEXT) IS NULL OR category = $2)
+        ORDER BY created_at DESC, id DESC LIMIT 100`, [school, category]);
+    },
+    async createMaterial({ id, title, category, summary, content, resourceUrl, school, authorId, authorName, authorRole }) {
+      const now = new Date().toISOString();
+      return one(`INSERT INTO ${table('learning_materials')}
+        (id, title, category, summary, content, resource_url, school, author_id, author_name, author_role, created_at, updated_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $11)
+        RETURNING id, title, category, summary, content, resource_url AS "resourceUrl", school,
+          author_id AS "authorId", author_name AS "authorName", author_role AS "authorRole",
+          created_at AS "createdAt", updated_at AS "updatedAt"`,
+      [id, title, category, summary, content, resourceUrl, school, authorId, authorName, authorRole, now]);
+    },
+    async deleteMaterial({ id, school = null }) {
+      const row = await one(`DELETE FROM ${table('learning_materials')}
+        WHERE id = $1 AND (CAST($2 AS TEXT) IS NULL OR (school IS NOT NULL AND LOWER(TRIM(school)) = LOWER(TRIM($2))))
+        RETURNING id`, [id, school]);
+      return Boolean(row);
     },
     async makeAdmin(id) {
       return one(`UPDATE ${table('user')} SET role = 'admin', "updatedAt" = $2

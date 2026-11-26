@@ -6,6 +6,7 @@ import { StepIndicator } from '../components/navigation/StepIndicator';
 import { InfoPanel } from '../components/ui/InfoPanel';
 import { KENALI_POTENSI_DATA } from '../content/learning-materials';
 import { useJourney } from '../features/journey/JourneyProvider';
+import { StudentMaterialsList } from '../features/materials/StudentMaterialsList';
 import styles from './ActivityPage.module.css';
 
 const TERM_COLOR_CLASS = {
@@ -137,6 +138,12 @@ export function RecognizePotentialPage() {
               <p>{whyStartNow.reflectionPrompt}</p>
             </InfoPanel>
           </section>
+
+          <StudentMaterialsList
+            category="kenali-potensi"
+            heading="Materi Tambahan: Kenali Potensi"
+            lead="Materi tambahan dari Guru BK atau pengelola sekolah untuk memperdalam pemahamanmu."
+          />
 
           <ActivityNavigation
             prev={{ to: '/self-check', label: 'Sebelumnya: Self-check' }}

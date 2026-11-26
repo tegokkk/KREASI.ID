@@ -19,7 +19,7 @@ for (const target of ['preview', 'production']) {
     const security = (await service.db.query(`SELECT bool_and(c.relrowsecurity) AS rls,
       count(*) AS tables FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
       WHERE n.nspname=$1 AND c.relkind='r'`, [schema])).rows[0];
-    if (!security.rls || Number(security.tables) !== 9) throw new Error('Private schema security check failed.');
+    if (!security.rls || Number(security.tables) !== 10) throw new Error('Private schema security check failed.');
     const roles = await service.db.query(`SELECT rolname FROM pg_roles WHERE rolname IN ('anon','authenticated')`);
     for (const role of roles.rows) {
       const permissions = await service.db.query(`SELECT has_schema_privilege($1,$2,'USAGE') AS allowed`, [role.rolname, schema]);

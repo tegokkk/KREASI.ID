@@ -15,6 +15,7 @@ import { Button } from '../../components/ui/Button';
 import { InfoPanel } from '../../components/ui/InfoPanel';
 import { useJourney } from './JourneyProvider';
 import { useAuth } from '../auth/AuthProvider';
+import { StudentMaterialsList } from '../materials/StudentMaterialsList';
 import styles from './JourneySection.module.css';
 
 const ACTIVITY_BY_ID = Object.fromEntries(ACTIVITIES.map((item) => [item.id, item]));
@@ -308,6 +309,14 @@ export function JourneySection({ id = 'jelajahi' }) {
             </div>
           )}
         </section>
+      )}
+
+      {isStudent && (
+        <StudentMaterialsList
+          collapsible
+          heading="Materi dari Guru BK & Sekolah"
+          lead="Klik judul materi di bawah untuk membaca materi tambahan dari Superadmin atau Guru BK sekolahmu."
+        />
       )}
     </section>
   );

@@ -16,6 +16,7 @@ import { VerificationPage } from './features/auth/VerificationPage';
 import { SuperadminPage } from './features/auth/SuperadminPage';
 import { StudentHistoryPage } from './features/auth/StudentHistoryPage';
 import { StaffRecapPage } from './features/auth/StaffRecapPage';
+import { ManageMaterialsPage } from './features/materials/ManageMaterialsPage';
 import { StudentRecapPage } from './features/journey/StudentRecapPage';
 import { JourneyProvider } from './features/journey/JourneyProvider';
 import { RequireStepAccess } from './features/journey/RequireStepAccess';
@@ -42,6 +43,7 @@ export function App() {
           <Route element={<RequireAccount roles={STAFF_ROLES} />}>
             <Route path="/rekap-siswa" element={<StudentHistoryPage key="recaps" recaps />} />
             <Route path="/rekap-siswa/:studentId" element={<StaffRecapPage />} />
+            <Route path="/kelola-materi" element={<ManageMaterialsPage />} />
           </Route>
           <Route element={<RequireAccount roles={['user']} />}>
             <Route path="/rekap" element={<StudentRecapPage />} />

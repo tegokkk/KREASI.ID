@@ -24,6 +24,7 @@ export function AccountMenu() {
         {user.role === 'superadmin' && <Link to="/superadmin">Verifikasi Akun</Link>}
         {user.status === 'approved' && HISTORY_ROLES.includes(user.role) && <Link to="/riwayat-siswa">Riwayat Siswa</Link>}
         {user.status === 'approved' && STAFF_ROLES.includes(user.role) && <Link to="/rekap-siswa">Rekap Jawaban Siswa</Link>}
+        {user.status === 'approved' && STAFF_ROLES.includes(user.role) && <Link to="/kelola-materi">Kelola Materi</Link>}
         {user.status === 'approved' && user.role === 'user' && <Link to="/rekap">Rekap Jawaban</Link>}
         <button type="button" disabled={busy} onClick={signOut}>{busy ? 'Memproses…' : 'Keluar'}</button>
         {error && <p role="alert">{error}</p>}

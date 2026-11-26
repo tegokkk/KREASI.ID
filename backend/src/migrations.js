@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
-export const SCHEMA_VERSION = 4;
+export const SCHEMA_VERSION = 5;
 
 export async function migratePostgres(pool, schema) {
   const directory = new URL('../../supabase/migrations/', import.meta.url);
@@ -52,5 +52,19 @@ export function migrateSqlite(db) {
       user_id TEXT PRIMARY KEY REFERENCES user(id) ON DELETE CASCADE,
       answers TEXT NOT NULL, submitted_at TEXT NOT NULL);
     CREATE INDEX IF NOT EXISTS student_recaps_submitted_idx ON student_recaps(submitted_at DESC, user_id DESC);
+    CREATE TABLE IF NOT EXISTS learning_materials (
+      id TEXT PRIMARY KEY,
+      title TEXT NOT NULL,
+      category TEXT NOT NULL CHECK(category IN ('kenali-potensi', 'mengembangkan-potensi', 'umum')),
+      summary TEXT NOT NULL,
+      content TEXT NOT NULL,
+      resource_url TEXT,
+      school TEXT,
+      author_id TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
+      author_name TEXT NOT NULL,
+      author_role TEXT NOT NULL CHECK(author_role IN ('superadmin', 'admin', 'bk')),
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL);
+    CREATE INDEX IF NOT EXISTS learning_materials_created_idx ON learning_materials(created_at DESC, id DESC);
   `);
 }
