@@ -47,30 +47,6 @@
   stroke-linejoin: round;
 }
 
-.sticker {
-  position: absolute;
-  z-index: 1;
-  width: clamp(46px, 14vw, 68px);
-  padding: 0;
-  border: 0;
-  background: transparent;
-  transform: translate(-50%, -50%) rotate(var(--rotation));
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.sticker svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.lift {
-  display: block;
-  filter: drop-shadow(0 3px 2px rgba(36, 24, 49, 0.22));
-}
-
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -108,10 +84,6 @@
     max-height: 34svh;
   }
 
-  .sticker {
-    width: clamp(64px, 10vw, 88px);
-  }
-
   .controls {
     justify-content: space-between;
     text-align: left;
@@ -130,10 +102,6 @@
 
   .wordmark {
     width: min(100%, 720px);
-  }
-
-  .sticker {
-    width: clamp(76px, 8.5vw, 108px);
   }
 }
 
@@ -155,10 +123,6 @@
   .wordmark {
     width: min(100%, 460px);
     max-height: calc(100svh - 195px);
-  }
-
-  .sticker {
-    width: clamp(44px, 7.5vw, 64px);
   }
 
   .controls {

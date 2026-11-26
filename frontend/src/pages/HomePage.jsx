@@ -32,9 +32,6 @@ export function HomePage() {
         ) : (
           <>
             <section id="jelajahi" className={styles.hero} aria-labelledby="hero-heading" tabIndex={-1}>
-              <div className={styles.dotsTopRight} aria-hidden="true" />
-              <div className={styles.dotsBottomLeft} aria-hidden="true" />
-
               <div className={styles.heroGrid}>
                 <div className={styles.heroContent}>
                   <p className={styles.heroBadge}>
