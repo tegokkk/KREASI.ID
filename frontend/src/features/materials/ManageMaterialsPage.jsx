@@ -11,8 +11,7 @@ import {
   MATERIAL_CATEGORY_LABELS,
 } from '../../services/materials';
 import { useAuth } from '../auth/AuthProvider';
-import { StaffDashboardNav } from '../auth/StaffDashboardNav';
-import staffStyles from '../auth/Superadmin.module.css';
+import { StaffDashboardLayout } from '../auth/StaffDashboardNav';
 import styles from './Materials.module.css';
 
 const dateFormat = new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
@@ -117,31 +116,27 @@ export function ManageMaterialsPage() {
   }
 
   return (
-    <PageLayout title="Kelola Materi">
-      <div className="container">
-        <div className={staffStyles.stack}>
-          <div className={staffStyles.header}>
-            <div>
-              <h1 className="page-title">Kelola Materi Siswa</h1>
-              <p className="lead-text">
-                {isBk
-                  ? `Tambahkan materi pembelajaran khusus untuk siswa ${user.school}. Materi yang ditambahkan otomatis muncul di halaman siswa.`
-                  : 'Tambahkan materi pembelajaran untuk semua sekolah atau sekolah tertentu. Materi yang disimpan otomatis muncul di akun siswa.'}
-              </p>
-            </div>
-            <Button
-              size="sm"
-              variant="secondary"
-              type="button"
-              onClick={() => setRevision((value) => value + 1)}
-            >
-              <RefreshCw size={16} aria-hidden="true" /> Muat ulang
-            </Button>
-          </div>
-
-          <StaffDashboardNav current="materials" />
-
-          {statusMessage && (
+    <StaffDashboardLayout
+      title="Kelola Materi"
+      heading="Kelola Materi Siswa"
+      description={
+        isBk
+          ? `Tambahkan materi pembelajaran khusus untuk siswa ${user.school}. Materi yang ditambahkan otomatis muncul di halaman siswa.`
+          : 'Tambahkan materi pembelajaran untuk semua sekolah atau sekolah tertentu. Materi yang disimpan otomatis muncul di akun siswa.'
+      }
+      current="materials"
+      headerActions={
+        <Button
+          size="sm"
+          variant="secondary"
+          type="button"
+          onClick={() => setRevision((value) => value + 1)}
+        >
+          <RefreshCw size={16} aria-hidden="true" /> Muat ulang
+        </Button>
+      }
+    >
+      {statusMessage && (
             <InfoPanel tone="mint" icon="check" title="Berhasil" role="status">
               <p>{statusMessage}</p>
             </InfoPanel>
@@ -365,8 +360,6 @@ export function ManageMaterialsPage() {
               </ul>
             )}
           </section>
-        </div>
-      </div>
-    </PageLayout>
+    </StaffDashboardLayout>
   );
 }

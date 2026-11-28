@@ -14,7 +14,7 @@ import { Button } from '../../components/ui/Button';
 import { FormField } from '../../components/ui/FormField';
 import { InfoPanel } from '../../components/ui/InfoPanel';
 import { accountRequest } from '../../services/auth';
-import { StaffDashboardNav } from './StaffDashboardNav';
+import { StaffDashboardLayout } from './StaffDashboardNav';
 import styles from './Superadmin.module.css';
 
 const STATUS_META = [
@@ -336,24 +336,13 @@ export function SuperadminPage() {
   const endIndex = data.total === 0 ? 0 : startIndex + data.users.length - 1;
 
   return (
-    <PageLayout title="Verifikasi Akun">
-      <div className={`container ${styles.page}`}>
-        <header className={styles.heading}>
-          <div className={styles.headingText}>
-            <span className={styles.eyebrow}>
-              <ShieldCheck size={16} aria-hidden="true" />
-              <span>Superadmin</span>
-            </span>
-            <h1 className="page-title">Verifikasi Akun</h1>
-            <p className="lead-text">
-              Setujui pengajuan, kelola peran, dan hapus akun dari KREASI.ID.
-            </p>
-          </div>
-        </header>
-
-        <StaffDashboardNav current="accounts" />
-
-        <section className={styles.summaryGrid} aria-label="Ringkasan jumlah akun">
+    <StaffDashboardLayout
+      title="Verifikasi Akun"
+      heading="Verifikasi Akun"
+      description="Setujui pengajuan, kelola peran, dan hapus akun dari KREASI.ID."
+      current="accounts"
+    >
+      <section className={styles.summaryGrid} aria-label="Ringkasan jumlah akun">
           {STATUS_META.map((item) => {
             const Icon = item.Icon;
             const countValue = counts ? counts[item.value] : null;
@@ -579,8 +568,7 @@ export function SuperadminPage() {
             </Button>
           </div>
         </nav>
-      </div>
-    </PageLayout>
+    </StaffDashboardLayout>
   );
 }
 

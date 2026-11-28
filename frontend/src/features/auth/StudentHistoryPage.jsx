@@ -6,7 +6,7 @@ import { Button } from '../../components/ui/Button';
 import { InfoPanel } from '../../components/ui/InfoPanel';
 import { accountRequest } from '../../services/auth';
 import { useAuth } from './AuthProvider';
-import { StaffDashboardNav } from './StaffDashboardNav';
+import { StaffDashboardLayout } from './StaffDashboardNav';
 import styles from './Superadmin.module.css';
 
 const dateFormat = new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
@@ -118,82 +118,76 @@ export function StudentHistoryPage({ recaps = false }) {
     else setPage(nextPage);
   }
 
-  const roleLabel = { superadmin: 'Superadmin', admin: 'Admin', bk: 'Guru BK' }[user.role];
   const title = recaps ? 'Rekap Jawaban Siswa' : 'Riwayat Siswa';
+  const description = recaps
+    ? 'Rekapan jawaban kegiatan siswa yang tersimpan otomatis (Self-check, Kuis, Refleksi, dan Action Plan).'
+    : 'Siswa yang sudah menuntaskan semua langkah kegiatan KREASI.ID beserta akses ke rekapan jawabannya.';
 
   return (
-    <PageLayout title={title}>
-      <div className={`container ${styles.page}`}>
-        <header className={styles.headingText}>
-          <span className={styles.eyebrow}>{roleLabel}</span>
-          <h1 className="page-title">{title}</h1>
-          <p className="lead-text">
-            {recaps
-              ? 'Rekapan jawaban kegiatan siswa yang tersimpan otomatis (Self-check, Kuis, Refleksi, dan Action Plan).'
-              : 'Siswa yang sudah menuntaskan semua langkah kegiatan KREASI.ID beserta akses ke rekapan jawabannya.'}
+    <StaffDashboardLayout
+      title={title}
+      heading={title}
+      description={user.role === 'bk' && user.school ? `${description} (${user.school})` : description}
+      current={recaps ? 'recaps' : 'history'}
+      headerActions={
+        <Button size="sm" variant="secondary" disabled={loading} onClick={() => load()}>
+          <RefreshCw size={16} aria-hidden="true" /> Muat Ulang
+        </Button>
+      }
+    >
+      {error && (
+        <InfoPanel tone="error" icon="warning" role="alert">
+          {error}
+        </InfoPanel>
+      )}
+      <section
+        className={styles.listSection}
+        aria-label={recaps ? 'Daftar rekap siswa' : 'Siswa yang sudah tuntas'}
+        aria-busy={loading}
+      >
+        {loading && (
+          <p className={styles.stateBox} role="status">
+            Memuat riwayat siswa…
           </p>
-          {user.role === 'bk' && <p>{user.school}</p>}
-        </header>
-        <StaffDashboardNav current={recaps ? 'recaps' : 'history'} />
-        <div className={styles.toolbar}>
-          <Button size="sm" variant="secondary" disabled={loading} onClick={() => load()}>
-            <RefreshCw size={16} aria-hidden="true" /> Muat Ulang
-          </Button>
-        </div>
-        {error && (
-          <InfoPanel tone="error" icon="warning" role="alert">
-            {error}
-          </InfoPanel>
         )}
-        <section
-          className={styles.listSection}
-          aria-label={recaps ? 'Daftar rekap siswa' : 'Siswa yang sudah tuntas'}
-          aria-busy={loading}
-        >
-          {loading && (
-            <p className={styles.stateBox} role="status">
-              Memuat riwayat siswa…
+        {result &&
+          (result.students.length > 0 ? (
+            <ul className={styles.cardList}>
+              {result.students.map((student) => (
+                <HistoryCard key={student.id} student={student} recaps={recaps} />
+              ))}
+            </ul>
+          ) : (
+            <p className={styles.stateBox}>
+              {page !== 1
+                ? 'Tidak ada siswa di halaman ini.'
+                : recaps
+                  ? 'Belum ada rekap jawaban yang tersimpan dari siswa.'
+                  : 'Belum ada siswa yang menuntaskan semua langkah.'}
             </p>
-          )}
-          {result &&
-            (result.students.length > 0 ? (
-              <ul className={styles.cardList}>
-                {result.students.map((student) => (
-                  <HistoryCard key={student.id} student={student} recaps={recaps} />
-                ))}
-              </ul>
-            ) : (
-              <p className={styles.stateBox}>
-                {page !== 1
-                  ? 'Tidak ada siswa di halaman ini.'
-                  : recaps
-                    ? 'Belum ada rekap jawaban yang tersimpan dari siswa.'
-                    : 'Belum ada siswa yang menuntaskan semua langkah.'}
-              </p>
-            ))}
-        </section>
-        {(page > 1 || result?.hasMore) && (
-          <nav className={styles.filters} aria-label="Halaman riwayat">
-            <Button
-              size="sm"
-              variant="secondary"
-              disabled={loading || page === 1}
-              onClick={() => load(page - 1)}
-            >
-              Sebelumnya
-            </Button>
-            <span>Halaman {page}</span>
-            <Button
-              size="sm"
-              variant="secondary"
-              disabled={loading || !result?.hasMore}
-              onClick={() => load(page + 1)}
-            >
-              Berikutnya
-            </Button>
-          </nav>
-        )}
-      </div>
-    </PageLayout>
+          ))}
+      </section>
+      {(page > 1 || result?.hasMore) && (
+        <nav className={styles.filters} aria-label="Halaman riwayat">
+          <Button
+            size="sm"
+            variant="secondary"
+            disabled={loading || page === 1}
+            onClick={() => load(page - 1)}
+          >
+            Sebelumnya
+          </Button>
+          <span>Halaman {page}</span>
+          <Button
+            size="sm"
+            variant="secondary"
+            disabled={loading || !result?.hasMore}
+            onClick={() => load(page + 1)}
+          >
+            Berikutnya
+          </Button>
+        </nav>
+      )}
+    </StaffDashboardLayout>
   );
 }
