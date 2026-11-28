@@ -1,49 +1,81 @@
-.dashboardContainer {
-  max-width: 1360px;
+.dashboardPageMain {
+  padding-block: 0 !important;
+  background-color: #f8fafc;
+  min-height: 100dvh;
 }
 
 .dashboardShell {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  align-items: start;
+  min-height: 100dvh;
+  align-items: stretch;
+}
+
+.sidebarBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: rgba(15, 23, 42, 0.36);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 200;
+  width: min(300px, 82vw);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  padding: 18px;
-  border-radius: var(--radius-card);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-divider);
-  box-shadow: 0 4px 18px rgba(36, 24, 49, 0.04);
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: 28px 18px 22px;
+  background-color: #ffffff;
+  border-right: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 12px 0 36px rgba(15, 23, 42, 0.14);
+  overflow-y: auto;
+  transform: translateX(-104%);
+  visibility: hidden;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), visibility 220ms;
+}
+
+.sidebarOpen {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.sidebarTop {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
 }
 
 .sidebarBrand {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--color-divider);
+  gap: 14px;
+  padding-inline: 6px;
 }
 
 .brandLogoWrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background-color: var(--color-canvas);
-  border: 1px solid var(--color-divider);
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background-color: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
   flex-shrink: 0;
   overflow: hidden;
 }
 
 .brandLogo {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 }
 
@@ -51,20 +83,36 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  flex: 1;
 }
 
 .brandTitle {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  color: var(--color-ink);
+  color: #0f172a;
   line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .brandSubtitle {
-  font-size: var(--text-small);
-  color: var(--color-muted);
-  font-weight: 600;
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.drawerCloseBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
 }
 
 .sidebarNav {
@@ -76,27 +124,28 @@
 .sidebarLink {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-height: 44px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: var(--text-body);
-  font-weight: 600;
-  color: var(--color-ink);
+  gap: 14px;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #334155;
   text-decoration: none;
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .sidebarLink:hover {
-  background-color: var(--color-canvas);
+  background-color: #f1f5f9;
+  color: #0f172a;
 }
 
 .sidebarLinkActive,
 .sidebarLinkActive:hover {
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(48, 75, 228, 0.22);
+  background-color: #2c8c57;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(44, 140, 87, 0.24);
 }
 
 .sidebarIcon {
@@ -106,83 +155,109 @@
 .sidebarFooter {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding-top: 12px;
-  border-top: 1px solid var(--color-divider);
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
 }
 
-.sidebarSecondaryLink,
 .sidebarLogoutBtn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-height: 40px;
-  padding: 8px 14px;
-  border-radius: 10px;
+  gap: 14px;
+  min-height: 46px;
+  padding: 10px 16px;
+  border-radius: 12px;
   border: 0;
   background: transparent;
   font: inherit;
-  font-size: var(--text-small);
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--color-muted);
-  text-decoration: none;
+  color: #dc2626;
   cursor: pointer;
   text-align: left;
+  transition: background-color var(--transition-fast);
 }
 
-.sidebarSecondaryLink:hover,
 .sidebarLogoutBtn:hover {
-  background-color: var(--color-canvas);
-  color: var(--color-ink);
+  background-color: #fef2f2;
 }
 
 .dashboardMain {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
   min-width: 0;
+  min-height: 100dvh;
 }
 
 .dashboardTopbar {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  padding: var(--space-lg);
-  border-radius: var(--radius-card);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-divider);
+  gap: 14px;
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.topbarLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.mobileMenuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #0f172a;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .topbarHeading {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
 }
 
+.topbarTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
 .topbarLead {
-  color: var(--color-muted);
-  font-size: var(--text-body);
-  line-height: 1.5;
-  max-width: 68ch;
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  max-width: 72ch;
 }
 
 .topbarRight {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
 }
 
 .profilePill {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding: 8px 14px 8px 10px;
   border-radius: 14px;
-  background-color: var(--color-canvas);
-  border: 1px solid var(--color-divider);
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
   max-width: 100%;
 }
 
@@ -193,8 +268,8 @@
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
+  background-color: #2c8c57;
+  color: #ffffff;
   font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 800;
@@ -208,16 +283,16 @@
 }
 
 .profileName {
-  font-size: var(--text-small);
+  font-size: 0.9rem;
   font-weight: 700;
-  color: var(--color-ink);
+  color: #0f172a;
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
 .profileSub {
-  font-size: var(--text-caption);
-  color: var(--color-muted);
+  font-size: 0.8rem;
+  color: #64748b;
   line-height: 1.25;
   overflow-wrap: anywhere;
 }
@@ -226,6 +301,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+  padding: 20px;
+  max-width: 1200px;
+  width: 100%;
   min-width: 0;
 }
 
@@ -797,19 +875,30 @@
 
 @media (min-width: 1024px) {
   .dashboardShell {
-    grid-template-columns: 260px minmax(0, 1fr);
-    gap: var(--space-xl);
+    grid-template-columns: 272px minmax(0, 1fr);
+  }
+
+  .sidebarBackdrop,
+  .mobileMenuBtn,
+  .drawerCloseBtn {
+    display: none;
   }
 
   .sidebar {
     position: sticky;
-    top: calc(var(--header-height) + 20px);
-    min-height: calc(100svh - var(--header-height) - 48px);
-    justify-content: space-between;
+    top: 0;
+    width: 272px;
+    height: 100dvh;
+    transform: none;
+    visibility: visible;
+    box-shadow: none;
   }
 
-  .sidebarNav {
-    flex: 1;
-    padding-top: 6px;
+  .dashboardTopbar {
+    padding: 20px 32px;
+  }
+
+  .dashboardBody {
+    padding: 28px 32px;
   }
 }

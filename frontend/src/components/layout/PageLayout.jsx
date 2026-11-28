@@ -4,7 +4,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import styles from './PageLayout.module.css';
 
-export function PageLayout({ title, children, mainClassName = '' }) {
+export function PageLayout({ title, children, mainClassName = '', hideChrome = false }) {
   const { pathname, hash } = useLocation();
   const mainRef = useRef(null);
 
@@ -29,11 +29,11 @@ export function PageLayout({ title, children, mainClassName = '' }) {
       <a href="#main-content" className="skip-link">
         Langsung ke isi utama
       </a>
-      <Header />
+      {!hideChrome && <Header />}
       <main id="main-content" ref={mainRef} tabIndex={-1} className={`${styles.main} ${mainClassName}`}>
         {children}
       </main>
-      <Footer />
+      {!hideChrome && <Footer />}
     </div>
   );
 }

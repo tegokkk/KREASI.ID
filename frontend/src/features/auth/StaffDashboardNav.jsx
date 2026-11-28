@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   BookOpen,
   ClipboardList,
   GraduationCap,
   Home,
-  LayoutDashboard,
   LogOut,
+  Menu,
   UserCheck,
+  X,
 } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import logoKreasi from '../../assets/images/logo-kreasi.png';
 import { PageLayout } from '../../components/layout/PageLayout';
 import { useAuth } from './AuthProvider';
@@ -20,7 +21,7 @@ const ROLE_LABELS = {
   bk: 'Guru BK',
 };
 
-export function StaffDashboardNav({ current }) {
+export function StaffDashboardNav({ current, onNavigate }) {
   const { user } = useAuth();
   if (!user) return null;
 
@@ -33,6 +34,7 @@ export function StaffDashboardNav({ current }) {
       : []),
     { id: 'recaps', to: '/rekap-siswa', label: 'Rekap Jawaban Siswa', Icon: ClipboardList },
     { id: 'materials', to: '/kelola-materi', label: 'Kelola Materi', Icon: BookOpen },
+    { id: 'home', to: '/', label: 'Beranda KREASI.ID', Icon: Home },
   ];
 
   return (
@@ -45,8 +47,9 @@ export function StaffDashboardNav({ current }) {
             to={to}
             aria-current={active ? 'page' : undefined}
             className={`${styles.sidebarLink} ${active ? styles.sidebarLinkActive : ''}`}
+            onClick={onNavigate}
           >
-            <Icon size={18} aria-hidden="true" className={styles.sidebarIcon} />
+            <Icon size={20} aria-hidden="true" className={styles.sidebarIcon} />
             <span>{label}</span>
           </Link>
         );
@@ -63,12 +66,35 @@ export function StaffDashboardLayout({
   headerActions,
   children,
 }) {
+  const { pathname } = useLocation();
   const { user, logout } = useAuth();
   const [signingOut, setSigningOut] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const roleLabel = ROLE_LABELS[user?.role] || 'Staf';
+  const roleLabel = ROLE_LABELS[user?.role] || 'Administrator';
   const initial = (user?.name || roleLabel).trim().charAt(0).toUpperCase();
   const subIdentity = user?.email || user?.school || roleLabel;
+
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!drawerOpen) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        setDrawerOpen(false);
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [drawerOpen]);
 
   async function handleSignOut() {
     setSigningOut(true);
@@ -80,68 +106,95 @@ export function StaffDashboardLayout({
   }
 
   return (
-    <PageLayout title={title || heading}>
-      <div className={`container ${styles.dashboardContainer}`}>
-        <div className={styles.dashboardShell}>
-          <aside className={styles.sidebar} aria-label="Panel navigasi staf">
+    <PageLayout title={title || heading} hideChrome mainClassName={styles.dashboardPageMain}>
+      <div className={styles.dashboardShell}>
+        {drawerOpen && (
+          <div
+            className={styles.sidebarBackdrop}
+            aria-hidden="true"
+            onClick={() => setDrawerOpen(false)}
+          />
+        )}
+
+        <aside
+          id="staff-dashboard-sidebar"
+          className={`${styles.sidebar} ${drawerOpen ? styles.sidebarOpen : ''}`}
+          aria-label="Panel navigasi staf"
+        >
+          <div className={styles.sidebarTop}>
             <div className={styles.sidebarBrand}>
               <div className={styles.brandLogoWrap}>
-                <img src={logoKreasi} alt="" className={styles.brandLogo} />
+                <img src={logoKreasi} alt="Logo KREASI.ID" className={styles.brandLogo} />
               </div>
               <div className={styles.brandText}>
                 <span className={styles.brandTitle}>KREASI.ID</span>
                 <span className={styles.brandSubtitle}>{roleLabel}</span>
               </div>
+              {drawerOpen && (
+                <button
+                  type="button"
+                  className={styles.drawerCloseBtn}
+                  aria-label="Tutup menu navigasi"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <X size={20} aria-hidden="true" />
+                </button>
+              )}
             </div>
 
-            <StaffDashboardNav current={current} />
+            <StaffDashboardNav current={current} onNavigate={() => setDrawerOpen(false)} />
+          </div>
 
-            <div className={styles.sidebarFooter}>
-              <Link to="/" className={styles.sidebarSecondaryLink}>
-                <Home size={17} aria-hidden="true" />
-                <span>Beranda KREASI.ID</span>
-              </Link>
+          <div className={styles.sidebarFooter}>
+            <button
+              type="button"
+              className={styles.sidebarLogoutBtn}
+              disabled={signingOut}
+              onClick={handleSignOut}
+            >
+              <LogOut size={19} aria-hidden="true" />
+              <span>{signingOut ? 'Memproses…' : 'Keluar Akun'}</span>
+            </button>
+          </div>
+        </aside>
+
+        <div className={styles.dashboardMain}>
+          <header className={styles.dashboardTopbar}>
+            <div className={styles.topbarLeft}>
               <button
                 type="button"
-                className={styles.sidebarLogoutBtn}
-                disabled={signingOut}
-                onClick={handleSignOut}
+                className={styles.mobileMenuBtn}
+                aria-label={drawerOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
+                aria-expanded={drawerOpen}
+                aria-controls="staff-dashboard-sidebar"
+                onClick={() => setDrawerOpen((open) => !open)}
               >
-                <LogOut size={17} aria-hidden="true" />
-                <span>{signingOut ? 'Memproses…' : 'Keluar'}</span>
+                <Menu size={22} aria-hidden="true" />
               </button>
-            </div>
-          </aside>
 
-          <div className={styles.dashboardMain}>
-            <header className={styles.dashboardTopbar}>
               <div className={styles.topbarHeading}>
-                <span className={styles.eyebrow}>
-                  <LayoutDashboard size={15} aria-hidden="true" />
-                  <span>Dashboard {roleLabel}</span>
-                </span>
-                <h1 className="page-title">{heading || title}</h1>
+                <h1 className={styles.topbarTitle}>{heading || title}</h1>
                 {description && <p className={styles.topbarLead}>{description}</p>}
               </div>
+            </div>
 
-              <div className={styles.topbarRight}>
-                {headerActions}
-                {user && (
-                  <div className={styles.profilePill} aria-label="Profil staf aktif">
-                    <span className={styles.profileAvatar} aria-hidden="true">
-                      {initial}
-                    </span>
-                    <div className={styles.profileMeta}>
-                      <span className={styles.profileName}>{user.name}</span>
-                      <span className={styles.profileSub}>{subIdentity}</span>
-                    </div>
+            <div className={styles.topbarRight}>
+              {headerActions}
+              {user && (
+                <div className={styles.profilePill} aria-label="Profil staf aktif">
+                  <span className={styles.profileAvatar} aria-hidden="true">
+                    {initial}
+                  </span>
+                  <div className={styles.profileMeta}>
+                    <span className={styles.profileName}>{user.name}</span>
+                    <span className={styles.profileSub}>{subIdentity}</span>
                   </div>
-                )}
-              </div>
-            </header>
+                </div>
+              )}
+            </div>
+          </header>
 
-            <div className={styles.dashboardBody}>{children}</div>
-          </div>
+          <div className={styles.dashboardBody}>{children}</div>
         </div>
       </div>
     </PageLayout>

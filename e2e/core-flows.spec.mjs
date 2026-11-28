@@ -116,7 +116,7 @@ test('signup, pending approval, superadmin review, six activities, and progress 
   const nextQuiz = page.getByRole('button', { name: 'Selesai & Lanjut ke Refleksi', exact: true });
   await expect(nextQuiz).toBeDisabled();
   await page.locator('form button[type="submit"]').click();
-  await expect(page.getByRole('alert').filter({ hasText: 'Masih ada 6 soal' })).toBeVisible();
+  await expect(page.getByRole('alert').filter({ hasText: 'Masih ada 5 soal' })).toBeVisible();
   for (const group of await page.locator('form fieldset').all()) await group.getByRole('radio').first().check();
   await page.locator('form button[type="submit"]').click();
   await expect(nextQuiz).toBeEnabled();
@@ -197,13 +197,12 @@ test('signup, pending approval, superadmin review, six activities, and progress 
   await expect(bk.getByRole('heading', { name: 'Siswa Alur', exact: true })).toBeVisible();
   await expect.poll(() => bk.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await bk.getByRole('button', { name: 'Buka menu navigasi' }).click();
-  const mobileMenu = bk.getByRole('navigation', { name: 'Menu navigasi ponsel' });
-  await mobileMenu.getByText('Akun', { exact: true }).click();
+  const mobileMenu = bk.getByRole('navigation', { name: 'Menu dashboard' });
   await expect(mobileMenu.getByRole('link', { name: 'Rekap Jawaban Siswa', exact: true })).toBeVisible();
   await expect(mobileMenu.getByRole('link', { name: 'Verifikasi Akun', exact: true })).toHaveCount(0);
   expect((await bk.request.get('/api/admin/users')).status()).toBe(403);
   expect((await bk.request.get('/api/staff/student-history')).status()).toBe(403);
-  await bk.getByRole('button', { name: 'Tutup menu navigasi' }).click();
+  await bk.getByRole('button', { name: 'Tutup menu navigasi' }).first().click();
   await bk.getByRole('link', { name: 'Lihat Jawaban' }).click();
   await expect(bk.getByRole('region', { name: 'Refleksi' }).getByText(personalText)).toBeVisible();
 
@@ -213,6 +212,7 @@ test('signup, pending approval, superadmin review, six activities, and progress 
   await admin.getByRole('button', { name: 'Konfirmasi Admin' }).click();
   await expect(admin.getByRole('status').filter({ hasText: 'sudah menjadi Admin' })).toBeVisible();
   await bk.goto('/rekap-siswa');
+  await bk.getByRole('button', { name: 'Buka menu navigasi' }).click();
   await expect(bk.getByRole('navigation', { name: 'Menu dashboard' }).getByRole('link', { name: 'Riwayat Siswa' })).toBeVisible();
 
   await bkRow.getByRole('button', { name: 'Hapus Akun', exact: true }).click();
